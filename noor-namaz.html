@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f172a">
+<title>নূর - সালাফি নামাজের সময়সূচি</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#0f172a;--bg2:#1e1b4b;--tx:#f8fafc;--mu:#94a3b8;--gr:#34d399;--am:#fbbf24;--card:rgba(255,255,255,.06);--bd:rgba(255,255,255,.12)}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Hind Siliguri','Noto Sans Bengali','Kohinoor Bangla',system-ui,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg2)) fixed;color:var(--tx);min-height:100vh;padding:16px;display:flex;justify-content:center}
+.wrap{width:100%;max-width:440px;display:grid;gap:14px;align-content:start}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px}
+.c{text-align:center}
+h1{font-size:22px;color:var(--gr)}
+.mu{color:var(--mu);font-size:13px;margin-top:4px}
+button{font:inherit;cursor:pointer;border:0;color:inherit;background:none}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--am);outline-offset:2px}
+.row{display:flex;gap:8px;margin-top:10px}
+input{flex:1;min-width:0;font:inherit;padding:9px 12px;border-radius:10px;border:1px solid var(--bd);background:rgba(0,0,0,.25);color:var(--tx)}
+.btn{padding:9px 14px;border-radius:10px;background:rgba(52,211,153,.2);border:1px solid rgba(52,211,153,.5)}
+#cd{font:700 40px ui-monospace,Menlo,monospace;color:var(--am);margin:6px 0;letter-spacing:2px}
+#nn{font-size:30px;font-weight:700}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.se{display:flex;flex-direction:column;align-items:center;gap:2px}
+.se b{font-size:20px}
+.bell{font-size:20px;padding:6px 10px;border-radius:10px;opacity:.45;filter:grayscale(1)}
+.bell.on{opacity:1;filter:none;background:rgba(251,191,36,.18)}
+.p{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:12px;border:1px solid transparent}
+.p+.p{margin-top:6px}
+.p.cur{background:rgba(16,185,129,.22);border-color:rgba(52,211,153,.5)}
+.p b{display:block}
+.p small{color:var(--mu)}
+details summary{cursor:pointer;font-weight:600;color:var(--gr)}
+.d{margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)}
+.d h4{font-size:15px}
+.d p{font-size:14px;color:#cbd5e1;margin-top:4px;line-height:1.6}
+.ar{font-family:'Noto Naskh Arabic','Amiri','Traditional Arabic',serif;font-size:22px;line-height:2;direction:rtl;text-align:right;color:var(--tx)!important}
+.src{font-size:12px;color:var(--am)!important}
+#ring{position:fixed;left:12px;right:12px;top:12px;max-width:416px;margin:auto;z-index:9;background:#065f46;border:1px solid var(--gr);border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;box-shadow:0 8px 30px #0008}
+#ring[hidden]{display:none}
+#st{font-size:12px;color:var(--am);margin-top:6px}
+</style>
+</head>
+<body>
+<div id="ring" hidden role="alert"><span id="rt"></span><button class="btn" id="rs">বন্ধ করুন</button></div>
+<main class="wrap">
+  <section class="card c">
+    <h1>🕌 সহিহ সালাফি সময়সূচি</h1>
+    <p class="mu" id="loc">📍 অবস্থান নিশ্চিত করা হচ্ছে...</p>
+    <p class="mu" id="dt">--</p>
+    <p class="mu" id="hj"></p>
+    <p id="st"></p>
+    <form class="row" id="sf">
+      <input id="q" placeholder="জেলা/শহর লিখুন (Joypurhat, Dhaka)" aria-label="শহরের নাম" list="dl" autocomplete="off"><datalist id="dl"></datalist>
+      <button class="btn" type="submit">খুঁজুন</button>
+      <button class="btn" type="button" id="gps" title="জিপিএস লোকেশন" aria-label="জিপিএস">📍</button>
+    </form>
+  </section>
+
+  <section class="card c">
+    <span class="mu">পরবর্তী সালাত</span>
+    <h2 id="nn">--</h2>
+    <div id="cd">00:00:00</div>
+    <p class="mu" id="nt"></p>
+  </section>
+
+  <section class="g2">
+    <div class="card c se"><span class="mu">সেহরির শেষ সময়</span><b id="sh">--:--</b><button class="bell" data-k="Sehri" aria-label="সেহরি অ্যালার্ম">🔔</button></div>
+    <div class="card c se"><span class="mu">ইফতারের সময়</span><b id="if">--:--</b><button class="bell" data-k="Iftar" aria-label="ইফতার অ্যালার্ম">🔔</button></div>
+  </section>
+
+  <section class="card">
+    <div class="mu" style="margin:0 0 8px;display:flex;justify-content:space-between"><span>আজকের সালাতের সময়</span><span>অ্যালার্ম</span></div>
+    <div id="list"></div>
+  </section>
+
+  <section class="card">
+    <details>
+      <summary>সালামের পরের সহিহ মাসনূন দুআ ও যিকির</summary>
+      <div class="d"><h4>১. ইস্তিগফার (৩ বার)</h4><p class="ar">أَسْتَغْفِرُ اللَّهَ</p><p>আসতাগফিরুল্লাহ</p><p class="src">সহিহ মুসলিম</p></div>
+      <div class="d"><h4>২. আয়াতুল কুরসি</h4><p class="ar">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</p><p>প্রতি ফরজ সালাতের পর পড়বে।</p><p class="src">নাসাঈ (সহিহ)</p></div>
+      <div class="d"><h4>৩. তাসবিহে ফাতেমী</h4><p>৩৩ বার সুবহানাল্লাহ, ৩৩ বার আলহামদুলিল্লাহ, ৩৪ বার আল্লাহু আকবার।</p><p class="src">সহিহ মুসলিম</p></div>
+      <div class="d"><h4>৪. বিশেষ দুআ</h4><p class="ar">اللَّهُمَّ أَعِنِّي عَلَىٰ ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ</p><p>আল্লাহুম্মা আইন্নী ‘আলা যিকরিকা ওয়া শুকরিকা ওয়া হুসনি ‘ইবাদাতিক।</p><p class="src">আবু দাউদ (সহিহ)</p></div>
+    </details>
+  </section>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+const LS={g:(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch{return d}},s:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+const bn=s=>String(s).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+const p2=n=>String(n).padStart(2,'0');
+const NM={Fajr:'ফজর',Sunrise:'সূর্যোদয়',Dhuhr:'যোহর',Asr:'আসর',Maghrib:'মাগরিব',Isha:'এশা',Sehri:'সেহরির শেষ সময়',Iftar:'ইফতারের সময়'};
+const PR=['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'];
+const HM=['মুহাররম','সফর','রবিউল আউয়াল','রবিউস সানী','জুমাদাল উলা','জুমাদাস সানিয়াহ','রজব','শা‘বান','রমজান','শাওয়াল','জিলকদ','জিলহজ'];
+const DHAKA={lat:23.8103,lng:90.4125,name:'ঢাকা (ডিফল্ট)'};
+const DIST='Dhaka 23.81 90.41,Gazipur 24.00 90.42,Narayanganj 23.62 90.50,Narsingdi 23.92 90.72,Manikganj 23.86 90.00,Munshiganj 23.55 90.53,Tangail 24.25 89.92,Kishoreganj 24.43 90.78,Faridpur 23.60 89.84,Gopalganj 23.01 89.83,Madaripur 23.17 90.20,Rajbari 23.76 89.64,Shariatpur 23.22 90.35,Chattogram 22.36 91.78,Cox’s Bazar 21.43 92.01,Cumilla 23.46 91.18,Feni 23.02 91.40,Brahmanbaria 23.96 91.11,Noakhali 22.87 91.10,Chandpur 23.23 90.65,Lakshmipur 22.94 90.84,Khagrachhari 23.12 91.98,Rangamati 22.65 92.17,Bandarban 22.20 92.22,Rajshahi 24.37 88.60,Bogura 24.85 89.37,Joypurhat 25.10 89.02,Naogaon 24.80 88.94,Natore 24.42 89.00,Chapainawabganj 24.60 88.28,Pabna 24.00 89.23,Sirajganj 24.45 89.70,Khulna 22.82 89.55,Bagerhat 22.65 89.79,Satkhira 22.71 89.07,Jashore 23.17 89.21,Narail 23.17 89.50,Magura 23.49 89.42,Jhenaidah 23.54 89.17,Kushtia 23.90 89.12,Chuadanga 23.64 88.85,Meherpur 23.76 88.63,Barishal 22.70 90.37,Bhola 22.69 90.65,Patuakhali 22.36 90.33,Pirojpur 22.58 89.97,Jhalokati 22.64 90.20,Barguna 22.15 90.12,Sylhet 24.90 91.87,Moulvibazar 24.48 91.77,Habiganj 24.38 91.42,Sunamganj 25.07 91.40,Rangpur 25.75 89.25,Dinajpur 25.63 88.64,Thakurgaon 26.03 88.46,Panchagarh 26.33 88.55,Nilphamari 25.93 88.86,Lalmonirhat 25.99 89.45,Kurigram 25.81 89.64,Gaibandha 25.33 89.53,Mymensingh 24.75 90.40,Jamalpur 24.92 89.94,Sherpur 25.02 90.02,Netrokona 24.87 90.73,Comilla 23.46 91.18,Chittagong 22.36 91.78,Jessore 23.17 89.21,Barisal 22.70 90.37,Bogra 24.85 89.37'.split(',').map(x=>{const p=x.split(' ');return [p.slice(0,-2).join(' '),+p[p.length-2],+p[p.length-1]]});
+$('dl').innerHTML=DIST.slice(0,64).map(x=>`<option value="${x[0]}">`).join('');
+let loc=null,data={},T=null,curKey='',alarms=LS.g('alarms',{}),fired={},swReg=null,actx=null,ringTimer=null;
+
+const dkey=d=>`${p2(d.getDate())}-${p2(d.getMonth()+1)}-${d.getFullYear()}`;
+const clean=s=>s.split(' ')[0];
+const at=(d,t)=>{const[h,m]=t.split(':');const x=new Date(d);x.setHours(+h,+m,0,0);return x};
+const f12=t=>{const[h,m]=t.split(':');return bn(`${(+h%12)||12}:${m}`)+(+h>=12?' PM':' AM')};
+
+const R=Math.PI/180,S=d=>Math.sin(d*R),C=d=>Math.cos(d*R),TN=d=>Math.tan(d*R),AS=x=>Math.asin(x)/R,AC=x=>Math.acos(x)/R,AT2=(y,x)=>Math.atan2(y,x)/R;
+const fa=a=>a-360*Math.floor(a/360),fh=h=>h-24*Math.floor(h/24);
+function jul(y,m,d){if(m<=2){y--;m+=12}const A=Math.floor(y/100),B=2-A+Math.floor(A/4);return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5}
+function sunPos(j){const D=j-2451545,g=fa(357.529+.98560028*D),q=fa(280.459+.98564736*D),L=fa(q+1.915*S(g)+.02*S(2*g)),e=23.439-3.6e-7*D,ra=fh(AT2(C(e)*S(L),C(L))/15);return{dec:AS(S(e)*S(L)),eqt:q/15-ra}}
+function ramadan(d){try{return +new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{month:'numeric'}).format(d)===9}catch{return false}}
+function hijri(d){try{return new Intl.DateTimeFormat('bn-BD-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(d)}catch{return ''}}
+/* উম্মুল কুরা: ফজর ১৮.৫°, এশা মাগরিবের ৯০ মিনিট পর (রমজানে ১২০), আসর স্ট্যান্ডার্ড */
+function calc(date,lat,lng){
+  const tz=-date.getTimezoneOffset()/60,jd=jul(date.getFullYear(),date.getMonth()+1,date.getDate())-lng/360;
+  const sp=t=>sunPos(jd+t/24),mid=t=>fh(12-sp(t).eqt);
+  const ang=(a,t,ccw)=>{const dec=sp(t).dec;let v=(-S(a)-S(dec)*S(lat))/(C(dec)*C(lat));v=Math.max(-1,Math.min(1,v));const h=AC(v)/15;return mid(t)+(ccw?-h:h)};
+  const asrA=t=>-Math.atan(1/(1+TN(Math.abs(lat-sp(t).dec))))/R;
+  const mg=ang(.833,18);
+  const raw={Fajr:ang(18.5,5,true),Sunrise:ang(.833,6,true),Dhuhr:mid(12),Asr:ang(asrA(13),13),Maghrib:mg,Isha:mg+(ramadan(date)?2:1.5)};
+  const adj=tz-lng/15,t={};
+  for(const k in raw){const m=Math.floor(fh(raw[k]+adj)*60+.5);t[k]=`${p2(Math.floor(m/60)%24)}:${p2(m%60)}`}
+  return t;
+}
+function getDay(d){return {t:calc(d,loc.lat,loc.lng),h:hijri(d)}}
+async function loadAll(){curKey='';render()}
+function render(){
+  const n=new Date(),d=getDay(n);
+  $('dt').textContent=n.toLocaleDateString('bn-BD',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  $('st').textContent=navigator.onLine?'':'অফলাইন: সময় ফোনেই হিসাব হচ্ছে';
+  if(!d){T=null;return}
+  T=d.t; $('hj').textContent=d.h;
+  $('sh').textContent=f12(T.Fajr); $('if').textContent=f12(T.Maghrib);
+  $('list').innerHTML=PR.map(k=>`<div class="p" data-p="${k}"><div><b>${NM[k]}</b><small>${f12(T[k])}</small></div>${k==='Sunrise'?'':`<button class="bell" data-k="${k}" aria-label="${NM[k]} অ্যালার্ম">🔔</button>`}</div>`).join('');
+  paintBells();
+}
+function paintBells(){document.querySelectorAll('.bell').forEach(b=>{const on=!!alarms[b.dataset.k];b.classList.toggle('on',on);b.textContent=on?'🔔':'🔕'})}
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.bell'); if(!b) return;
+  const k=b.dataset.k; alarms[k]=!alarms[k]; LS.s('alarms',alarms); paintBells();
+  if(alarms[k]){
+    try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();actx.resume()}catch{}
+    if('Notification' in window&&Notification.permission==='default') Notification.requestPermission();
+  }
+});
+
+function beep(){
+  if(!actx) return;
+  [0,.35].forEach(t=>{const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;o.connect(g);g.connect(actx.destination);
+    const s=actx.currentTime+t;g.gain.setValueAtTime(.3,s);g.gain.exponentialRampToValueAtTime(.001,s+.3);o.start(s);o.stop(s+.3)});
+}
+function stopRing(){clearInterval(ringTimer);ringTimer=null;$('ring').hidden=true}
+$('rs').onclick=stopRing;
+function ring(k){
+  const msg=k==='Sehri'||k==='Iftar'?`${NM[k]} হয়েছে`:`${NM[k]}ের সময় হয়েছে`;
+  $('rt').textContent='🔔 '+msg; $('ring').hidden=false;
+  clearInterval(ringTimer); let n=0; beep(); navigator.vibrate&&navigator.vibrate([300,150,300]);
+  ringTimer=setInterval(()=>{beep();if(++n>=30)stopRing()},2000);
+  if('Notification' in window&&Notification.permission==='granted'){
+    const o={body:msg,tag:k,icon:undefined,requireInteraction:true};
+    try{swReg?swReg.showNotification('নূর',o):new Notification('নূর',o)}catch{}
+  }
+}
+
+function tick(){
+  const now=new Date(),k=dkey(now);
+  if(!loc) return;
+  if(k!==curKey){curKey=k;render()}
+  if(!T) return;
+  let cur='Isha',next=null;
+  PR.forEach(p=>{if(at(now,T[p])<=now)cur=p});
+  for(const p of ['Fajr','Dhuhr','Asr','Maghrib','Isha']){const d=at(now,T[p]);if(d>now){next={p,d};break}}
+  if(!next){const tm=new Date(now);tm.setDate(tm.getDate()+1);const t=getDay(tm).t.Fajr;next={p:'Fajr',d:at(tm,t),t}}
+  document.querySelectorAll('.p').forEach(el=>el.classList.toggle('cur',el.dataset.p===cur));
+  $('nn').textContent=NM[next.p]; $('nt').textContent='সময়: '+f12(next.t||T[next.p]);
+  const s=Math.max(0,Math.floor((next.d-now)/1000));
+  $('cd').textContent=bn(`${p2(Math.floor(s/3600))}:${p2(Math.floor(s%3600/60))}:${p2(s%60)}`);
+  [['Fajr','Fajr'],['Dhuhr','Dhuhr'],['Asr','Asr'],['Maghrib','Maghrib'],['Isha','Isha'],['Sehri','Fajr'],['Iftar','Maghrib']].forEach(([a,src])=>{
+    if(!alarms[a]) return;
+    const diff=now-at(now,T[src]),fk=a+k;
+    if(diff>=0&&diff<60000&&!fired[fk]){fired[fk]=1;ring(a)}
+  });
+}
+setInterval(tick,1000);
+
+async function setLoc(l,save,resolve){
+  loc=l; if(save) LS.s('loc',l);
+  $('loc').textContent='📍 '+(l.name||'আপনার এলাকা');
+  await loadAll();
+  if(resolve&&navigator.onLine){
+    try{
+      const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&accept-language=bn&lat=${l.lat}&lon=${l.lng}`);
+      const j=await r.json(),a=j.address||{};
+      l.name=a.city||a.town||a.city_district||a.suburb||a.state_district||a.state||'আপনার এলাকা';
+      LS.s('loc',l); $('loc').textContent='📍 '+l.name;
+    }catch{}
+  }
+}
+function gps(){
+  $('loc').textContent='📍 অবস্থান নিশ্চিত করা হচ্ছে...';
+  if(!navigator.geolocation) return setLoc(DHAKA,false,false);
+  navigator.geolocation.getCurrentPosition(
+    p=>setLoc({lat:p.coords.latitude,lng:p.coords.longitude,name:null},true,true),
+    ()=>setLoc(loc&&loc.name?loc:DHAKA,false,false),{timeout:10000,maximumAge:600000});
+}
+$('gps').onclick=gps;
+$('sf').onsubmit=async e=>{
+  e.preventDefault(); const q=$('q').value.trim(); if(!q) return;
+  const nk=x=>x.toLowerCase().replace(/[^a-z]/g,''),hit=DIST.find(x=>nk(x[0])===nk(q));
+  if(hit){$('q').value='';setLoc({lat:hit[1],lng:hit[2],name:hit[0]},true,false);return}
+  if(!navigator.onLine){$('st').textContent='শহর খুঁজতে ইন্টারনেট দরকার।';return}
+  try{
+    const r=await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&accept-language=bn&q=${encodeURIComponent(q)}`);
+    const j=await r.json();
+    if(!j.length){$('st').textContent='শহর পাওয়া যায়নি। ইংরেজিতে নাম লিখে আবার চেষ্টা করুন।';return}
+    $('q').value='';
+    setLoc({lat:+j[0].lat,lng:+j[0].lon,name:j[0].display_name.split(',')[0]},true,false);
+  }catch{$('st').textContent='সার্চ করতে ব্যর্থ। ইন্টারনেট সংযোগ দেখুন।'}
+};
+addEventListener('online',()=>{if(loc)loadAll()});
+addEventListener('offline',render);
+
+(function(){const l=LS.g('loc',null);if(l)setLoc(l,false,false);else gps()})();
+</script>
+</body>
+</html>
