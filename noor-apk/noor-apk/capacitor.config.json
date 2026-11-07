@@ -1,0 +1,9 @@
+{
+  "appId": "com.noor.salafi",
+  "appName": "নূর",
+  "webDir": "www",
+  "android": { "allowMixedContent": false },
+  "plugins": {
+    "LocalNotifications": { "smallIcon": "ic_stat_noor", "iconColor": "#A97C50" }
+  }
+}
