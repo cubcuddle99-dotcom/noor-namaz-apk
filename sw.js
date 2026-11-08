@@ -1,7 +1,7 @@
 // নূর অ্যাপের অফলাইন ক্যাশ।
 // index.html বদলালে ভার্সন বাড়ানো লাগবে না (পেজ আগে নেটওয়ার্ক থেকে আসে এবং প্রতিবার ক্যাশ নতুন হয়)।
 // শুধু আইকন, manifest বা adhan.mp3 বদলালে নিচের ভার্সন সংখ্যা বাড়ান (v6 -> v7)।
-const CACHE = 'noor-v10';
+const CACHE = 'noor-v12';
 const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 const OPTIONAL = ['./adhan.mp3']; // ফাইল না থাকলেও ইনস্টল আটকাবে না
 
