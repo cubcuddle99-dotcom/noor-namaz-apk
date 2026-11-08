@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="নূর">
 <script>(function(){var t=null;try{t=JSON.parse(localStorage.getItem('noorTheme'))}catch(e){}if(t!=='dark'&&t!=='light'){t='dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
-<script>(function(){var en=false,z=1;try{en=JSON.parse(localStorage.getItem('lang'))==='en';z=+JSON.parse(localStorage.getItem('fz'))||1}catch(e){}window.__EN=en;var h=document.documentElement;h.style.setProperty('--z',z);if(en){h.lang='en';var o=Date.prototype.toLocaleDateString;Date.prototype.toLocaleDateString=function(l,x){return o.call(this,l==='bn-BD'?'en-GB':l,x)}}})();</script>
+<script>(function(){var en=false,z=1;try{en=JSON.parse(localStorage.getItem('lang'))==='en';z=+JSON.parse(localStorage.getItem('fz'))||1}catch(e){}window.__EN=en;window.__t=function(x){return typeof window.__tr==='function'?window.__tr(x):x};var h=document.documentElement;h.style.setProperty('--z',z);if(en){h.lang='en';var o=Date.prototype.toLocaleDateString;Date.prototype.toLocaleDateString=function(l,x){return o.call(this,l==='bn-BD'?'en-GB':l,x)}}})();</script>
 
 <title>নূর - নামাজের সময়সূচি</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -409,8 +409,8 @@ async function scheduleNative(){
       exactAsked=true;
       try{const ex=await LN.checkExactNotificationSetting();if(ex.exact_alarm!=='granted') await LN.changeExactNotificationSetting()}catch{}
     }
-    await LN.createChannel({id:'adhan_v1',name:'আযান',description:'নামাজের সময় আযান',importance:5,visibility:1,vibration:true,sound:'adhan.mp3'});
-    await LN.createChannel({id:'alert_v1',name:'সেহরি / ইফতার',description:'সেহরি ও ইফতারের সতর্কবার্তা',importance:5,visibility:1,vibration:true});
+    await LN.createChannel({id:'adhan_v1',name:__t('আযান'),description:__t('নামাজের সময় আযান'),importance:5,visibility:1,vibration:true,sound:'adhan.mp3'});
+    await LN.createChannel({id:'alert_v1',name:__t('সেহরি / ইফতার'),description:__t('সেহরি ও ইফতারের সতর্কবার্তা'),importance:5,visibility:1,vibration:true});
     const now=new Date(),list=[];
     for(let i=0;i<6;i++){ // আগামী ৬ দিনের অ্যালার্ম আগে থেকেই বসিয়ে রাখা হয়
       const day=new Date(now);day.setDate(day.getDate()+i);
@@ -419,8 +419,8 @@ async function scheduleNative(){
         const when=at(day,t[ALARM_SRC[a]]);
         if(when<=now) return;
         const isP=ADHAN_FOR.includes(a);
-        const msg=isP?`${NM[a]}ের সময় হয়েছে`:`${NM[a]} হয়েছে`;
-        list.push({id:(dn%100000)*10+ALARM_IDX.indexOf(a),title:'নূর',body:msg,channelId:isP?'adhan_v1':'alert_v1',
+        const msg=__t(isP?`${NM[a]}ের সময় হয়েছে`:`${NM[a]} হয়েছে`);
+        list.push({id:(dn%100000)*10+ALARM_IDX.indexOf(a),title:__t('নূর'),body:msg,channelId:isP?'adhan_v1':'alert_v1',
           schedule:{at:when,allowWhileIdle:true},sound:isP?'adhan.mp3':undefined,autoCancel:true,smallIcon:'ic_stat_noor'});
       });
     }
@@ -491,7 +491,7 @@ function stopRing(){clearInterval(ringTimer);ringTimer=null;$('ring').hidden=tru
 $('rs').onclick=stopRing;
 function ring(k){
   stopPreview();
-  const msg=k==='Sehri'||k==='Iftar'?`${NM[k]} হয়েছে`:`${NM[k]}ের সময় হয়েছে`;
+  const msg=__t(k==='Sehri'||k==='Iftar'?`${NM[k]} হয়েছে`:`${NM[k]}ের সময় হয়েছে`);
   $('rt').textContent='🔔 '+msg; $('ring').hidden=false;
   clearInterval(ringTimer); let n=0; navigator.vibrate&&navigator.vibrate([300,150,300]);
   const startBeep=()=>{clearInterval(ringTimer);n=0;beep();ringTimer=setInterval(()=>{beep();if(++n>=30)stopRing()},2000)};
@@ -501,7 +501,7 @@ function ring(k){
   } else startBeep();
   if('Notification' in window&&Notification.permission==='granted'){
     const o={body:msg,tag:k,icon:undefined,requireInteraction:true};
-    try{swReg?swReg.showNotification('নূর',o):new Notification('নূর',o)}catch{}
+    try{swReg?swReg.showNotification(__t('নূর'),o):new Notification(__t('নূর'),o)}catch{}
   }
 }
 
@@ -701,10 +701,10 @@ $('xrem').onchange=e=>{CFG.rem=+e.target.value;LS.s('xcfg',CFG);resched()};
 /* ওয়েবে স্মরণ/জামাতের বার্তা */
 function notice(msg){$('rt').textContent='🔔 '+msg;$('ring').hidden=false;try{beep()}catch{}navigator.vibrate&&navigator.vibrate([200,100,200]);
   setTimeout(()=>{if($('rt').textContent==='🔔 '+msg)$('ring').hidden=true},10000);
-  if('Notification' in window&&Notification.permission==='granted'){try{swReg?swReg.showNotification('নূর',{body:msg}):new Notification('নূর',{body:msg})}catch{}}}
+  if('Notification' in window&&Notification.permission==='granted'){try{swReg?swReg.showNotification(__t('নূর'),{body:msg}):new Notification(__t('নূর'),{body:msg})}catch{}}}
 const fx={};
-const jmsg=p=>CFG.jam?`${NM[p]}ের জামাত ${bn(CFG.jam)} মিনিট পরে (${f12(J[p])})`:`${NM[p]}ের জামাতের সময় হয়েছে`;
-const rmsg=p=>`${NM[p]}ের আর ${bn(CFG.rem)} মিনিট বাকি`;
+const jmsg=p=>__t(CFG.jam?`${NM[p]}ের জামাত ${bn(CFG.jam)} মিনিট পরে (${f12(J[p])})`:`${NM[p]}ের জামাতের সময় হয়েছে`);
+const rmsg=p=>__t(`${NM[p]}ের আর ${bn(CFG.rem)} মিনিট বাকি`);
 setInterval(()=>{if(!T||NATIVE)return;const now=new Date(),k=dkey(now);
   P5.forEach(p=>{
     if(CFG.rem>0&&alarms[p]){const df=now-addM(at(now,T[p]),-CFG.rem);if(df>=0&&df<60000&&!fx['r'+p+k]){fx['r'+p+k]=1;notice(rmsg(p))}}
@@ -713,8 +713,8 @@ setInterval(()=>{if(!T||NATIVE)return;const now=new Date(),k=dkey(now);
 /* অ্যান্ড্রয়েড অ্যাপে ব্যাকগ্রাউন্ড অ্যালার্ম */
 async function xs(){if(!LN||!loc||(CFG.rem<=0&&CFG.jam<0))return;
   const pm=await LN.checkPermissions();if(pm.display!=='granted')return;
-  await LN.createChannel({id:'remind_v1',name:'স্মরণ ও জামাত',description:'ওয়াক্তের আগে স্মরণ ও জামাতের অ্যালার্ম',importance:5,visibility:1,vibration:true});
-  const now=new Date(),list=[],add=(id,at_,body)=>{if(at_>now)list.push({id,title:'নূর',body,channelId:'remind_v1',schedule:{at:at_,allowWhileIdle:true},autoCancel:true,smallIcon:'ic_stat_noor'})};
+  await LN.createChannel({id:'remind_v1',name:__t('স্মরণ ও জামাত'),description:__t('ওয়াক্তের আগে স্মরণ ও জামাতের অ্যালার্ম'),importance:5,visibility:1,vibration:true});
+  const now=new Date(),list=[],add=(id,at_,body)=>{if(at_>now)list.push({id,title:__t('নূর'),body,channelId:'remind_v1',schedule:{at:at_,allowWhileIdle:true},autoCancel:true,smallIcon:'ic_stat_noor'})};
   for(let i=0;i<6;i++){const day=new Date(now);day.setDate(day.getDate()+i);const t=getDay(day).t,dn=Math.floor(new Date(day.getFullYear(),day.getMonth(),day.getDate()).getTime()/864e5),b=9e8+(dn%1e5)*100;
     P5.forEach((p,x)=>{
       if(CFG.rem>0&&alarms[p])add(b+x,addM(at(day,t[p]),-CFG.rem),rmsg(p));
@@ -766,20 +766,76 @@ const RAW=[['বন্ধ করুন','Dismiss'],['অবস্থান ন�
 ['রবিউল আউয়াল',"Rabi' al-Awwal"],['রবিউস সানি',"Rabi' al-Thani"],['রবিউস সানী',"Rabi' al-Thani"],['জমাদিউল আউয়াল','Jumada al-Awwal'],['জুমাদাল উলা','Jumada al-Awwal'],['জমাদিউস সানি','Jumada al-Thani'],['জুমাদাস সানিয়াহ','Jumada al-Thani'],['মুহাররম','Muharram'],['সফর','Safar'],['রজব','Rajab'],['শাবান',"Sha'ban"],['শা‘বান',"Sha'ban"],['রমজান','Ramadan'],['শাওয়াল','Shawwal'],['জিলকদ',"Dhu al-Qa'dah"],['জিলহজ','Dhu al-Hijjah'],
 ['আল্লাহু আকবার','Allahu Akbar'],['ইস্তিগফার','Istighfar'],['সালামের পর দুআ','Dua after salam'],['তাওহীদের দুআ','Tawhid dua'],['বিশেষ দুআ','Special dua'],['আল্লাহর দানের দুআ',"Dua of Allah's giving"],['লা হাওলা ও তাওহীদের দুআ','La hawla & Tawhid dua'],['আয়াতুল কুরসি','Ayatul Kursi'],['সূরা ইখলাছ, ফালাক্ব ও নাস','Surah Ikhlas, Falaq & Nas'],['আশ্রয় প্রার্থনার দুআ','Dua for seeking refuge'],['তাসবিহে ফাতেমী','Tasbih of Fatimah'],['রযীতু দুআ','Radheetu dua'],['জান্নাত প্রার্থনার দুআ','Dua for Jannah'],['সুবহানাল্লাহি ওয়া বিহামদিহী','Subhanallahi wa bihamdihi'],['দুশ্চিন্তা ও ঋণ থেকে আশ্রয়','Refuge from worry and debt'],['অন্তর দৃঢ় রাখার দুআ','Dua for a steadfast heart'],['হেদায়াত ও সচ্ছলতার দুআ','Dua for guidance and sufficiency'],['হালাল রিযিক ও ইস্তিগফার','Halal provision & Istighfar'],
 ['(১ বার)','(1 time)'],['(৩ বার)','(3 times)'],['বুখারী','Bukhari'],['মুসলিম','Muslim'],['তিরমিযী','Tirmidhi'],['আবুদাউদ','Abu Dawud'],['ইবনু মাজাহ','Ibn Majah'],['ছহীহ তারগীব','Sahih at-Targhib'],['বাক্বারাহ','Baqarah'],['সূরা','Surah'],['হা/','No. ']];
-const DIC=RAW.sort((a,b)=>b[0].length-a[0].length);
+const EXTRA=[["নূর", "Noor"], ["নতুন ভার্সন এসেছে 🎉", "New version available 🎉"], ["আপডেট", "Update"], ["আয়াতুল কুরসী", "Ayatul Kursi"], ["সকাল-সন্ধ্যার প্রশংসা ও আশ্রয় প্রার্থনা", "Morning/evening praise & seeking refuge"], ["আল্লাহুম্মা বিকা", "Allahumma bika"], ["সাইয়্যিদুল ইস্তিগফার", "Sayyidul Istighfar"], ["ক্ষতি থেকে হেফাযতের দুআ", "Dua for protection from harm"], ["ক্ষমা ও নিরাপত্তার দুআ", "Dua for pardon & well-being"], ["বাক্বারাহ", "Al-Baqarah"], ["সূরা বাকারা", "Surah Al-Baqarah"], ["সূরা ইনশিরাহ", "Surah Ash-Sharh"], ["সূরা রা‘দ", "Surah Ar-Ra'd"], ["সূরা তালাক", "Surah At-Talaq"], ["সূরা যুমার", "Surah Az-Zumar"], ["সূরা ত্বা-হা", "Surah Ta-Ha"], ["ঢাকা (ডিফল্ট)", "Dhaka (default)"], ["আপনার এলাকা", "Your area"], ["আজ সরকারি ছুটি — ", "Public holiday today — "], ["আজ সাপ্তাহিক ছুটি (", "Weekly holiday today ("], ["শুক্রবার", "Friday"], ["শনিবার", "Saturday"], [" হিজরি", " AH"], ["লাইট মোড চালু করুন", "Switch to light mode"], ["ডার্ক মোড চালু করুন", "Switch to dark mode"], ["বিজয় দিবস", "Victory Day"], ["বড়দিন (যিশুখ্রিষ্টের জন্মদিন)", "Christmas Day"], ["শবে বরাত", "Shab-e-Barat"], ["শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", "Language Martyrs' Day & International Mother Language Day"], ["জুমাতুল বিদা", "Jumu'ah al-Wida"], ["শবে কদর", "Shab-e-Qadr"], ["ঈদুল ফিতরের আগের ছুটি", "Holiday before Eid ul-Fitr"], ["ঈদুল ফিতরের পরের ছুটি", "Holiday after Eid ul-Fitr"], ["ঈদুল ফিতর", "Eid ul-Fitr"], ["স্বাধীনতা ও জাতীয় দিবস", "Independence & National Day"], ["চৈত্রসংক্রান্তি", "Chaitra Sankranti"], ["পহেলা বৈশাখ (বাংলা নববর্ষ)", "Pohela Boishakh (Bengali New Year)"], ["মে দিবস", "May Day"], ["ঈদুল আজহার আগের ছুটি", "Holiday before Eid ul-Adha"], ["ঈদুল আজহার পরের ছুটি", "Holiday after Eid ul-Adha"], ["বুদ্ধপূর্ণিমা ও ঈদুল আজহার পরের ছুটি", "Buddha Purnima & holiday after Eid ul-Adha"], ["ঈদুল আজহা", "Eid ul-Adha"], ["আশুরা", "Ashura"], ["জুলাই গণ-অভ্যুত্থান দিবস", "July Mass Uprising Day"], ["ঈদে মিলাদুন্নবী (সা.)", "Eid-e-Miladunnabi"], ["জন্মাষ্টমী", "Janmashtami"], ["দুর্গাপূজা (মহানবমী)", "Durga Puja (Maha Navami)"], ["দুর্গাপূজা (বিজয়া দশমী)", "Durga Puja (Bijoya Dashami)"], ["জাতীয় বিপ্লব ও সংহতি দিবস", "National Revolution & Solidarity Day"], ["রমজান মুবারাক!", "Ramadan Mubarak!"], ["ঈদুল ফিতরের শুভেচ্ছা!", "Eid ul-Fitr greetings!"], ["ঈদুল আযহার শুভেচ্ছা!", "Eid ul-Adha greetings!"], ["আযান", "Adhan"], ["নামাজের সময় আযান", "Adhan at prayer time"], ["সেহরি / ইফতার", "Sehri / Iftar"], ["সেহরি ও ইফতারের সতর্কবার্তা", "Sehri and Iftar alerts"], ["স্মরণ ও জামাত", "Reminders & Jamaat"], ["ওয়াক্তের আগে স্মরণ ও জামাতের অ্যালার্ম", "Reminder before prayer and jamaat alarms"], ["ফযীলত:", "Virtue:"], ["অর্থ:", "Meaning:"], ["বার", "time(s)"]];
+const FULL=[["নেই কোন উপাস্য আল্লাহ ব্যতীত, যিনি এক, তাঁর কোন শরীক নেই। তাঁরই জন্য সকল", "None has the right to be worshipped except Allah alone, who has no partner. To Him belongs all dominion and to Him belongs all praise, and He has power over all things."], ["মহাপবিত্র আল্লাহ এবং সকল প্রশংসা তাঁর জন্য। তাঁর সৃষ্টিকুলের", "Glory and praise be to Allah, as many as the number of His creation, as much as pleases Him, as much as the weight of His Throne and as much as the ink of His words."], ["হে আল্লাহ! আমি তোমার নিকটে আশ্রয় প্রার্থনা করছি দুশ্চিন্তা", "O Allah, I seek refuge in You from worry and grief, from incapacity and laziness, from cowardice and miserliness, and from the burden of debt and the domination of men."], ["আমি আল্লাহর নিকটে ক্ষমা প্রার্থনা করছি।", "I seek Allah's forgiveness."], ["হে আল্লাহ! আপনার দয়ায় আমরা সন্ধ্যায়", "O Allah, by Your grace we reach the evening, by Your grace we reach the morning, by Your grace we live and by Your will we die, and to You is the final return."], ["হে আল্লাহ! আপনার দয়ায় আমরা সকালে", "O Allah, by Your grace we reach the morning, by Your grace we reach the evening, by Your grace we live and by Your will we die, and to You is the resurrection."], ["হে আল্লাহ! তুমি আমাকে হারাম ছাড়া", "O Allah, make what is lawful enough for me so that I need not what is forbidden, and by Your grace make me independent of all others. I seek Allah's forgiveness, there is no god but He, the Ever-Living, the Sustainer of all existence, and I turn to Him in repentance."], ["ঈদ মুবারাক! আল্লাহ আমাদের কুরবানী", "Eid Mubarak! May Allah accept our sacrifice and good deeds and grant happiness and peace to you and your family."], ["আল্লাহ মহাপবিত্র এবং সকল প্রশংসা", "Glory and praise be to Allah."], ["ঈদ মুবারাক! আল্লাহ আমাদের সিয়াম", "Eid Mubarak! May Allah accept our fasting and night prayers and grant happiness and peace to you and your family."], ["হে আল্লাহ! আমি তোমার নিকটে সুপথ", "O Allah, I ask You for guidance, piety, chastity and sufficiency. Glory and praise be to Allah. Glory be to Allah, the Magnificent."], ["আল্লাহর কাছে সবচেয়ে প্রিয় আমল", "The most beloved deeds to Allah are the most consistent, even if small."], ["হে আল্লাহ! তুমি আমাকে জান্নাতে", "O Allah, admit me into Paradise and save me from the Fire!"], ["হে আল্লাহ! আমার দ্বীন, দুনিয়া", "O Allah, I ask You for pardon and well-being in my religion, my worldly life, my family and my wealth. Cover my faults and calm my fears. Protect me from in front of me, from behind me, from my right, from my left and from above me, and I seek refuge in Your greatness from being struck down from beneath me."], ["সেহরি ও ইফতারের অ্যালার্ম চালু", "Don't forget to turn on the Sehri and Iftar alarms."], ["হে আল্লাহ! (১) আমি তোমার নিকট", "O Allah, (1) I seek refuge in You from cowardice, (2) I seek refuge in You from miserliness, (3) I seek refuge in You from the worst old age, (4) I seek refuge in You from the trials of this world and (5) from the punishment of the grave."], ["আল্লাহর নামে, যাঁর নামের সাথে", "In the name of Allah, with whose name nothing on earth or in the heavens can cause harm, and He is the All-Hearing, the All-Knowing."], ["অর্থ: ফজর ও মাগরিবের ছালাতের", "After the Fajr and Maghrib prayers: 3 times."], ["হে আল্লাহ! তোমাকে স্মরণ করার", "O Allah, help me to remember You, to thank You, and to worship You in the best manner."], ["হে হৃদয় সমূহের পরিবর্তনকারী", "O Turner of hearts, make my heart firm upon Your religion. O Allah, Director of hearts, direct our hearts to obedience to You."], ["নিশ্চয় কষ্টের সাথেই স্বস্তি", "Indeed, with hardship comes ease. Indeed, with hardship comes ease."], ["হে আল্লাহ! তুমি যা দিতে চাও", "O Allah, none can withhold what You give and none can give what You withhold. The wealth of the wealthy cannot benefit him against You, except Your mercy."], ["পবিত্রতাময় আল্লাহ। যাবতীয়", "Glory be to Allah. All praise is for Allah. Allah is the Greatest. None has the right to be worshipped except Allah alone, who has no partner. To Him belongs the dominion and all praise, and He has power over all things."], ["সকালে পড়লে সন্ধ্যা পর্যন্ত", "Whoever recites it in the morning is protected from the jinn and Shaytan until the evening, and whoever recites it in the evening is protected until the morning."], ["আল্লাহ কারও ওপর তার সাধ্যের", "Allah does not burden a soul beyond its capacity."], ["যে আল্লাহ ও আখিরাতে বিশ্বাস", "Whoever believes in Allah and the Last Day should speak good or remain silent."], ["সকাল-সন্ধ্যা ১০০ বার পড়লে", "Whoever says it 100 times in the morning and evening, none will come on the Day of Resurrection with anything better, except one who said the same or more."], ["অতএব তোমরা আমাকে স্মরণ করো", "So remember Me; I will remember you."], ["জেনে রাখো, আল্লাহর স্মরণেই", "Verily, in the remembrance of Allah do hearts find rest."], ["নিশ্চয় আল্লাহ ধৈর্যশীলদের", "Indeed, Allah is with the patient."], ["তোমাদের মধ্যে সর্বোত্তম সে", "The best among you is the one who learns the Qur'an and teaches it."], ["রমজানুল মুবারকের শুভ সূচনা", "The blessed month of Ramadan begins. May Allah accept the fasting, night prayers and good deeds of us all."], ["আমরা সন্ধ্যায় উপনীত হলাম", "We have reached the evening and the dominion belongs to Allah; all praise is for Allah. None has the right to be worshipped except Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things. My Lord, I ask You for the good of this night and the good of what follows it, and I seek refuge in You from the evil of this night and the evil of what follows it. My Lord, I seek refuge in You from laziness and the hardship of old age, and from the punishment of the Fire and the punishment of the grave."], ["দৃঢ় বিশ্বাসের সাথে সকালে", "Whoever says it with firm faith in the morning or evening and dies that same day will be among the people of Paradise."], ["আমি আল্লাহকে রব, ইসলামকে", "I am pleased with Allah as my Lord, with Islam as my religion and with Muhammad (peace be upon him) as my Prophet."], ["সকাল-সন্ধ্যা ৩ বার পড়লে", "Reciting them three times in the morning and evening is sufficient for you against everything."], ["তোমাদের কেউ মুমিন হবে না", "None of you truly believes until he loves for his brother what he loves for himself."], ["আমি সন্তুষ্ট হয়ে গেলাম", "I am pleased with Allah as my Lord, with Islam as my religion and with Muhammad as my Prophet."], ["সুবহা-নাল্লা-হ (৩৩ বার)", "Subhaanallaah (33 times). Alhamdulillaah (33 times). Allaahu akbar (33 times). Laa ilaaha illallaahu wahdahu laa shareeka lah, lahul mulku wa lahul hamdu wa huwa 'alaa kulli shay'in qadeer (1 time). Or Allaahu akbar (34 times)."], ["হে আল্লাহ! আপনি আমার রব", "O Allah, You are my Lord; there is no god but You. You created me and I am Your servant, and I keep Your covenant and promise as far as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your favour upon me and I acknowledge my sin, so forgive me, for none forgives sins except You."], ["যে আল্লাহর ওপর ভরসা করে", "Whoever relies upon Allah, He is sufficient for him."], ["আল্লাহর রহমত থেকে নিরাশ", "Do not despair of the mercy of Allah."], ["তাকাব্বালাল্লাহু মিন্না", "Taqabbal Allahu minna wa minkum"], ["আল্লাহ সবার চেয়ে বড়।", "Allah is the Greatest."], ["হে আল্লাহ! তুমি শান্তি", "O Allah, You are Peace and from You comes peace. Blessed are You, O Possessor of majesty and honour."], ["পবিত্রতা ঈমানের অর্ধেক", "Purification is half of faith."], ["আমরা সকালে উপনীত হলাম", "We have reached the morning and the dominion belongs to Allah; all praise is for Allah. None has the right to be worshipped except Allah alone, without partner. His is the dominion and His is the praise, and He has power over all things. My Lord, I ask You for the good of this day and the good of what follows it, and I seek refuge in You from the evil of this day and the evil of what follows it. My Lord, I seek refuge in You from laziness and the hardship of old age, and from the punishment of the Fire and the punishment of the grave."], ["এবং আমার স্মরণের জন্য", "And establish prayer for My remembrance."], ["শহর খুঁজতে ইন্টারনেট", "Internet is needed to search for a city."], ["সকল কাজ নিয়তের ওপর", "Actions are judged by intentions."], ["সময়গুলো আনুমানিক", "Times are approximate (about 15 minutes after sunrise and before Maghrib, and about 10 minutes before Dhuhr)."], ["শহর পাওয়া যায়নি", "City not found. Try typing the name in English."], ["সার্চ করতে ব্যর্থ", "Search failed. Check your internet connection."], ["নেই কোন ক্ষমতা", "There is no power and no strength except with Allah. None has the right to be worshipped except Allah, and we worship none but Him. His are all blessings, His is all grace and to Him belongs the best praise. None has the right to be worshipped except Allah; we are sincere to Him in religion, even if the disbelievers dislike it."]];
+function ar2lat(src){
+  const ML={'ء':"'",'أ':"'",'إ':"'",'ؤ':"'",'ئ':"'",'ب':'b','ت':'t','ث':'th','ج':'j','ح':'h','خ':'kh','د':'d','ذ':'dh','ر':'r','ز':'z','س':'s','ش':'sh','ص':'s','ض':'d','ط':'t','ظ':'z','ع':"'",'غ':'gh','ف':'f','ق':'q','ك':'k','ل':'l','م':'m','ن':'n','ه':'h'};
+  const MK=/[\u064B-\u065F\u0670]/,PFX={'ب':'bi','ل':'li','و':'wa','ف':'fa'};
+  function aw(w){
+    const st=w.replace(/[\u064B-\u065F\u0670]/g,'');let m;
+    if(/^[اٱ]لله$/.test(st))return /ُ$/.test(w)?'Allahu':'Allah';
+    if(/^[اٱ]للهم$/.test(st))return 'Allahumma';
+    if(st==='لله')return 'lillah';
+    if(m=st.match(/^([بلوف])[اٱ]لله$/))return PFX[m[1]]+'llah';
+    const ch=[...w],n=ch.length;let i=0,out='',pv='',sunH=false;
+    if(/^[اٱ]ل/.test(st)&&st.length>3){
+      while(i<n&&ch[i]!=='ل')i++;i++;let mk='';while(i<n&&MK.test(ch[i])){mk+=ch[i];i++}
+      if(mk.includes('ّ'))out='all'+(mk.includes('َ')?'a':'');
+      else{let k=i;while(k<n&&MK.test(ch[k]))k++;let nm='';let q=k+1;while(q<n&&MK.test(ch[q])){nm+=ch[q];q++}
+        if(k<n&&nm.includes('ّ')){out='a';sunH=true}else out='al-'}
+    }
+    for(;i<n;i++){
+      const c=ch[i];if(MK.test(c))continue;
+      let mk='',j=i+1;while(j<n&&MK.test(ch[j])){mk+=ch[j];j++}
+      const sh=mk.includes('ّ'),su=mk.includes('ْ');
+      let v=mk.includes('َ')?'a':mk.includes('ِ')?'i':mk.includes('ُ')?'u':mk.includes('ً')?'an':mk.includes('ٍ')?'in':mk.includes('ٌ')?'un':'';
+      if(mk.includes('ٰ'))v=(v===''||v==='a')?'aa':v;
+      const bare=(v===''||su)&&!sh;
+      if(c==='ا'||c==='ٱ'){if(i===0){if(!out)out='i';continue}if(pv==='a')out+='a';pv='';continue}
+      if(c==='آ'){out+=(out?"'":'')+'aa';pv='a';continue}
+      if(c==='و'&&bare){out+=pv==='u'?'u':'w';pv='';continue}
+      if((c==='ي'||c==='ى')&&bare){if(c==='ى'&&pv==='a'&&i===n-1)out+='a';else out+=pv==='i'?'i':'y';pv='';continue}
+      let b=c==='ة'?(v?'t':'h'):(c==='و'?'w':(c==='ي'||c==='ى')?'y':(ML[c]!==undefined?ML[c]:c));
+      if(b==="'"&&out==='')b='';
+      out+=b+(sh?(sunH?'-':'')+b:'')+(su&&!sh?'':v);sunH=false;
+      pv=su?'':(v==='aa'?'':v);
+    }
+    return out;
+  }
+  return src.replace(/[\u06D6-\u06ED\u0640\u200c\u200d]/g,'').replace(/،/g,' ، ').split(/\s+/).filter(Boolean).map(w=>w==='،'?',':aw(w)).join(' ').replace(/ ,/g,',').replace(/\s+/g,' ').trim();
+}
+
+const DM=new Map([...RAW,...EXTRA].filter(([k])=>!/[০-৯]/.test(k)));
+const DIC=[...DM.entries()].sort((a,b)=>b[0].length-a[0].length);
 const BN=/[\u0980-\u09FF]/;
-const tr=t=>{let o=t;for(const[k,v]of DIC)if(o.includes(k))o=o.split(k).join(v);return o.replace(/[০-৯]/g,d=>BD.indexOf(d))};
-const skip=p=>!p||p.closest('script,style,textarea,#gr,#xda,#xdb,.d p:not(.src)');
+const dg=t=>t.replace(/[০-৯]/g,d=>BD.indexOf(d));
+const full=t=>{const x=t.trim();for(const[k,v]of FULL)if(x.startsWith(k))return v;return null};
+const tr=t=>{
+  const lead=t.match(/^\s*/)[0],trail=t.match(/\s*$/)[0],x=t.trim();
+  let f=full(x);if(f!==null)return lead+f+trail;
+  const m=x.match(/^(অর্থ: |ফযীলত: )([\s\S]*)$/);
+  if(m){f=full(m[2]);if(f!==null)return lead+(m[1]==='অর্থ: '?'Meaning: ':'Virtue: ')+f+trail}
+  let o=dg(t).replace(/(\d+) বার/g,(q,n)=>n+(n==='1'?' time':' times'));
+  for(const[k,v]of DIC)if(o.includes(k))o=o.split(k).join(v);
+  return o};
+window.__tr=tr;
+const isTr=p=>p&&p.tagName==='P'&&!p.className&&p.closest('.d')&&p.previousElementSibling&&p.previousElementSibling.classList.contains('ar');
+function doTr(p){if(p.dataset.x)return;p.dataset.x='1';const f=full(p.textContent);
+  if(f!==null){p.textContent=f;return}
+  const parts=p.previousElementSibling.innerHTML.split(/<br\s*\/?>/i).map(h=>ar2lat(h.replace(/<[^>]*>/g,'')).trim()).filter(Boolean);
+  p.innerHTML=parts.join('<br>')}
+const skip=p=>!p||p.closest('script,style,textarea,.ar');
 function doAttr(e,a){const v=e.getAttribute(a);if(v&&BN.test(v)){const r=tr(v);if(r!==v)e.setAttribute(a,r)}}
 function doNode(n){
-  if(n.nodeType===3){const t=n.nodeValue;if(!BN.test(t)||skip(n.parentElement))return;const r=tr(t);if(r!==t)n.nodeValue=r}
-  else if(n.nodeType===1){['aria-label','placeholder','title'].forEach(a=>doAttr(n,a));n.childNodes.forEach(doNode)}}
+  if(n.nodeType===3){const t=n.nodeValue,p=n.parentElement;if(!BN.test(t)||skip(p))return;if(isTr(p)){doTr(p);return}const r=tr(t);if(r!==t)n.nodeValue=r}
+  else if(n.nodeType===1){if(isTr(n)&&BN.test(n.textContent)){doTr(n);return}['aria-label','placeholder','title'].forEach(a=>doAttr(n,a));n.childNodes.forEach(doNode)}}
 doNode(document.body);
 new MutationObserver(ms=>ms.forEach(m=>{
   if(m.type==='childList')m.addedNodes.forEach(doNode);
   else if(m.type==='characterData')doNode(m.target);
   else doAttr(m.target,m.attributeName)
 })).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title']});
+
 })();
 </script>
 </body>
