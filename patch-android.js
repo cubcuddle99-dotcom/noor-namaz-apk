@@ -30,6 +30,7 @@ const perms = [
   'android.permission.SCHEDULE_EXACT_ALARM',
   'android.permission.USE_EXACT_ALARM',
   'android.permission.RECEIVE_BOOT_COMPLETED',
+  'com.android.alarm.permission.SET_ALARM',
   'android.permission.VIBRATE',
   'android.permission.WAKE_LOCK',
   'android.permission.ACCESS_COARSE_LOCATION',
@@ -38,6 +39,66 @@ const perms = [
 const add = perms.filter(p => !x.includes(`"${p}"`)).map(p => `    <uses-permission android:name="${p}" />`).join('\n');
 x = x.replace('</manifest>', add + '\n</manifest>');
 fs.writeFileSync(mf, x);
+
+// 4.5) ফোনের অ্যালার্ম অ্যাপে অ্যালার্ম বসানোর নেটিভ প্লাগইন (NoorAlarm)
+const jdir = 'android/app/src/main/java/com/noor/salafi';
+mk(jdir);
+fs.writeFileSync(`${jdir}/NoorAlarmPlugin.java`, `package com.noor.salafi;
+
+import android.content.Intent;
+import android.provider.AlarmClock;
+import com.getcapacitor.Plugin;
+import com.getcapacitor.PluginCall;
+import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.CapacitorPlugin;
+
+@CapacitorPlugin(name = "NoorAlarm")
+public class NoorAlarmPlugin extends Plugin {
+    @PluginMethod
+    public void set(PluginCall call) {
+        Integer hour = call.getInt("hour");
+        Integer minute = call.getInt("minute");
+        String label = call.getString("label", "");
+        if (hour == null || minute == null) { call.reject("hour/minute missing"); return; }
+        try {
+            Intent i = new Intent(AlarmClock.ACTION_SET_ALARM);
+            i.putExtra(AlarmClock.EXTRA_HOUR, hour);
+            i.putExtra(AlarmClock.EXTRA_MINUTES, minute);
+            i.putExtra(AlarmClock.EXTRA_MESSAGE, label);
+            i.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(i);
+            call.resolve();
+        } catch (Exception e) { call.reject(String.valueOf(e.getMessage())); }
+    }
+
+    @PluginMethod
+    public void dismiss(PluginCall call) {
+        String label = call.getString("label", "");
+        try {
+            Intent i = new Intent(AlarmClock.ACTION_DISMISS_ALARM);
+            i.putExtra(AlarmClock.EXTRA_ALARM_SEARCH_MODE, AlarmClock.ALARM_SEARCH_MODE_LABEL);
+            i.putExtra(AlarmClock.EXTRA_MESSAGE, label);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getContext().startActivity(i);
+            call.resolve();
+        } catch (Exception e) { call.reject(String.valueOf(e.getMessage())); }
+    }
+}
+`);
+fs.writeFileSync(`${jdir}/MainActivity.java`, `package com.noor.salafi;
+
+import android.os.Bundle;
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        registerPlugin(NoorAlarmPlugin.class);
+        super.onCreate(savedInstanceState);
+    }
+}
+`);
 
 // 5) ভার্সন নম্বর ও স্থায়ী সই (build.gradle)
 const gf = 'android/app/build.gradle';

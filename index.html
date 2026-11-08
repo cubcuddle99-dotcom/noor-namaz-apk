@@ -391,6 +391,8 @@ function beep(){
 const TT=t=>(window.__tr?window.__tr(t):t);
 const NATIVE=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());
 const LN=NATIVE?Capacitor.Plugins.LocalNotifications:null;
+const ALSO_NOTIFY=false; // true = ফোনের অ্যালার্মের সাথে আগের মতো আযান/নোটিফিকেশনও বাজবে | false = শুধু ফোনের অ্যালার্ম
+const NA=NATIVE?(Capacitor.registerPlugin?Capacitor.registerPlugin('NoorAlarm'):Capacitor.Plugins.NoorAlarm):null;
 const ALARM_SRC={Fajr:'Fajr',Dhuhr:'Dhuhr',Asr:'Asr',Maghrib:'Maghrib',Isha:'Isha',Sehri:'Fajr',Iftar:'Maghrib'};
 const ALARM_IDX=Object.keys(ALARM_SRC);
 let schedBusy=false,exactAsked=false;
@@ -398,7 +400,7 @@ async function scheduleNative(){
   if(!LN||!loc||schedBusy) return;
   schedBusy=true;
   try{
-    const wanted=ALARM_IDX.filter(a=>alarms[a]);
+    const wanted=ALSO_NOTIFY?ALARM_IDX.filter(a=>alarms[a]):[];
     // আগের সব নির্ধারিত অ্যালার্ম মুছে নতুন করে বসানো হবে
     const pend=await LN.getPending();
     if(pend.notifications&&pend.notifications.length) await LN.cancel({notifications:pend.notifications.map(n=>({id:n.id}))});
@@ -433,6 +435,43 @@ if(NATIVE){
   document.addEventListener('click',e=>{if(e.target.closest('.bell'))setTimeout(scheduleNative,80)});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleNative()});
   setInterval(scheduleNative,6*3600*1000);
+}
+/* ===== ফোনের নিজের ঘড়ি/অ্যালার্ম অ্যাপে অ্যালার্ম বসানো ===== */
+// 🔔 চালু করলে ওয়াক্তের পরবর্তী সময়টা সরাসরি ফোনের অ্যালার্মে বসে; 🔕 করলে সেটা সরে যায়।
+const PA_LBL=a=>'নূর • '+NM[a];
+const paSleep=ms=>new Promise(r=>setTimeout(r,ms));
+let paBusy=false;
+function phoneToast(m){const d=document.createElement('div');d.textContent=m;
+  d.style.cssText='position:fixed;left:50%;bottom:90px;transform:translateX(-50%);max-width:88%;background:#222;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:99999;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.4)';
+  document.body.appendChild(d);setTimeout(()=>d.remove(),3500)}
+async function syncPhoneAlarms(){
+  if(!NA||!loc||paBusy||document.hidden) return; // অ্যাপ সামনে না থাকলে ফোন অ্যালার্ম বসানো যায় না
+  paBusy=true;
+  try{
+    const st=LS.g('phoneAl',{}),now=new Date(),done=[];
+    for(const a of ALARM_IDX){
+      if(!alarms[a]){ // বন্ধ করা হয়েছে: ফোনের অ্যালার্ম থেকে সরাও
+        if(st[a]){try{await NA.dismiss({label:PA_LBL(a)})}catch{} delete st[a];LS.s('phoneAl',st);await paSleep(600)}
+        continue;
+      }
+      const day=new Date(now);let when=at(day,getDay(day).t[ALARM_SRC[a]]);
+      if(when<=now){day.setDate(day.getDate()+1);when=at(day,getDay(day).t[ALARM_SRC[a]])}
+      const tm=p2(when.getHours())+':'+p2(when.getMinutes()),id=dkey(day)+' '+tm;
+      if(st[a]===id) continue; // এই সময়ের অ্যালার্ম আগেই বসানো আছে
+      if(st[a]&&st[a].split(' ')[0]===dkey(day)){ // একই দিনের সময় বদলেছে (যেমন অবস্থান বদলালে): পুরোনোটা সরাও
+        try{await NA.dismiss({label:PA_LBL(a)})}catch{} await paSleep(600);
+      }
+      await NA.set({hour:when.getHours(),minute:when.getMinutes(),label:PA_LBL(a)});
+      st[a]=id;LS.s('phoneAl',st);done.push(NM[a]+' '+f12(tm));await paSleep(600);
+    }
+    if(done.length) phoneToast(TT('ফোনের অ্যালার্মে বসানো হয়েছে: ')+done.join(', '));
+  }catch(e){console.error('phoneAlarm',e)}
+  finally{paBusy=false}
+}
+if(NATIVE&&NA){
+  const _s2=scheduleNative;
+  scheduleNative=async function(){await _s2.apply(this,arguments);try{await syncPhoneAlarms()}catch(e){console.error('pa',e)}};
+  setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
 const APP_BUILD='__BUILD__';
