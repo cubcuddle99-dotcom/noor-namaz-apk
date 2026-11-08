@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#07070a">
+<meta name="theme-color" content="#150b24">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -11,6 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="নূর">
 <script>(function(){var t=null;try{t=JSON.parse(localStorage.getItem('noorTheme'))}catch(e){}if(t!=='dark'&&t!=='light'){t='dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
+<script>(function(){var en=false,z=1;try{en=JSON.parse(localStorage.getItem('lang'))==='en';z=+JSON.parse(localStorage.getItem('fz'))||1}catch(e){}window.__EN=en;var h=document.documentElement;h.style.setProperty('--z',z);if(en){h.lang='en';var o=Date.prototype.toLocaleDateString;Date.prototype.toLocaleDateString=function(l,x){return o.call(this,l==='bn-BD'?'en-GB':l,x)}}})();</script>
 
 <title>নূর - নামাজের সময়সূচি</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -92,9 +93,87 @@ details summary{cursor:pointer;font-weight:600;color:var(--gr);font-size:17px}
 .hol{position:relative;z-index:1;margin-top:10px;display:inline-block;max-width:100%;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.38);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:600;line-height:1.5;text-shadow:0 1px 3px rgba(0,0,0,.3)}
 .hol[hidden]{display:none}
 .hol.wk{background:rgba(0,0,0,.16);border-color:rgba(255,255,255,.22);font-weight:500}
+
+/* ===== নূর: গ্লাস ও রঙিন ডিজাইন স্তর ===== */
+:root{--g1:#7c5cff;--g2:#ff4fa3;--g3:#ff9a3c;--g4:#22d3ee;--glass:rgba(255,255,255,.62);--glassbd:rgba(255,255,255,.75);--gsh:0 8px 32px rgba(90,60,160,.16)}
+:root[data-theme=dark]{--glass:rgba(24,22,40,.46);--glassbd:rgba(255,255,255,.14);--gsh:0 10px 36px rgba(0,0,0,.45)}
+body{background:linear-gradient(160deg,#fff1e6,#f1e8ff 55%,#e3f6ff) fixed}
+:root[data-theme=dark] body{background:linear-gradient(160deg,#0d0a1f,#150b24 55%,#06121c) fixed}
+#aur{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+#aur i{position:absolute;width:62vmax;height:62vmax;border-radius:50%;filter:blur(70px);opacity:.55;animation:fl 26s ease-in-out infinite alternate}
+#aur i:nth-child(1){background:var(--g1);left:-22vmax;top:-18vmax}
+#aur i:nth-child(2){background:var(--g2);right:-26vmax;top:18vh;animation-duration:32s}
+#aur i:nth-child(3){background:var(--g3);left:-10vmax;bottom:-30vmax;animation-duration:29s}
+#aur i:nth-child(4){background:var(--g4);right:-12vmax;bottom:-22vmax;opacity:.4;animation-duration:36s}
+:root[data-theme=dark] #aur i{opacity:.34}
+@keyframes fl{to{transform:translate3d(8vmax,6vmax,0) scale(1.15)}}
+.wrap{position:relative;z-index:1}
+.card{background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);border:1px solid var(--glassbd);box-shadow:var(--gsh),inset 0 1px 0 rgba(255,255,255,.35);border-radius:24px}
+.hd{background:linear-gradient(135deg,#7c5cff 0%,#ff4fa3 52%,#ff9a3c 100%);border-radius:32px;padding:16px 18px 18px;box-shadow:0 18px 44px rgba(255,79,163,.34),inset 0 1px 0 rgba(255,255,255,.5)}
+.hd::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 90% 0%,rgba(255,255,255,.32),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.12),transparent 40%);pointer-events:none}
+.pill,#th{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.45)}
+.ct{text-shadow:0 4px 24px rgba(0,0,0,.28);letter-spacing:-.5px}
+#cd{background:rgba(255,255,255,.2);padding:2px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.4)}
+.se{background:var(--glass)}
+.se b{background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:21px}
+.p{position:relative;border-radius:16px;padding:9px 12px 9px 16px;transition:background .25s}
+.p::before{content:"";position:absolute;left:5px;top:20%;bottom:20%;width:4px;border-radius:4px;background:var(--pc,var(--g1));opacity:.85}
+.p:nth-child(1){--pc:#6d83ff}.p:nth-child(2){--pc:#ffc247}.p:nth-child(3){--pc:#ffa51f}.p:nth-child(4){--pc:#ff7a3d}.p:nth-child(5){--pc:#ff4f87}.p:nth-child(6){--pc:#a05cff}
+.p.cur{background:linear-gradient(90deg,color-mix(in srgb,var(--pc) 30%,transparent),color-mix(in srgb,var(--pc) 6%,transparent));border-color:color-mix(in srgb,var(--pc) 70%,transparent);box-shadow:0 0 24px color-mix(in srgb,var(--pc) 38%,transparent)}
+.p.cur::before{opacity:1;box-shadow:0 0 12px var(--pc)}
+.p b{font-size:16px}
+.bell.on{background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 4px 14px rgba(124,92,255,.45)}
+.btn{background:var(--glass);border-color:var(--glassbd);border-radius:14px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#sf .btn[type=submit]{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border:0;box-shadow:0 6px 16px rgba(124,92,255,.4)}
+input{border-radius:14px;background:rgba(255,255,255,.18);border-color:var(--glassbd)}
+h1,details summary,.dm b{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.dm:active,.btn:active{transform:scale(.98)}
+.dm .ic{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:26px;background:linear-gradient(135deg,rgba(124,92,255,.28),rgba(255,79,163,.28));border:1px solid var(--glassbd)}
+.tg button.on{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border-color:transparent}
+#nav{background:var(--glass);-webkit-backdrop-filter:blur(26px) saturate(1.7);backdrop-filter:blur(26px) saturate(1.7);border:1px solid var(--glassbd);box-shadow:0 14px 40px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35)}
+#nav button.on,:root:not([data-theme=dark]) #nav button.on{background:linear-gradient(135deg,var(--g1),var(--g2) 60%,var(--g3));color:#fff;box-shadow:0 6px 18px rgba(255,79,163,.45)}
+#gr .grb{background:var(--glass);-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);border-color:var(--glassbd)}
+@media(prefers-reduced-motion:reduce){#aur i{animation:none}}
+
+/* ===== নতুন ফিচার ===== */
+.bx{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 12px;border-radius:14px;border:1px solid transparent;font-size:14px}
+.bx+.bx{margin-top:4px}.bx small{color:var(--mu);font-size:13px}
+.bx.on{background:rgba(255,70,90,.16);border-color:rgba(255,70,90,.6);box-shadow:0 0 20px rgba(255,70,90,.3)}
+.bx.on span::after{content:" • চলছে";color:#ff4a5e;font-weight:600}
+#dc .ar{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:24px;line-height:2;direction:rtl;text-align:right;margin-top:6px}
+#dc .bg{font-size:16px;line-height:1.8;margin-top:4px}
+#dc .mu{margin-top:6px}
+.jm{display:block;font-size:12px;color:var(--g1);font-weight:600}
+.xl{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;font-size:14px}
+.xl input,.xl select{flex:none;width:auto;font:inherit;font-size:14px;padding:7px 10px;border-radius:12px;border:1px solid var(--glassbd);background:rgba(255,255,255,.18);color:var(--tx)}
+.xl select option{color:#222}
+#xmt{position:fixed;inset:0;z-index:9;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:12px}
+#xmt[hidden]{display:none}
+.mtb{width:100%;max-width:460px;max-height:90dvh;display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:24px;background:var(--glass);-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px);border:1px solid var(--glassbd);color:var(--tx)}
+.mth{display:flex;align-items:center;justify-content:space-between;gap:6px}.mth b{flex:1;text-align:center;font-size:16px}
+.mts{overflow:auto}
+#xtab{width:100%;border-collapse:collapse;font-size:12px;text-align:center;font-variant-numeric:tabular-nums}
+#xtab th{position:sticky;top:0;background:var(--navbg);padding:6px 2px;font-weight:600}
+#xtab td{padding:6px 2px;border-top:1px solid var(--glassbd)}
+#xtab tr.td td{background:linear-gradient(90deg,rgba(124,92,255,.35),rgba(255,79,163,.35));font-weight:700}
+
+/* ===== সেটিংস, ফন্ট, কাউন্টডাউন ===== */
+.wrap{zoom:var(--z,1)}
+html[lang=en] .bx.on span::after{content:" • now"}
+.bcd{margin:0 0 8px;padding:10px 12px;border-radius:14px;background:rgba(124,92,255,.14);border:1px solid var(--glassbd);font-weight:600;font-size:15px;line-height:1.5;font-variant-numeric:tabular-nums}
+.bcd.on{background:rgba(255,70,90,.18);border-color:rgba(255,70,90,.6);box-shadow:0 0 20px rgba(255,70,90,.25)}
+.xl.xr{align-items:center}
+.sg{display:flex;gap:6px;align-items:center}
+.sg .btn{padding:7px 12px}.sg .btn.on{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border-color:transparent}
+.sw{width:50px;height:28px;border-radius:999px;background:rgba(128,128,140,.45);position:relative;padding:0;flex:none;transition:background .2s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.35);transition:transform .2s}
+.sw.on{background:linear-gradient(135deg,var(--g1),var(--g2))}.sw.on::after{transform:translateX(22px)}
+#xfv{min-width:46px;text-align:center;font-weight:600}
+#xlc{max-width:55%;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
+<div id="aur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div id="ring" hidden role="alert"><span id="rt"></span><button class="btn" id="rs">বন্ধ করুন</button></div>
 <div id="gr" hidden role="dialog" aria-modal="true" aria-labelledby="grt"><div class="grb"><div class="gri" id="gri"></div><h2 id="grt"></h2><p class="grm" id="grm"></p><p class="gra" id="gra" lang="ar" dir="rtl"></p><p class="grt" id="grtr"></p><button class="btn" id="grx" type="button">বন্ধ করুন</button></div></div>
 <main class="wrap">
@@ -122,6 +201,11 @@ details summary{cursor:pointer;font-weight:600;color:var(--gr);font-size:17px}
     <div class="mu" style="margin:0 0 8px;display:flex;justify-content:space-between"><span>আজকের সালাতের সময়</span><span>অ্যালার্ম</span></div>
     <div id="list"></div>
   </section>
+  <section class="card" id="xbc"><div class="mu" style="margin:0 0 8px">⛔ নিষিদ্ধ সময় (এ সময়ে নফল সালাত পড়া যাবে না)</div><div class="bcd" id="xbcd"></div><div id="xbn"></div><p class="mu" style="font-size:12px;margin-top:8px">সময়গুলো আনুমানিক (সূর্যোদয়ের পর ও মাগরিবের আগে প্রায় ১৫ মিনিট, যোহরের আগে প্রায় ১০ মিনিট)।</p></section>
+
+  <section class="card" id="dc"><div class="mu" id="xdk" style="margin:0">📖 আজকের আয়াত</div><p class="ar" id="xda"></p><p class="bg" id="xdb"></p><p class="mu" id="xdr"></p></section>
+
+  <button class="card dm" type="button" id="xmb"><span class="ic">📅</span><div><b>মাসিক সময়সূচি</b><span class="mu">পুরো মাসের নামাজের সময় একসাথে</span></div></button>
 </section>
 
 <section class="pg" id="pg-dua" hidden>
@@ -175,9 +259,21 @@ details summary{cursor:pointer;font-weight:600;color:var(--gr);font-size:17px}
     </form>
     <p id="ss"></p>
   </section>
-  <section class="card">
-    <p class="mu">হিসাব পদ্ধতি: উম্মুল কুরা (ফজর ১৮.৫°)। সময় ফোনেই হিসাব হয়, তাই অফলাইনেও চলে।</p>
-    <p class="mu" id="ver">অ্যাপ সংস্করণ: ৪</p>
+  <section class="card" id="xap">
+    <h1>⚙️ অ্যাপের সেটিংস</h1>
+    <div class="xl xr"><span>🌙 ডার্ক মোড</span><button class="sw" id="xdm" type="button" aria-label="ডার্ক/লাইট মোড"></button></div>
+    <div class="xl xr"><span>🌐 ভাষা</span><span class="sg"><button class="btn" id="xlb" type="button">বাংলা</button><button class="btn" id="xle" type="button">English</button></span></div>
+    <div class="xl xr"><span>🔠 লেখার আকার</span><span class="sg"><button class="btn" id="xfm" type="button" aria-label="-">A−</button><span id="xfv"></span><button class="btn" id="xfp" type="button" aria-label="+">A+</button></span></div>
+    <div class="xl xr"><span>📍 লোকেশন</span><span class="mu" id="xlc" style="margin:0"></span></div>
+    <div class="row"><button class="btn" id="xgp" type="button" style="flex:1">📍 জিপিএস দিয়ে বদলান</button></div>
+  </section>
+  <section class="card" id="xs">
+    <h1>🕌 জামাত ও স্মরণ</h1>
+    <p class="mu">আপনার মসজিদের জামাতের সময় প্রতিটি ওয়াক্তের ঘরে বসান।</p>
+    <div id="xjm"></div>
+    <label class="xl">জামাতের অ্যালার্ম<select id="xjam"><option value="-1">বন্ধ</option><option value="0">জামাতের সময়ে</option><option value="5">৫ মিনিট আগে</option><option value="10">১০ মিনিট আগে</option><option value="15">১৫ মিনিট আগে</option><option value="30">৩০ মিনিট আগে</option></select></label>
+    <label class="xl">ওয়াক্তের আগে স্মরণ<select id="xrem"><option value="0">বন্ধ</option><option value="5">৫ মিনিট আগে</option><option value="10">১০ মিনিট আগে</option><option value="15">১৫ মিনিট আগে</option><option value="30">৩০ মিনিট আগে</option></select></label>
+    <p class="mu">স্মরণ শুধু সেই ওয়াক্তের জন্য আসবে যার 🔔 চালু আছে।</p>
   </section>
 </section>
 </main>
@@ -512,6 +608,146 @@ if('serviceWorker' in navigator&&!(window.Capacitor&&Capacitor.isNativePlatform&
     navigator.serviceWorker.register('sw.js').then(r=>{swReg=r}).catch(()=>{});
   });
 }
+</script>
+<div id="xmt" hidden><div class="mtb"><div class="mth"><button class="btn" id="xmp" type="button">‹</button><b id="xmtt"></b><button class="btn" id="xmn" type="button">›</button><button class="btn" id="xmx" type="button">✕</button></div><div class="mts"><table id="xtab"></table></div></div></div>
+<script>
+(function(){
+const P5=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+const J=LS.g('jamaat',{}),CFG=Object.assign({rem:0,jam:-1},LS.g('xcfg',{}));
+const addM=(d,m)=>new Date(d.getTime()+m*60000);
+const tm=d=>`${p2(d.getHours())}:${p2(d.getMinutes())}`;
+const sh=t=>{const[h,m]=t.split(':');return bn(`${(+h%12)||12}:${m}`)};
+const D=[
+['আয়াত','لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا','আল্লাহ কারও ওপর তার সাধ্যের বাইরে দায়িত্ব চাপান না।','সূরা বাকারা ২:২৮৬'],
+['আয়াত','فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا','নিশ্চয় কষ্টের সাথেই স্বস্তি আছে। নিশ্চয় কষ্টের সাথেই স্বস্তি আছে।','সূরা ইনশিরাহ ৯৪:৫-৬'],
+['আয়াত','فَاذْكُرُونِي أَذْكُرْكُمْ','অতএব তোমরা আমাকে স্মরণ করো, আমিও তোমাদের স্মরণ করব।','সূরা বাকারা ২:১৫২'],
+['আয়াত','أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ','জেনে রাখো, আল্লাহর স্মরণেই অন্তর প্রশান্ত হয়।','সূরা রা‘দ ১৩:২৮'],
+['আয়াত','وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ','যে আল্লাহর ওপর ভরসা করে, তার জন্য তিনিই যথেষ্ট।','সূরা তালাক ৬৫:৩'],
+['আয়াত','إِنَّ اللَّهَ مَعَ الصَّابِرِينَ','নিশ্চয় আল্লাহ ধৈর্যশীলদের সঙ্গে আছেন।','সূরা বাকারা ২:১৫৩'],
+['আয়াত','لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ','আল্লাহর রহমত থেকে নিরাশ হয়ো না।','সূরা যুমার ৩৯:৫৩'],
+['আয়াত','وَأَقِمِ الصَّلَاةَ لِذِكْرِي','এবং আমার স্মরণের জন্য সালাত কায়েম করো।','সূরা ত্বা-হা ২০:১৪'],
+['হাদীস','إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ','সকল কাজ নিয়তের ওপর নির্ভরশীল।','বুখারী ১, মুসলিম ১৯০৭'],
+['হাদীস','خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ','তোমাদের মধ্যে সর্বোত্তম সে, যে কুরআন শেখে ও অন্যকে শেখায়।','বুখারী ৫০২৭'],
+['হাদীস','لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ','তোমাদের কেউ মুমিন হবে না, যতক্ষণ না নিজের জন্য যা পছন্দ করে, তার ভাইয়ের জন্যও তা পছন্দ করে।','বুখারী ১৩, মুসলিম ৪৫'],
+['হাদীস','الطُّهُورُ شَطْرُ الْإِيمَانِ','পবিত্রতা ঈমানের অর্ধেক।','মুসলিম ২২৩'],
+['হাদীস','أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ','আল্লাহর কাছে সবচেয়ে প্রিয় আমল সেটি, যা নিয়মিত করা হয়, যদিও তা অল্প।','বুখারী ৬৪৬৪, মুসলিম ৭৮৩'],
+['হাদীস','مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ','যে আল্লাহ ও আখিরাতে বিশ্বাস রাখে, সে যেন ভালো কথা বলে অথবা চুপ থাকে।','বুখারী ৬০১৮, মুসলিম ৪৭']];
+function pd(){const n=new Date(),i=Math.floor(new Date(n.getFullYear(),n.getMonth(),n.getDate()).getTime()/864e5)%D.length,e=D[i],a=$('xda');
+  if(a.dataset.d===String(i))return;a.dataset.d=i;
+  $('xdk').textContent=(e[0]==='আয়াত'?'📖 আজকের আয়াত':'📜 আজকের হাদীস');a.textContent=e[1];$('xdb').textContent=e[2];$('xdr').textContent=e[3]}
+function ban(d,t){const sr=at(d,t.Sunrise),dh=at(d,t.Dhuhr),mg=at(d,t.Maghrib);return[
+ {n:'সূর্যোদয়ের সময়',a:sr,b:addM(sr,15)},{n:'ঠিক দুপুর',a:addM(dh,-10),b:dh},{n:'সূর্যাস্তের সময়',a:addM(mg,-15),b:mg}]}
+function pb(){if(!T)return;const n=new Date();
+  $('xbn').innerHTML=ban(n,T).map(x=>`<div class="bx${n>=x.a&&n<x.b?' on':''}"><span>${x.n}</span><small>${f12(tm(x.a))} – ${f12(tm(x.b))}</small></div>`).join('')}
+function pj(){document.querySelectorAll('.jm').forEach(e=>e.remove());
+  document.querySelectorAll('.p').forEach(el=>{const k=el.dataset.p;if(J[k]){const s=document.createElement('span');s.className='jm';s.textContent='জামাত: '+f12(J[k]);el.firstElementChild.appendChild(s)}})}
+function xr(){pd();pb();pj()}
+const _r=render;render=function(){_r.apply(this,arguments);try{xr()}catch(e){}};
+setInterval(()=>{try{if(T){pb();if(!document.querySelector('.jm')&&Object.keys(J).length)pj()}pd()}catch(e){}},5000);
+if(T)try{xr()}catch(e){}
+/* মাসিক সময়সূচি */
+let mY=0,mM=0;
+function pm(){if(!loc)return;const n=new Date(),dn=new Date(mY,mM+1,0).getDate();
+  $('xmtt').textContent=new Date(mY,mM,1).toLocaleDateString('bn-BD',{month:'long',year:'numeric'});
+  let h='<tr><th>তারিখ</th>'+PR.map(k=>`<th>${NM[k]}</th>`).join('')+'</tr>';
+  for(let d=1;d<=dn;d++){const t=getDay(new Date(mY,mM,d,12)).t,td=n.getFullYear()===mY&&n.getMonth()===mM&&n.getDate()===d;
+    h+=`<tr${td?' class="td"':''}><td>${bn(d)}</td>`+PR.map(k=>`<td>${sh(t[k])}</td>`).join('')+'</tr>'}
+  $('xtab').innerHTML=h}
+$('xmb').onclick=()=>{if(!loc)return;const n=new Date();mY=n.getFullYear();mM=n.getMonth();pm();$('xmt').hidden=false};
+$('xmp').onclick=()=>{mM--;if(mM<0){mM=11;mY--}pm()};
+$('xmn').onclick=()=>{mM++;if(mM>11){mM=0;mY++}pm()};
+$('xmx').onclick=()=>{$('xmt').hidden=true};
+$('xmt').onclick=e=>{if(e.target===$('xmt'))$('xmt').hidden=true};
+/* সেটিংস: জামাত ও স্মরণ */
+$('xjm').innerHTML=P5.map(p=>`<label class="xl">${NM[p]} জামাত<input type="time" data-j="${p}" value="${J[p]||''}"></label>`).join('');
+$('xjam').value=String(CFG.jam);$('xrem').value=String(CFG.rem);
+const resched=()=>{if(typeof scheduleNative==='function')scheduleNative()};
+$('xjm').onchange=e=>{const k=e.target.dataset.j;if(!k)return;if(e.target.value)J[k]=e.target.value;else delete J[k];LS.s('jamaat',J);pj();resched()};
+$('xjam').onchange=e=>{CFG.jam=+e.target.value;LS.s('xcfg',CFG);resched()};
+$('xrem').onchange=e=>{CFG.rem=+e.target.value;LS.s('xcfg',CFG);resched()};
+/* ওয়েবে স্মরণ/জামাতের বার্তা */
+function notice(msg){$('rt').textContent='🔔 '+msg;$('ring').hidden=false;try{beep()}catch{}navigator.vibrate&&navigator.vibrate([200,100,200]);
+  setTimeout(()=>{if($('rt').textContent==='🔔 '+msg)$('ring').hidden=true},10000);
+  if('Notification' in window&&Notification.permission==='granted'){try{swReg?swReg.showNotification('নূর',{body:msg}):new Notification('নূর',{body:msg})}catch{}}}
+const fx={};
+const jmsg=p=>CFG.jam?`${NM[p]}ের জামাত ${bn(CFG.jam)} মিনিট পরে (${f12(J[p])})`:`${NM[p]}ের জামাতের সময় হয়েছে`;
+const rmsg=p=>`${NM[p]}ের আর ${bn(CFG.rem)} মিনিট বাকি`;
+setInterval(()=>{if(!T||NATIVE)return;const now=new Date(),k=dkey(now);
+  P5.forEach(p=>{
+    if(CFG.rem>0&&alarms[p]){const df=now-addM(at(now,T[p]),-CFG.rem);if(df>=0&&df<60000&&!fx['r'+p+k]){fx['r'+p+k]=1;notice(rmsg(p))}}
+    if(CFG.jam>=0&&J[p]){const df=now-addM(at(now,J[p]),-CFG.jam);if(df>=0&&df<60000&&!fx['j'+p+k]){fx['j'+p+k]=1;notice(jmsg(p))}}
+  })},1000);
+/* অ্যান্ড্রয়েড অ্যাপে ব্যাকগ্রাউন্ড অ্যালার্ম */
+async function xs(){if(!LN||!loc||(CFG.rem<=0&&CFG.jam<0))return;
+  const pm=await LN.checkPermissions();if(pm.display!=='granted')return;
+  await LN.createChannel({id:'remind_v1',name:'স্মরণ ও জামাত',description:'ওয়াক্তের আগে স্মরণ ও জামাতের অ্যালার্ম',importance:5,visibility:1,vibration:true});
+  const now=new Date(),list=[],add=(id,at_,body)=>{if(at_>now)list.push({id,title:'নূর',body,channelId:'remind_v1',schedule:{at:at_,allowWhileIdle:true},autoCancel:true,smallIcon:'ic_stat_noor'})};
+  for(let i=0;i<6;i++){const day=new Date(now);day.setDate(day.getDate()+i);const t=getDay(day).t,dn=Math.floor(new Date(day.getFullYear(),day.getMonth(),day.getDate()).getTime()/864e5),b=9e8+(dn%1e5)*100;
+    P5.forEach((p,x)=>{
+      if(CFG.rem>0&&alarms[p])add(b+x,addM(at(day,t[p]),-CFG.rem),rmsg(p));
+      if(CFG.jam>=0&&J[p])add(b+10+x,addM(at(day,J[p]),-CFG.jam),jmsg(p))})}
+  if(list.length)await LN.schedule({notifications:list})}
+if(typeof scheduleNative==='function'){const _s=scheduleNative;scheduleNative=async function(){await _s.apply(this,arguments);try{await xs()}catch(e){console.error('xs',e)}}}
+const fm=ms=>{const t=Math.max(0,Math.floor(ms/1000));return bn(`${p2(Math.floor(t/3600))}:${p2(Math.floor(t%3600/60))}:${p2(t%60)}`)};
+let lastA=-2;
+function bcd(){if(!T)return;const n=new Date(),L=ban(n,T),i=L.findIndex(x=>n>=x.a&&n<x.b),el=$('xbcd');
+  if(i!==lastA){lastA=i;pb()}
+  if(i>=0){el.className='bcd on';el.textContent=`⛔ ${L[i].n}: নিষিদ্ধ সময় শেষ হতে বাকি ${fm(L[i].b-n)}`}
+  else{let x=L.find(y=>y.a>n);if(!x){const t=new Date(n);t.setDate(t.getDate()+1);x=ban(t,getDay(t).t)[0]}
+    el.className='bcd';el.textContent=`পরবর্তী নিষিদ্ধ সময় (${x.n}) শুরু হতে বাকি ${fm(x.a-n)}`}}
+setInterval(()=>{try{bcd()}catch(e){}},1000);try{bcd()}catch(e){}
+})();
+</script>
+<script>
+(function(){
+const EN=!!window.__EN,BD='০১২৩৪৫৬৭৮৯';
+/* ডার্ক মোড */
+const dm=$('xdm'),paintDm=()=>dm.classList.toggle('on',document.documentElement.getAttribute('data-theme')==='dark');
+dm.onclick=()=>$('th').click();paintDm();
+new MutationObserver(paintDm).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+/* ভাষা */
+$('xlb').classList.toggle('on',!EN);$('xle').classList.toggle('on',EN);
+const setLang=l=>{if((l==='en')===EN)return;LS.s('lang',l);location.reload()};
+$('xlb').onclick=()=>setLang('bn');$('xle').onclick=()=>setLang('en');
+/* ফন্টের আকার */
+const ZS=[.85,1,1.15,1.3,1.5];let zi=ZS.indexOf(LS.g('fz',1));if(zi<0)zi=1;
+const paintZ=()=>{$('xfv').textContent=bn(Math.round(ZS[zi]*100))+'%';$('xfm').disabled=zi===0;$('xfp').disabled=zi===ZS.length-1};
+const setZ=i=>{zi=Math.max(0,Math.min(ZS.length-1,i));LS.s('fz',ZS[zi]);document.documentElement.style.setProperty('--z',ZS[zi]);paintZ()};
+$('xfm').onclick=()=>setZ(zi-1);$('xfp').onclick=()=>setZ(zi+1);paintZ();
+/* লোকেশন */
+$('xgp').onclick=()=>$('gps').click();
+setInterval(()=>{const t=$('loc').textContent.trim();if($('xlc').textContent!==t)$('xlc').textContent=t},2000);$('xlc').textContent=$('loc').textContent.trim();
+if(!EN)return;
+/* ইংরেজি ইন্টারফেস */
+document.title='Noor - Prayer Times';
+const RAW=[['বন্ধ করুন','Dismiss'],['অবস্থান নিশ্চিত করা হচ্ছে...','Detecting location...'],['পরবর্তী সালাত:','Next prayer:'],['বাকি সময়:','Time left:'],['সেহরির শেষ সময়','Sehri ends'],['ইফতারের সময়','Iftar time'],['আজকের সালাতের সময়',"Today's prayer times"],['অ্যালার্ম','Alarm'],
+['নিষিদ্ধ সময় (এ সময়ে নফল সালাত পড়া যাবে না)','Forbidden times (no voluntary prayer)'],['নিষিদ্ধ সময় শেষ হতে বাকি','Forbidden time ends in'],['পরবর্তী নিষিদ্ধ সময়','Next forbidden time'],['শুরু হতে বাকি','starts in'],['সূর্যোদয়ের সময়','Sunrise'],['ঠিক দুপুর','Midday (zenith)'],['সূর্যাস্তের সময়','Sunset'],
+['আজকের আয়াত',"Today's ayah"],['আজকের হাদীস',"Today's hadith"],['মাসিক সময়সূচি','Monthly timetable'],['পুরো মাসের নামাজের সময় একসাথে','Prayer times for the whole month'],['তারিখ','Date'],
+['দুআ ও যিকির','Duas & Dhikr'],['একটি বেছে নিন','Choose one'],['সকাল-সন্ধ্যার দুআ','Morning & evening adhkar'],['সকাল ও সন্ধ্যার সহিহ যিকির','Authentic morning & evening dhikr'],['নামাজের পরের দুআ','Dhikr after prayer'],['সালামের পরের মাসনূন দুআ ও যিকির','Masnun duas after salam'],['সালামের পরের সহিহ মাসনূন দুআ ও যিকির','Authentic masnun duas after salam'],['দুআর তালিকা','Dua list'],['সকাল','Morning'],['সন্ধ্যা','Evening'],
+['সহিহ সময়সূচি','Prayer Times'],['অবস্থান বদলাতে জেলা/শহরের নাম লিখুন অথবা জিপিএস চাপুন।','To change location, type a district/city or tap GPS.'],['খুঁজুন','Search'],
+['অ্যাপের সেটিংস','App settings'],['ডার্ক মোড','Dark mode'],['ভাষা','Language'],['লেখার আকার','Text size'],['লোকেশন','Location'],['জিপিএস দিয়ে বদলান','Change using GPS'],
+['জামাত ও স্মরণ','Jamaat & reminders'],['আপনার মসজিদের জামাতের সময় প্রতিটি ওয়াক্তের ঘরে বসান।',"Enter your mosque's jamaat time for each prayer."],['জামাতের অ্যালার্ম','Jamaat alarm'],['জামাতের সময়ে','At jamaat time'],['মিনিট আগে','min before'],['ওয়াক্তের আগে স্মরণ','Reminder before prayer'],['স্মরণ শুধু সেই ওয়াক্তের জন্য আসবে যার 🔔 চালু আছে।','Reminders come only for prayers whose 🔔 is on.'],['জামাত:','Jamaat:'],['জামাত','Jamaat'],['বন্ধ','Off'],
+['সেহরির শেষ সময় হয়েছে','Sehri time has come'],['ইফতারের সময় হয়েছে','Iftar time has come'],['ের সময় হয়েছে',' time has come'],['ের জামাতের সময় হয়েছে',' jamaat time has come'],['ের জামাত ',' jamaat in '],[' মিনিট পরে',' min'],['ের আর ',' starts in '],[' মিনিট বাকি',' min'],['হয়েছে','has come'],
+['হোম','Home'],['দুআ','Dua'],['সেটিংস','Settings'],['নেভিগেশন','Navigation'],['অন্যান্য দো\'আসমূহ','Other duas'],['দো\'আগুলো যেকোন সময় পাঠ করা যায়','These duas can be read at any time'],
+['ফজর','Fajr'],['সূর্যোদয়','Sunrise'],['যোহর','Dhuhr'],['আসর','Asr'],['মাগরিব','Maghrib'],['এশা','Isha'],['সেহরি','Sehri'],['ইফতার','Iftar'],
+['রবিউল আউয়াল',"Rabi' al-Awwal"],['রবিউস সানি',"Rabi' al-Thani"],['রবিউস সানী',"Rabi' al-Thani"],['জমাদিউল আউয়াল','Jumada al-Awwal'],['জুমাদাল উলা','Jumada al-Awwal'],['জমাদিউস সানি','Jumada al-Thani'],['জুমাদাস সানিয়াহ','Jumada al-Thani'],['মুহাররম','Muharram'],['সফর','Safar'],['রজব','Rajab'],['শাবান',"Sha'ban"],['শা‘বান',"Sha'ban"],['রমজান','Ramadan'],['শাওয়াল','Shawwal'],['জিলকদ',"Dhu al-Qa'dah"],['জিলহজ','Dhu al-Hijjah'],
+['আল্লাহু আকবার','Allahu Akbar'],['ইস্তিগফার','Istighfar'],['সালামের পর দুআ','Dua after salam'],['তাওহীদের দুআ','Tawhid dua'],['বিশেষ দুআ','Special dua'],['আল্লাহর দানের দুআ',"Dua of Allah's giving"],['লা হাওলা ও তাওহীদের দুআ','La hawla & Tawhid dua'],['আয়াতুল কুরসি','Ayatul Kursi'],['সূরা ইখলাছ, ফালাক্ব ও নাস','Surah Ikhlas, Falaq & Nas'],['আশ্রয় প্রার্থনার দুআ','Dua for seeking refuge'],['তাসবিহে ফাতেমী','Tasbih of Fatimah'],['রযীতু দুআ','Radheetu dua'],['জান্নাত প্রার্থনার দুআ','Dua for Jannah'],['সুবহানাল্লাহি ওয়া বিহামদিহী','Subhanallahi wa bihamdihi'],['দুশ্চিন্তা ও ঋণ থেকে আশ্রয়','Refuge from worry and debt'],['অন্তর দৃঢ় রাখার দুআ','Dua for a steadfast heart'],['হেদায়াত ও সচ্ছলতার দুআ','Dua for guidance and sufficiency'],['হালাল রিযিক ও ইস্তিগফার','Halal provision & Istighfar'],
+['(১ বার)','(1 time)'],['(৩ বার)','(3 times)'],['বুখারী','Bukhari'],['মুসলিম','Muslim'],['তিরমিযী','Tirmidhi'],['আবুদাউদ','Abu Dawud'],['ইবনু মাজাহ','Ibn Majah'],['ছহীহ তারগীব','Sahih at-Targhib'],['বাক্বারাহ','Baqarah'],['সূরা','Surah'],['হা/','No. ']];
+const DIC=RAW.sort((a,b)=>b[0].length-a[0].length);
+const BN=/[\u0980-\u09FF]/;
+const tr=t=>{let o=t;for(const[k,v]of DIC)if(o.includes(k))o=o.split(k).join(v);return o.replace(/[০-৯]/g,d=>BD.indexOf(d))};
+const skip=p=>!p||p.closest('script,style,textarea,#gr,#xda,#xdb,.d p:not(.src)');
+function doAttr(e,a){const v=e.getAttribute(a);if(v&&BN.test(v)){const r=tr(v);if(r!==v)e.setAttribute(a,r)}}
+function doNode(n){
+  if(n.nodeType===3){const t=n.nodeValue;if(!BN.test(t)||skip(n.parentElement))return;const r=tr(t);if(r!==t)n.nodeValue=r}
+  else if(n.nodeType===1){['aria-label','placeholder','title'].forEach(a=>doAttr(n,a));n.childNodes.forEach(doNode)}}
+doNode(document.body);
+new MutationObserver(ms=>ms.forEach(m=>{
+  if(m.type==='childList')m.addedNodes.forEach(doNode);
+  else if(m.type==='characterData')doNode(m.target);
+  else doAttr(m.target,m.attributeName)
+})).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title']});
+})();
 </script>
 </body>
 </html>
