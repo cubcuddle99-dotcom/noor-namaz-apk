@@ -4,6 +4,9 @@ on:
   push:
     branches: [main, master]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,6 +17,14 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 21 }
 
+      - name: Check secrets
+        env:
+          KS: ${{ secrets.KEYSTORE_BASE64 }}
+          PW: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
+          if [ -z "$KS" ] || [ -z "$PW" ]; then echo "KEYSTORE_BASE64 / KEYSTORE_PASSWORD secret নেই"; exit 1; fi
+          echo "$KS" | base64 -d > "$RUNNER_TEMP/noor.p12"
+
       - name: Install
         run: npm install
 
@@ -21,8 +32,12 @@ jobs:
         run: |
           mkdir -p www
           cp index.html manifest.json sw.js icon-192.png icon-512.png adhan.mp3 www/
+          sed -i "s/__BUILD__/${{ github.run_number }}/" www/index.html
 
       - name: Add Android + patch
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+          KEYSTORE_PATH: ${{ runner.temp }}/noor.p12
         run: |
           npx cap add android
           node patch-android.js
@@ -30,9 +45,17 @@ jobs:
 
       - name: Build APK
         working-directory: android
-        run: ./gradlew assembleDebug
+        env:
+          KEYSTORE_PATH: ${{ runner.temp }}/noor.p12
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: ./gradlew assembleRelease
 
-      - uses: actions/upload-artifact@v4
+      - name: Rename
+        run: cp android/app/build/outputs/apk/release/app-release.apk noor.apk
+
+      - uses: softprops/action-gh-release@v2
         with:
-          name: noor-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          tag_name: v${{ github.run_number }}
+          name: নূর v${{ github.run_number }}
+          files: noor.apk
+          make_latest: true
