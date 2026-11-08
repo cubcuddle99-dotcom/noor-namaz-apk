@@ -1,4 +1,4 @@
-// Android প্রজেক্টে আযানের সাউন্ড, আইকন ও দরকারি পারমিশন বসায়
+// Android প্রজেক্টে আযানের সাউন্ড, আইকন, পারমিশন, ভার্সন ও সই বসায়
 const fs = require('fs'), path = require('path');
 const res = 'android/app/src/main/res';
 const mk = d => fs.mkdirSync(d, { recursive: true });
@@ -11,7 +11,7 @@ fs.copyFileSync('adhan.mp3', `${res}/raw/adhan.mp3`);
 mk(`${res}/drawable`);
 fs.copyFileSync('ic_stat_noor.png', `${res}/drawable/ic_stat_noor.png`);
 
-// 3) অ্যাপ আইকন (ডিফল্ট আইকন সরিয়ে নিজের আইকন)
+// 3) অ্যাপ আইকন
 for (const d of fs.readdirSync(res)) {
   if (d === 'mipmap-anydpi-v26' || d === 'mipmap-anydpi') fs.rmSync(path.join(res, d), { recursive: true, force: true });
 }
@@ -38,4 +38,25 @@ const perms = [
 const add = perms.filter(p => !x.includes(`"${p}"`)).map(p => `    <uses-permission android:name="${p}" />`).join('\n');
 x = x.replace('</manifest>', add + '\n</manifest>');
 fs.writeFileSync(mf, x);
-console.log('Android patch done');
+
+// 5) ভার্সন নম্বর ও স্থায়ী সই (build.gradle)
+const gf = 'android/app/build.gradle';
+let g = fs.readFileSync(gf, 'utf8');
+const build = process.env.BUILD_NUMBER || '1';
+g = g.replace(/versionCode\s+\d+/, `versionCode ${build}`).replace(/versionName\s+"[^"]*"/, `versionName "${build}"`);
+if (process.env.KEYSTORE_PATH) {
+  const signing = `signingConfigs {
+        release {
+            storeFile file(System.getenv("KEYSTORE_PATH"))
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias "noor"
+            keyPassword System.getenv("KEYSTORE_PASSWORD")
+            storeType "pkcs12"
+        }
+    }
+    buildTypes {`;
+  g = g.replace(/buildTypes\s*\{/, signing);
+  g = g.replace(/(buildTypes\s*\{\s*release\s*\{)/, '$1\n            signingConfig signingConfigs.release');
+}
+fs.writeFileSync(gf, g);
+console.log('Android patch done, build', build);
