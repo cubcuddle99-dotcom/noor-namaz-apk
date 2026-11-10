@@ -274,6 +274,27 @@ body{background:linear-gradient(170deg,#e7dbff,#f6e8ff 55%,#e6efff) fixed}
 .hd-dt .dg::before{content:none!important;display:none!important}
 .hd-dt .dg{font-size:1.28em;font-weight:800;color:#2a0a5e;-webkit-text-stroke:.5px currentColor;padding:0 1px}
 :root[data-theme=dark] .hd-dt .dg{color:#fff}
+
+/* ===== কুরআন ট্যাব ===== */
+#pg-qr .qs{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:10px 4px;border-bottom:1px solid var(--bd)}
+#pg-qr .qs:last-child{border-bottom:0}
+#pg-qr .qn{flex:none;min-width:34px;height:34px;padding:0 6px;border-radius:10px;background:var(--btn);border:1px solid var(--btnbd);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--gr)}
+#pg-qr .qs b{display:block;font-size:17px;color:var(--tx)}
+#pg-qr .qs .mu{margin:0;font-size:13px}
+#pg-qr #qr-q{width:100%;margin-top:10px;padding:10px 12px;border-radius:12px;border:1px solid var(--btnbd);background:var(--inp);color:var(--tx);font-size:15px}
+#pg-qr #qr-dl .btn{width:100%;margin-top:8px;white-space:normal}
+#pg-qr #qr-dl .mu{margin-top:8px}
+#pg-qr #qr-rs .btn{width:100%;margin-top:8px;white-space:normal;text-align:left}
+#pg-qr .qtb{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+#pg-qr .qy{padding:12px 6px;border-bottom:1px solid var(--bd)}
+#pg-qr .qy:last-child{border-bottom:0}
+#pg-qr .qy.mk{background:var(--cur,rgba(124,58,237,.12));border-radius:14px}
+#pg-qr .qh{display:flex;justify-content:space-between;align-items:center}
+#pg-qr .qbm{font-size:17px;opacity:.4;padding:4px 8px}
+#pg-qr .qbm.on{opacity:1}
+#pg-qr p.ar{font-family:'Noto Naskh Arabic','Amiri','Traditional Arabic',serif;font-size:calc(var(--qz,28)*1px);line-height:2.2;direction:rtl;text-align:right;color:var(--tx);margin-top:6px}
+#pg-qr p.qb{text-align:center;color:var(--gr);padding:6px 0 12px}
+#pg-qr p.qx{margin-top:6px;font-size:15px;line-height:1.75;color:var(--tx);opacity:.9}
 </style>
 </head>
 <body>
@@ -317,6 +338,19 @@ body{background:linear-gradient(170deg,#e7dbff,#f6e8ff 55%,#e6efff) fixed}
   <section class="card" id="dc"><div class="mu" id="xdk" style="margin:0">📖 আজকের আয়াত</div><p class="ar" id="xda"></p><p class="bg" id="xdb"></p><p class="mu" id="xdr"></p></section>
 
   <button class="card dm" type="button" id="xmb"><span class="ic">📅</span><div><b>মাসিক সময়সূচি</b><span class="mu">পুরো মাসের নামাজের সময় একসাথে</span></div></button>
+</section>
+
+<section class="pg" id="pg-qr" hidden>
+  <div class="pg" id="qr-list">
+    <section class="card c"><h1 id="qr-h"></h1><p class="mu" id="qr-sub"></p><input id="qr-q" type="search" autocomplete="off"><div id="qr-rs"></div><div id="qr-dl"></div></section>
+    <section class="card" id="qr-sl"></section>
+  </div>
+  <div class="pg" id="qr-read" hidden>
+    <section class="card c"><h1 id="qr-t"></h1><p class="mu" id="qr-m"></p>
+      <div class="qtb"><button class="btn" type="button" data-act="bk"></button><button class="btn" type="button" data-act="pv">‹</button><button class="btn" type="button" data-act="nx">›</button><button class="btn" type="button" data-act="tt"></button><button class="btn" type="button" data-act="az-">A−</button><button class="btn" type="button" data-act="az+">A+</button></div></section>
+    <section class="card" id="qr-ays"></section>
+    <div class="qtb"><button class="btn" type="button" data-act="pv">‹</button><button class="btn" type="button" data-act="nx">›</button></div>
+  </div>
 </section>
 
 <section class="pg" id="pg-dua" hidden>
@@ -405,6 +439,7 @@ body{background:linear-gradient(170deg,#e7dbff,#f6e8ff 55%,#e6efff) fixed}
 </main>
 <nav id="nav" aria-label="নেভিগেশন">
   <button type="button" class="on" data-pg="home"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2.5c-3 0-5.5 2.4-5.5 5.5v3H4v10.5h16V11h-2.5V8c0-3.100-2.5-5.500-5.500-5.500zM10 20.500v-3.500a2 2 0 014 0v3.500z"/></svg><span>হোম</span></button>
+  <button type="button" data-pg="qr"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M6 2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm1.5 2v7.5l2.250-1.500 2.250 1.500V4z"/></svg><span>কুরআন</span></button>
   <button type="button" data-pg="dua"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M3 4.500h6.500c1.400 0 2.500 1.100 2.500 2.500v13.500c0-1.100-.9-2-2-2H3zM21 4.500h-6.500C13.100 4.500 12 5.600 12 7v13.500c0-1.100.9-2 2-2h7z"/></svg><span>দুআ</span></button>
   <button type="button" data-pg="set"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg><span>সেটিংস</span></button>
 </nav>
@@ -1083,5 +1118,109 @@ new MutationObserver(ms=>ms.forEach(m=>{
 })).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title']});
 })();
 </script>
+<script>
+(function(){
+const EN=!!window.__EN,Q=id=>document.getElementById(id),L=(b,e)=>EN?e:b,BDG='০১২৩৪৫৬৭৮৯',D=n=>EN?String(n):String(n).replace(/\d/g,d=>BDG[d]);
+const BNN='আল-ফাতিহা|আল-বাকারা|আলে ইমরান|আন-নিসা|আল-মায়িদাহ|আল-আনআম|আল-আ‘রাফ|আল-আনফাল|আত-তাওবাহ|ইউনুস|হূদ|ইউসুফ|আর-রা‘দ|ইবরাহীম|আল-হিজর|আন-নাহল|আল-ইসরা|আল-কাহফ|মারইয়াম|ত্বা-হা|আল-আম্বিয়া|আল-হাজ্জ|আল-মুমিনূন|আন-নূর|আল-ফুরকান|আশ-শুআরা|আন-নামল|আল-কাসাস|আল-আনকাবূত|আর-রূম|লুকমান|আস-সাজদাহ|আল-আহযাব|সাবা|ফাতির|ইয়াসীন|আস-সাফফাত|সোয়াদ|আয-যুমার|গাফির|ফুসসিলাত|আশ-শূরা|আয-যুখরুফ|আদ-দুখান|আল-জাসিয়াহ|আল-আহকাফ|মুহাম্মাদ|আল-ফাতহ|আল-হুজুরাত|ক্বাফ|আয-যারিয়াত|আত-তূর|আন-নাজম|আল-ক্বামার|আর-রহমান|আল-ওয়াক্বিআহ|আল-হাদীদ|আল-মুজাদালাহ|আল-হাশর|আল-মুমতাহিনাহ|আস-সাফ|আল-জুমুআহ|আল-মুনাফিকূন|আত-তাগাবুন|আত-তালাক্ব|আত-তাহরীম|আল-মুলক|আল-কলম|আল-হাক্কাহ|আল-মাআরিজ|নূহ|আল-জিন|আল-মুযযাম্মিল|আল-মুদ্দাসসির|আল-ক্বিয়ামাহ|আল-ইনসান|আল-মুরসালাত|আন-নাবা|আন-নাযিআত|আবাসা|আত-তাকবীর|আল-ইনফিতার|আল-মুতাফফিফীন|আল-ইনশিক্বাক্ব|আল-বুরূজ|আত-তারিক্ব|আল-আ‘লা|আল-গাশিয়াহ|আল-ফাজর|আল-বালাদ|আশ-শামস|আল-লাইল|আদ-দুহা|আশ-শারহ|আত-তীন|আল-আলাক্ব|আল-ক্বদর|আল-বাইয়্যিনাহ|আয-যিলযাল|আল-আদিয়াত|আল-ক্বারিআহ|আত-তাকাসুর|আল-আসর|আল-হুমাযাহ|আল-ফীল|কুরাইশ|আল-মাঊন|আল-কাওসার|আল-কাফিরূন|আন-নাসর|আল-লাহাব|আল-ইখলাস|আল-ফালাক্ব|আন-নাস'.split('|');
+const ENN='Al-Fatihah|Al-Baqarah|Ali ‘Imran|An-Nisa|Al-Ma’idah|Al-An‘am|Al-A‘raf|Al-Anfal|At-Tawbah|Yunus|Hud|Yusuf|Ar-Ra‘d|Ibrahim|Al-Hijr|An-Nahl|Al-Isra|Al-Kahf|Maryam|Ta-Ha|Al-Anbiya|Al-Hajj|Al-Mu’minun|An-Nur|Al-Furqan|Ash-Shu‘ara|An-Naml|Al-Qasas|Al-‘Ankabut|Ar-Rum|Luqman|As-Sajdah|Al-Ahzab|Saba|Fatir|Ya-Sin|As-Saffat|Sad|Az-Zumar|Ghafir|Fussilat|Ash-Shura|Az-Zukhruf|Ad-Dukhan|Al-Jathiyah|Al-Ahqaf|Muhammad|Al-Fath|Al-Hujurat|Qaf|Adh-Dhariyat|At-Tur|An-Najm|Al-Qamar|Ar-Rahman|Al-Waqi‘ah|Al-Hadid|Al-Mujadila|Al-Hashr|Al-Mumtahanah|As-Saff|Al-Jumu‘ah|Al-Munafiqun|At-Taghabun|At-Talaq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqah|Al-Ma‘arij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddaththir|Al-Qiyamah|Al-Insan|Al-Mursalat|An-Naba|An-Nazi‘at|‘Abasa|At-Takwir|Al-Infitar|Al-Mutaffifin|Al-Inshiqaq|Al-Buruj|At-Tariq|Al-A‘la|Al-Ghashiyah|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Ad-Duha|Ash-Sharh|At-Tin|Al-‘Alaq|Al-Qadr|Al-Bayyinah|Az-Zalzalah|Al-‘Adiyat|Al-Qari‘ah|At-Takathur|Al-‘Asr|Al-Humazah|Al-Fil|Quraysh|Al-Ma‘un|Al-Kawthar|Al-Kafirun|An-Nasr|Al-Masad|Al-Ikhlas|Al-Falaq|An-Nas'.split('|');
+const CNT=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
+const nm=i=>EN?ENN[i]:BNN[i],norm=s=>s.toLowerCase().replace(/[-‘’'ʻ\s]/g,'');
+const g=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},p=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const pg=Q('pg-qr');let cur=0,tx=g('qrTx',true),az=g('qrAz',28),last=g('qrLast',null);const mem={};
+const setAz=()=>pg.style.setProperty('--qz',az);setAz();
+const nb=document.querySelector('#nav [data-pg=qr]');
+if(EN){nb.querySelector('span').textContent='Quran';nb.setAttribute('aria-label','Quran')}
+Q('qr-h').textContent='📖 '+L('আল-কুরআন','The Qur’an');
+Q('qr-sub').textContent=L('১১৪টি সূরা · আরবি ও বাংলা অনুবাদ (মুহিউদ্দীন খান)','114 surahs · Arabic with Sahih International translation');
+Q('qr-q').placeholder=L('সূরার নাম বা নম্বর লিখুন','Search surah by name or number');
+async function load(n){
+  const key=n+(EN?'e':'b');if(mem[key])return mem[key];
+  const u='https://api.alquran.cloud/v1/surah/'+n+'/editions/quran-uthmani,'+(EN?'en.sahih':'bn.bengali');
+  let j=null,c=null;
+  try{c=await caches.open('noor-quran-v1');const m=await c.match(u);if(m)j=await m.json()}catch(e){}
+  if(!j||!j.data){const r=await fetch(u);if(!r.ok)throw new Error('http');const cl=r.clone();j=await r.json();if(!j.data)throw new Error('data');try{c&&await c.put(u,cl)}catch(e){}}
+  const a=j.data[0].ayahs,t=j.data[1].ayahs;
+  return mem[key]=a.map((x,i)=>({n:x.numberInSurah,a:x.text,t:t[i]?t[i].text:''}));
+}
+function paintRes(){
+  Q('qr-rs').innerHTML=last?'<button class="btn" type="button" data-act="rs">🔖 '+L('শেষ পড়া: সূরা ','Continue: Surah ')+esc(nm(last.s-1))+L(', আয়াত ',', ayah ')+D(last.a)+'</button>':'';
+}
+function paintList(f){
+  f=norm(f||'');const h=[];
+  CNT.forEach((c,i)=>{const n=i+1;
+    if(f&&!(String(n)===f||norm(BNN[i]).includes(f)||norm(ENN[i]).includes(f)))return;
+    h.push('<button class="qs" type="button" data-s="'+n+'"><span class="qn">'+D(n)+'</span><div><b>'+esc(nm(i))+'</b><span class="mu">'+L('আয়াত ','Ayahs ')+D(c)+'</span></div></button>')});
+  Q('qr-sl').innerHTML=h.join('')||'<p class="mu">'+L('কোনো সূরা পাওয়া যায়নি।','No surah found.')+'</p>';
+}
+let dling=false;
+function paintDl(msg){
+  const k='qrAll'+(EN?'e':'b'),el=Q('qr-dl');
+  if(g(k,false)&&!msg){el.innerHTML='<p class="mu">✅ '+L('সব সূরা অফলাইনে পড়ার জন্য ডাউনলোড করা আছে।','All surahs are downloaded for offline reading.')+'</p>';return}
+  el.innerHTML='<button class="btn" type="button" data-act="dl">⬇️ '+L('সব সূরা অফলাইনের জন্য ডাউনলোড করুন','Download all surahs for offline')+'</button>'+(msg?'<p class="mu">'+esc(msg)+'</p>':'');
+}
+async function dlAll(){
+  if(dling)return;
+  if(!window.caches){paintDl(L('অফলাইন সংরক্ষণের জন্য সাইটটি https (বা অ্যাপ) থেকে খুলতে হবে।','Offline saving needs the site to be opened over https (or as the app).'));return}
+  dling=true;let ok=true;
+  for(let n=1;n<=114;n++){
+    const b=pg.querySelector('[data-act=dl]');if(b)b.textContent=L('ডাউনলোড হচ্ছে... ','Downloading... ')+D(n)+'/'+D(114);
+    try{await load(n)}catch(e){ok=false;break}
+  }
+  dling=false;
+  if(ok){p('qrAll'+(EN?'e':'b'),true);paintDl()}
+  else paintDl(L('ডাউনলোড থেমে গেছে। ইন্টারনেট দেখে আবার চেষ্টা করুন; যেগুলো নামানো হয়েছে সেগুলো থাকবে।','Download stopped. Check your connection and retry; surahs already saved are kept.'));
+}
+const strip=s=>s.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g,'');
+function paintAyahs(n,d){
+  const bis=(n!==1&&n!==9)?'<p class="ar qb">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>':'';
+  Q('qr-ays').innerHTML=bis+d.map(x=>{
+    let a=x.a;
+    if(x.n===1&&n!==1&&n!==9&&strip(a).startsWith('بسم')){const w=a.split(' ');if(w.length>=4)a=w.slice(4).join(' ')}
+    const mk=last&&last.s===n&&last.a===x.n;
+    return '<div class="qy'+(mk?' mk':'')+'" id="qy-'+x.n+'"><div class="qh"><span class="qn">'+D(n)+':'+D(x.n)+'</span><button class="qbm'+(mk?' on':'')+'" type="button" data-a="'+x.n+'" aria-label="'+L('এখানে থামুন','Bookmark')+'">🔖</button></div><p class="ar">'+esc(a)+'</p>'+(tx&&x.t?'<p class="qx">'+esc(x.t)+'</p>':'')+'</div>'}).join('');
+}
+function btnLabels(){
+  pg.querySelectorAll('[data-act=bk]').forEach(b=>b.textContent='← '+L('সূরা তালিকা','Surahs'));
+  pg.querySelectorAll('[data-act=tt]').forEach(b=>b.textContent=tx?L('অনুবাদ লুকান','Hide translation'):L('অনুবাদ দেখান','Show translation'));
+  pg.querySelectorAll('[data-act=pv]').forEach(b=>b.setAttribute('aria-label',L('আগের সূরা','Previous surah')));
+  pg.querySelectorAll('[data-act=nx]').forEach(b=>b.setAttribute('aria-label',L('পরের সূরা','Next surah')));
+}
+function showList(){if(!dling)paintDl();Q('qr-list').hidden=false;Q('qr-read').hidden=true;cur=0;paintRes();paintList(Q('qr-q').value);btnLabels()}
+async function openS(n,ay){
+  if(n<1||n>114)return;cur=n;Q('qr-list').hidden=true;Q('qr-read').hidden=false;btnLabels();
+  Q('qr-t').textContent=L('সূরা ','Surah ')+nm(n-1);
+  Q('qr-m').textContent=L('সূরা নম্বর ','Surah ')+D(n)+' · '+L('আয়াত ','Ayahs ')+D(CNT[n-1]);
+  Q('qr-ays').innerHTML='<p class="mu">'+L('লোড হচ্ছে...','Loading...')+'</p>';scrollTo(0,0);
+  try{
+    const d=await load(n);if(cur!==n)return;paintAyahs(n,d);
+    if(ay){const e=Q('qy-'+ay);e&&e.scrollIntoView({block:'center'})}
+  }catch(e){
+    if(cur!==n)return;
+    Q('qr-ays').innerHTML='<p class="mu">'+L('এই সূরা লোড করতে ইন্টারনেট দরকার। সংযোগ দেখে আবার চেষ্টা করুন। একবার লোড হলে পরে অফলাইনেও পড়া যাবে।','Internet is needed to load this surah. Check your connection and try again. Once loaded, it can be read offline.')+'</p><div class="qtb"><button class="btn" type="button" data-act="rt">'+L('আবার চেষ্টা করুন','Try again')+'</button></div>';
+  }
+}
+nb.addEventListener('click',showList);
+Q('qr-q').addEventListener('input',e=>paintList(e.target.value));
+pg.addEventListener('click',e=>{
+  const s=e.target.closest('.qs');if(s)return openS(+s.dataset.s);
+  const bm=e.target.closest('.qbm');
+  if(bm){const a=+bm.dataset.a;last=(last&&last.s===cur&&last.a===a)?null:{s:cur,a};p('qrLast',last);
+    pg.querySelectorAll('.qy').forEach(y=>{const on=!!last&&last.s===cur&&y.id==='qy-'+last.a;y.classList.toggle('mk',on);y.querySelector('.qbm').classList.toggle('on',on)});return}
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const k=b.dataset.act;
+  if(k==='bk')showList();
+  else if(k==='pv')openS(cur-1);
+  else if(k==='nx')openS(cur+1);
+  else if(k==='rt')openS(cur);
+  else if(k==='dl')dlAll();
+  else if(k==='rs'&&last)openS(last.s,last.a);
+  else if(k==='tt'){tx=!tx;p('qrTx',tx);btnLabels();openS(cur)}
+  else if(k==='az-'||k==='az+'){az=Math.max(20,Math.min(48,az+(k==='az+'?4:-4)));p('qrAz',az);setAz()}
+});
+btnLabels();paintDl();
+})();
+</script>
+
 </body>
 </html>
