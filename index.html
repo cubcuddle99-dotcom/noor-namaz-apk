@@ -435,6 +435,14 @@ body{background:linear-gradient(170deg,#e7dbff,#f6e8ff 55%,#e6efff) fixed}
 #xtab tr.fr td{background:rgba(16,185,129,.18)}
 #xtab tr.td td{color:#fff;font-weight:700;background:linear-gradient(90deg,#7c3aed,#c026d3)}
 #xtab td:first-child{border-radius:10px 0 0 10px;font-weight:700}#xtab td:last-child{border-radius:0 10px 10px 0}
+
+/* ===== ফিক্স: লেখা যত বড়ই হোক স্ক্রিনের ভেতরে থাকবে ===== */
+html,body{max-width:100%;overflow-x:hidden}
+.wrap{grid-template-columns:minmax(0,1fr)}
+.wrap>*,#pg-qr,#pg-qr *,#qr-read,#qr-list{min-width:0;max-width:100%}
+#pg-qr .qy{overflow:hidden}
+#pg-qr p.ar,#pg-qr p.qx,#pg-qr p.qr{overflow-wrap:anywhere;word-break:normal;max-width:100%;box-sizing:border-box}
+#pg-qr p.ar{white-space:normal;unicode-bidi:plaintext}
 </style>
 </head>
 <body>
@@ -1550,7 +1558,8 @@ function zakat(){
   const calc=()=>{const v={};F.forEach(f=>{S[f[0]]=$('xz_'+f[0]).value;v[f[0]]=num(S[f[0]])});S.u=$('xzu').value;S.n=$('xzn').value;LS.s('xzk',S);
     const k=S.u==='g'?1/11.664:1,gb=v.gw*k,sb=v.sw*k,tot=gb*v.gp+sb*v.sp+v.ca+v.bz+v.rc-v.db,nis=S.n==='g'?7.5*v.gp:52.5*v.sp,mn=S.n==='g'?T('সোনা','gold'):T('রুপা','silver');
     let h=`<div class="rw"><span>${T('মোট জাকাতযোগ্য সম্পদ (ঋণ বাদে)','Total zakatable wealth (after debts)')}</span><b>${money(tot)}</b></div>`;
-    if(!nis)h+='<p class="mu">'+T('নিসাব বের করতে '+mn+'র দাম লিখুন।','Enter the '+mn+' price to find the nisab.')+'</p>';
+    if(!nis){if(tot>0)h+=`<div class="big ok">${T('জাকাত: ','Zakat due: ')}${money(tot*.025)}</div><p class="mu" style="text-align:center">${T('মোট সম্পদের ২.৫%','2.5% of total wealth')}</p>`;
+      h+='<p class="mu">'+T('নিসাব পূর্ণ হয়েছে কি না যাচাই করতে চাইলে '+mn+'র দাম লিখুন।','To check whether the nisab is reached, enter the '+mn+' price.')+'</p>'}
     else{h+=`<div class="rw"><span>${T('নিসাব ('+mn+')','Nisab ('+mn+')')}</span><b>${money(nis)}</b></div>`;
       h+=tot>=nis?`<div class="big ok">${T('জাকাত: ','Zakat due: ')}${money(tot*.025)}</div><p class="mu" style="text-align:center">${T('মোট সম্পদের ২.৫%','2.5% of total wealth')}</p>`:`<div class="big">${T('নিসাব পূর্ণ হয়নি — জাকাত ফরজ নয়','Nisab not reached — zakat is not due')}</div>`}
     $('xzr').innerHTML=h};
