@@ -1094,7 +1094,7 @@ async function setLoc(l,save,resolve){
   }
 }
 function gps(){
-  $('loc').textContent='📍 অবস্থান নিশ্চিত করা হচ্ছে...';
+  $('loc').textContent=' অবস্থান নিশ্চিত করা হচ্ছে...';
   if(!navigator.geolocation) return setLoc(DHAKA,false,false);
   navigator.geolocation.getCurrentPosition(
     p=>setLoc({lat:p.coords.latitude,lng:p.coords.longitude,name:null},true,true),
