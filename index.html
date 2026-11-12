@@ -406,6 +406,128 @@ background:linear-gradient(150deg,var(--t1,#8b5cf6),var(--t2,#4c1d95));box-shado
 #pg-set select{-webkit-appearance:none;appearance:none;max-width:48%;padding:9px 30px 9px 12px;border-radius:12px;border:1px solid var(--ln);font-size:13.5px;font-weight:600;color:var(--ink);
 background:var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A86B0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 9px center/15px}
 .snote{margin:4px 2px 6px;padding-top:10px;border-top:1px solid var(--ln);font-size:12.5px}
+
+/* ===================== নতুন হোম হিরো (রেফারেন্স ডিজাইন) ===================== */
+:root{--hxa:#DCCFF7;--hxb:#C3AEF0;--hxc:#7B4FD6;--hxd:#9B7BE6;--hxk:#5015B7;--hxcard:rgba(255,255,255,.82)}
+:root[data-theme=dark]{--hxa:#3A2672;--hxb:#4B3190;--hxc:#2C1A66;--hxd:#7E62D8;--hxk:#B79CFF;--hxcard:rgba(37,22,74,.85)}
+.hd{display:block;position:relative;isolation:isolate;overflow:hidden;padding:14px 14px 16px;border-radius:30px;color:var(--ink);
+  background:linear-gradient(180deg,#EADFFF 0%,#F3ECFF 38%,#FFFFFF 78%);border:1px solid rgba(80,21,183,.16);box-shadow:var(--sh)}
+:root[data-theme=dark] .hd{background:linear-gradient(180deg,#2E1B63 0%,#1F1244 45%,#170C33 100%);border-color:rgba(255,255,255,.1)}
+.hd>*{position:relative;z-index:2}
+.hd .hx-scene{position:absolute;z-index:0;left:0;right:0;top:92px;width:100%;height:auto;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 96%);mask-image:linear-gradient(180deg,#000 62%,transparent 96%)}
+.hx-scene .sa{fill:var(--hxa)}.hx-scene .sb{fill:var(--hxb)}.hx-scene .sc{fill:var(--hxc)}.hx-scene .sd{stroke:var(--hxd)}
+.hx-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.hx-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.hx-logo{width:58px;height:52px;flex:none}
+.hx-name{display:flex;flex-direction:column;line-height:1.05;font-family:'Plus Jakarta Sans','Hind Siliguri',system-ui,sans-serif}
+.hx-name b{font-size:25px;font-weight:800;letter-spacing:-.01em;color:var(--hxk)}
+.hx-act{display:flex;gap:8px;align-items:center;flex:none}
+#th,#hgear{width:44px;height:44px;padding:0;border-radius:50%;display:grid;place-items:center;font-size:19px;line-height:1;color:var(--hxk);
+  background:var(--hxcard);border:2px solid rgba(80,21,183,.55);box-shadow:0 6px 14px -8px rgba(80,21,183,.6);-webkit-backdrop-filter:none;backdrop-filter:none}
+:root[data-theme=dark] #th,:root[data-theme=dark] #hgear{border-color:rgba(183,156,255,.55)}
+#hgear svg{width:24px;height:24px;fill:currentColor}
+.hx-loc{width:fit-content;max-width:86%;margin:6px auto 0;padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:700;color:var(--hxk);cursor:pointer;
+  background:var(--hxcard);border:1px solid rgba(80,21,183,.18);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hx-loc::before{content:"📍";margin-right:4px;font-size:11px}
+.hx-arch{position:relative;width:86%;margin:8px auto 0;padding:34px 12px 12px;text-align:center;color:rgba(80,21,183,.5)}
+:root[data-theme=dark] .hx-arch{color:rgba(183,156,255,.55)}
+:root[data-theme=dark] #hxaf stop{stop-color:#3A2480}
+.hx-archsv{position:absolute!important;inset:0;width:100%;height:100%;z-index:0}
+.hx-arch>*:not(.hx-archsv){position:relative;z-index:1}
+.hx-orn{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:2px}
+.hx-orn svg{width:20px;height:20px;color:var(--hxk)}
+.hx-orn i{width:44px;height:1.5px;background:linear-gradient(90deg,transparent,currentColor);position:relative}
+.hx-orn i:last-child{background:linear-gradient(270deg,transparent,currentColor)}
+.hx-arch .hd-dt{align-self:auto;display:flex;flex-direction:column-reverse;align-items:center;gap:1px;padding:0;margin:0;border:0;border-radius:0;background:none;text-align:center;opacity:1}
+.hx-arch .hd-dt #hj{font-size:17px;font-weight:800;color:var(--hxk);line-height:1.35}
+.hx-arch .hd-dt #dt{font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.35}
+.hx-arch .hd-dt .dg,.hx-arch .hd-dt #hj .dg{font-size:1.08em;font-weight:800;color:inherit}
+.hx-sep{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:6px}
+.hx-sep i{flex:1;max-width:96px;height:1px;background:linear-gradient(90deg,transparent,currentColor)}.hx-sep i:last-child{background:linear-gradient(270deg,transparent,currentColor)}
+.hx-sep b{width:7px;height:7px;transform:rotate(45deg);border:1.5px solid currentColor;border-radius:1px}
+.hx-clock{position:relative;width:min(66vw,276px);aspect-ratio:1;margin:6px auto 0;border-radius:50%;box-shadow:0 0 0 9px rgba(255,255,255,.55),0 26px 40px -22px rgba(66,15,156,.55)}
+:root[data-theme=dark] .hx-clock{box-shadow:0 0 0 9px rgba(255,255,255,.06),0 26px 40px -22px rgba(0,0,0,.7)}
+.hx-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hx-ring .tr{fill:none;stroke:rgba(80,21,183,.16);stroke-width:9}
+:root[data-theme=dark] .hx-ring .tr{stroke:rgba(255,255,255,.13)}
+.hx-ring .pg{fill:none;stroke:url(#hxrg);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .8s linear}
+.hx-ring .dt{fill:#fff;stroke:var(--hxk);stroke-width:2.6}
+.hx-face{position:absolute;inset:23px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:22px;
+  background:radial-gradient(circle at 50% 30%,#fff 0%,#F7F2FF 100%);box-shadow:inset 0 2px 10px rgba(80,21,183,.1)}
+:root[data-theme=dark] .hx-face{background:radial-gradient(circle at 50% 30%,#2A1A58 0%,#1B1040 100%);box-shadow:inset 0 2px 12px rgba(0,0,0,.45)}
+.hx-face .cn{display:flex;align-items:center;gap:7px;font-size:19px;font-weight:800;color:var(--ink);opacity:1}
+.hx-face #ci{font-size:22px}
+.hx-face .ct{margin:2px 0 0;font-size:clamp(54px,17vw,72px);font-weight:800;line-height:1.02;letter-spacing:0;text-align:center;color:#2A0E66;text-shadow:none}
+:root[data-theme=dark] .hx-face .ct{color:#F2EDFC}
+.hx-face .ct small{display:block;margin:4px 0 0;font-size:22px;font-weight:800;color:var(--ink);opacity:1;letter-spacing:.02em}
+.hx-next{position:relative;z-index:3!important;display:flex;flex-direction:column;align-items:center;width:fit-content;max-width:92%;margin:-30px auto 0;padding:9px 28px 10px;border-radius:24px;color:#fff;line-height:1.3;text-align:center;
+  background:var(--cg);box-shadow:0 14px 24px -12px rgba(66,15,156,.8)}
+.hx-next .l1{font-size:14px;font-weight:600;opacity:.92}.hx-next .l2{font-size:19px;font-weight:800}.hx-next b{font-weight:800}
+.hx-left{display:flex;align-items:center;justify-content:center;gap:12px;width:88%;margin:14px auto 0;padding:11px 18px;border-radius:26px;color:#2A1D02;
+  background:linear-gradient(180deg,#FFDD7A 0%,#F5BC3C 100%);box-shadow:0 14px 22px -14px rgba(214,150,20,.9),inset 0 1px 0 rgba(255,255,255,.55)}
+.hx-left .ico{width:38px;height:38px}
+.hx-left .tx{display:flex;flex-direction:column;line-height:1.15}.hx-left .l1{font-size:14.5px;font-weight:700}
+.hx-left #cd{font-size:30px;font-weight:800;letter-spacing:.5px;line-height:1.1}
+.hd .hol:not([hidden]){display:block;width:fit-content;max-width:100%;margin:12px auto 0;text-align:center;color:var(--ac);background:var(--acs);border-color:var(--curbd)}
+.hd #st:empty{display:none}
+.hx-g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.hx-card{position:relative;display:flex;align-items:center;gap:9px;min-width:0;min-height:74px;padding:12px 38px 12px 12px;border-radius:22px;background:var(--hxcard);
+  border:1px solid rgba(80,21,183,.14);box-shadow:0 12px 22px -16px rgba(66,15,156,.5)}
+.hx-ci{width:42px;height:42px;flex:none}
+.hx-ct{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+.hx-ct .mu{margin:0;font-size:13px;font-weight:700;color:var(--ink)}
+.hx-ct b{margin-top:3px;font-size:clamp(19px,5.6vw,23px);font-weight:800;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.hx-card .bell{position:absolute;top:8px;right:8px;width:27px;height:27px;padding:0;display:grid;place-items:center;font-size:12px;border-radius:50%;background:rgba(80,21,183,.09)}
+.hx-card .bell.on{background:#F2C14E;box-shadow:0 0 0 3px rgba(242,193,78,.28)}
+
+/* মাসিক সময়সূচি বাটন */
+#pg-home>#xmb{flex-direction:row;min-height:0;padding:12px 16px;gap:12px;border-radius:26px;border:1px solid rgba(80,21,183,.14);
+  background:linear-gradient(180deg,#F6F1FF,#E7DCFC);box-shadow:0 12px 22px -16px rgba(66,15,156,.5)}
+:root[data-theme=dark] #pg-home>#xmb{background:linear-gradient(180deg,#2A1A58,#1F1244);border-color:rgba(255,255,255,.1)}
+#pg-home>#xmb .ic{width:40px;height:40px;background:none;box-shadow:none}
+#pg-home>#xmb .ic svg{width:34px;height:34px;stroke:var(--hxk);stroke-width:1.9}
+#pg-home>#xmb .ic svg .w,#pg-home>#xmb .ic svg .f{fill:var(--hxk);stroke:none}
+#pg-home>#xmb>div{flex:1;text-align:left}
+#pg-home>#xmb b{font-size:19px;font-weight:800;color:var(--hxk)}
+#pg-home>#xmb span.mu{display:none}
+#pg-home>#xmb::after{display:grid;place-items:center;width:30px;height:30px;padding:0;margin:0 0 0 auto;border-radius:50%;background:var(--sf);color:var(--hxk);font-size:22px;line-height:1;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+
+/* নিচের ট্যাব বার */
+#nav{border-radius:32px;padding:8px 8px 7px}
+#nav button.on{position:relative}
+#nav button.on::after{content:"";display:block;width:38px;height:3px;margin-top:1px;border-radius:3px;background:#F2C14E}
+
+/* ===================== জাকাত ক্যালকুলেটর ডিজাইন ===================== */
+.zk-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 12px;padding:16px 8px 16px 16px;border-radius:24px;color:#fff;
+  background:linear-gradient(135deg,#7B3FF0 0%,#4B14B0 60%,#2B0A70 100%);box-shadow:0 16px 26px -16px rgba(66,15,156,.8)}
+.zk-hero::before{content:"";position:absolute;inset:0;opacity:.14;background:radial-gradient(circle at 12px 12px,#fff 1.4px,transparent 1.6px) 0 0/26px 26px}
+.zk-hero>*{position:relative}
+.zk-ht{min-width:0}.zk-ht b{display:block;font-size:19px;font-weight:800;line-height:1.3}.zk-ht span{display:block;margin-top:5px;font-size:13px;font-weight:600;opacity:.9;line-height:1.5}
+.zk-ht i{display:inline-block;margin-top:9px;padding:4px 12px;border-radius:999px;font-style:normal;font-size:13px;font-weight:800;color:#2A1D02;background:linear-gradient(180deg,#FFE08A,#F2B93B)}
+.zk-hero svg{width:122px;height:104px;flex:none}
+.zk-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.zk-opt{min-width:0;padding:10px;border-radius:18px;background:var(--sf2);border:1px solid var(--ln)}
+.zk-opt>span{display:block;margin:0 0 7px 2px;font-size:12.5px;font-weight:700;color:var(--mu)}
+.zk-seg{display:flex;gap:3px;padding:3px;border-radius:13px;background:var(--sf);border:1px solid var(--ln)}
+.zk-seg button{flex:1;min-width:0;padding:8px 3px;border-radius:10px;font-size:12px;font-weight:800;line-height:1.25;color:var(--mu)}
+.zk-seg button.on{color:#fff;background:linear-gradient(135deg,#7B3FF0,#4B14B0);box-shadow:0 6px 12px -6px rgba(80,21,183,.8)}
+.xk .zk-sec{display:flex;align-items:center;gap:8px;margin:16px 0 8px;font-size:15px;font-weight:800;color:var(--ac)}
+.xk .zk-sec::before{display:none}
+.zk-sec i{width:4px;height:16px;border-radius:3px;background:var(--gold)}
+.zk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.zk-grid .zk-f.w{grid-column:1/-1}
+.zk-f{min-width:0;padding:10px 11px 11px;border-radius:18px;background:var(--sf2);border:1px solid var(--ln);transition:border-color .2s,box-shadow .2s}
+.zk-f:focus-within{border-color:var(--ac2);box-shadow:0 0 0 3px var(--acs)}
+.xk .zk-f label{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:12.5px;font-weight:700;line-height:1.35;color:var(--mu)}
+.zk-ic{width:28px;height:28px;flex:none;border-radius:9px;display:grid;place-items:center;color:#fff;background:linear-gradient(150deg,var(--a,#8b5cf6),var(--b,#4c1d95));box-shadow:0 6px 10px -6px var(--b,#4c1d95),inset 0 1px 0 rgba(255,255,255,.35)}
+.zk-ic svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.xk .zk-f input{padding:9px 11px;border-radius:12px;background:var(--sf);font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.zk-res{margin-top:16px;padding:14px;border-radius:24px;background:linear-gradient(180deg,var(--golds),transparent 70%),var(--sf2);border:1px solid var(--ln)}
+.zk-r{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 2px;font-size:14px;font-weight:600}.zk-r b{font-size:16px;font-weight:800;color:var(--ac);white-space:nowrap}
+.zk-bar{height:10px;margin:8px 2px 4px;border-radius:99px;background:var(--ln);overflow:hidden}.zk-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#F5BC3C,#7B3FF0);transition:width .4s}
+.zk-cap{margin:0 2px 8px;font-size:12px;color:var(--mu)}
+.zk-due{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:8px;padding:16px 12px;border-radius:20px;text-align:center;color:#fff;background:linear-gradient(135deg,#7B3FF0,#3A0E92);box-shadow:0 16px 26px -16px rgba(66,15,156,.9)}
+.zk-due small{font-size:14px;font-weight:700;opacity:.92}.zk-due b{font-size:32px;font-weight:800;line-height:1.15;color:#FFE08A;font-variant-numeric:tabular-nums}.zk-due em{font-style:normal;font-size:12.5px;opacity:.88}
+.zk-due.no{background:var(--sf);color:var(--ink);border:1px dashed var(--curbd);box-shadow:none}.zk-due.no b{font-size:18px;color:var(--ink);line-height:1.5}
 </style>
 </head>
 <body>
@@ -415,28 +537,76 @@ background:var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 <main class="wrap">
 <section class="pg" id="pg-home">
   <header class="hd">
-    <svg class="arch" viewBox="0 0 400 330" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="agf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".78"/><stop offset=".5" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M-10 340V252C-10 192 42 172 96 148C150 124 178 84 200 6C222 84 250 124 304 148C358 172 410 192 410 252V340Z" fill="url(#agf)"/><path d="M-10 252C-10 192 42 172 96 148C150 124 178 84 200 6C222 84 250 124 304 148C358 172 410 192 410 252" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg>
-    <svg class="ms" viewBox="0 0 220 230" aria-hidden="true"><defs><linearGradient id="mw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E5DCFC"/><stop offset="1" stop-color="#C0A8F3"/></linearGradient><linearGradient id="md" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#723AE2"/><stop offset="1" stop-color="#4B189F"/></linearGradient></defs>
-      <rect x="18" y="82" width="16" height="148" fill="url(#mw)"/><rect x="14" y="74" width="24" height="9" rx="2" fill="#CFBDF6"/><path d="M17 74Q26 42 35 74Z" fill="url(#md)"/><rect x="25" y="26" width="2" height="18" fill="#E9B94C"/><circle cx="26" cy="24" r="3.4" fill="#E9B94C"/>
-      <rect x="186" y="104" width="14" height="126" fill="url(#mw)"/><rect x="183" y="97" width="20" height="8" rx="2" fill="#CFBDF6"/><path d="M185 97Q193 70 201 97Z" fill="url(#md)"/><rect x="192" y="56" width="2" height="16" fill="#E9B94C"/><circle cx="193" cy="54" r="3" fill="#E9B94C"/>
-      <rect x="44" y="150" width="140" height="80" fill="url(#mw)"/>
-      <path d="M72 150C72 102 93 84 114 84S156 102 156 150Z" fill="url(#md)"/><rect x="113" y="60" width="2" height="24" fill="#E9B94C"/><circle cx="114" cy="57" r="4.2" fill="#E9B94C"/>
-      <path d="M46 150C46 130 56 122 65 122S84 130 84 150Z" fill="url(#md)"/><rect x="64" y="108" width="2" height="14" fill="#E9B94C"/>
-      <path d="M144 150C144 130 154 122 163 122S182 130 182 150Z" fill="url(#md)"/><rect x="162" y="108" width="2" height="14" fill="#E9B94C"/>
-      <g fill="#AC8DEE"><path d="M56 230V196a9 9 0 0118 0V230Z"/><path d="M90 230V190a11 11 0 0124 0V230Z"/><path d="M130 230V190a11 11 0 0124 0V230Z"/><path d="M164 230V196a9 9 0 0118 0V230Z"/></g></svg>
-    <div class="hd-top"><p class="pill" id="loc"> অবস্থান নিশ্চিত করা হচ্ছে...</p><button id="th" type="button" aria-label="ডার্ক মোড চালু করুন" title="ডার্ক/লাইট মোড">🌙</button></div>
-    <div class="hd-main">
-      <div class="cn"><span id="cn">--</span><span id="ci" aria-hidden="true">☀️</span></div>
-      <div class="ct" id="ct">--:--</div>
-      <p class="nx">পরবর্তী সালাত: <b id="nn">--</b> <b id="nt"></b></p>
-      <p class="nx"><i class="ico ck" aria-hidden="true"></i>বাকি সময়: <b id="cd">00:00:00</b></p>
+    <svg class="hx-scene" viewBox="0 0 420 340" aria-hidden="true">
+      <defs>
+        <linearGradient id="hxhill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity="1"/></linearGradient>
+      </defs>
+      <!-- বামে -->
+      <g class="sa"><path d="M0 330V232c10-14 24-20 40-20s30 6 38 20v98z"/><rect x="62" y="176" width="3" height="20"/></g>
+      <g class="sb"><rect x="24" y="98" width="17" height="232"/><rect x="20" y="90" width="25" height="9" rx="2"/><path d="M22 90Q32.500 52 43 90Z"/><rect x="31.500" y="34" width="2" height="22"/><circle cx="32.500" cy="32" r="3.400"/></g>
+      <g class="sa"><path d="M70 330V252c0-26 14-40 34-40s34 14 34 40v78z" opacity=".75"/></g>
+      <g class="sc"><rect x="18" y="268" width="4" height="62"/><circle cx="20" cy="252" r="16"/><circle cx="12" cy="268" r="12"/><circle cx="30" cy="266" r="12"/><rect x="62" y="262" width="4" height="68"/><circle cx="64" cy="240" r="20"/><circle cx="52" cy="260" r="14"/><circle cx="77" cy="258" r="14"/><rect x="100" y="282" width="4" height="48"/><circle cx="102" cy="268" r="13"/><circle cx="94" cy="282" r="9"/><circle cx="111" cy="281" r="9"/></g>
+      <!-- ডানে -->
+      <g class="sa"><path d="M420 330V222c-12-16-28-24-46-24s-34 8-44 24v108z" opacity=".8"/></g>
+      <g class="sb"><rect x="382" y="82" width="15" height="248"/><rect x="378" y="74" width="23" height="9" rx="2"/><path d="M380 74Q389.500 40 399 74Z"/><rect x="388.500" y="22" width="2" height="20"/><circle cx="389.500" cy="20" r="3.200"/></g>
+      <g class="sa"><path d="M318 330V260c0-22 12-34 28-34s28 12 28 34v70z"/><rect x="345" y="204" width="2" height="22"/></g>
+      <g class="sc"><rect x="402" y="272" width="4" height="58"/><circle cx="404" cy="254" r="17"/><circle cx="394" cy="272" r="12"/><circle cx="414" cy="270" r="12"/><rect x="360" y="266" width="4" height="64"/><circle cx="362" cy="244" r="20"/><circle cx="350" cy="264" r="14"/><circle cx="375" cy="262" r="14"/><rect x="322" y="284" width="4" height="46"/><circle cx="324" cy="270" r="13"/><circle cx="316" cy="284" r="9"/><circle cx="333" cy="283" r="9"/></g>
+      <!-- পাখি -->
+      <g class="sd" fill="none" stroke-width="2" stroke-linecap="round"><path d="M70 120q6-7 12 0q6-7 12 0"/><path d="M96 142q4-5 8 0q4-5 8 0"/><path d="M322 108q5-6 10 0q5-6 10 0"/></g>
+    </svg>
+
+    <div class="hx-top">
+      <div class="hx-brand">
+        <svg class="hx-logo" viewBox="0 0 64 58" aria-hidden="true"><defs><linearGradient id="hxg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient><linearGradient id="hxg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#D9962A"/></linearGradient></defs>
+          <path d="M32 54C24 47 12 46 3 49V31c9-3 21-2 29 5z" fill="#6D3BE6"/><path d="M32 54c8-7 20-8 29-5V31c-9-3-21-2-29 5z" fill="#5A28CC"/><path d="M32 54C24 47 12 46 3 49M32 54c8-7 20-8 29-5" fill="none" stroke="url(#hxg2)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M19 36C19 20 25 13 32 13s13 7 13 23z" fill="url(#hxg1)"/><rect x="31" y="5" width="2" height="9" fill="url(#hxg2)"/><circle cx="32" cy="4.500" r="2.400" fill="url(#hxg2)"/>
+          <rect x="9" y="17" width="5" height="20" fill="url(#hxg2)"/><path d="M8 17q3.500-9 7 0z" fill="url(#hxg2)"/><rect x="50" y="17" width="5" height="20" fill="url(#hxg2)"/><path d="M49 17q3.500-9 7 0z" fill="url(#hxg2)"/></svg>
+        <div class="hx-name"><b>Noor</b><b>Namaz</b></div>
+      </div>
+      <div class="hx-act">
+        <button id="th" type="button" aria-label="ডার্ক মোড চালু করুন" title="ডার্ক/লাইট মোড">🌙</button>
+        <button id="hgear" type="button" aria-label="সেটিংস" title="সেটিংস"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg></button>
+      </div>
     </div>
-    <div class="hd-dt"><span id="dt">--</span><span id="hj"></span></div>
+
+    <p class="hx-loc" id="loc"> অবস্থান নিশ্চিত করা হচ্ছে...</p>
+
+    <div class="hx-arch">
+      <svg class="hx-archsv" viewBox="0 0 340 150" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="hxaf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></linearGradient></defs>
+        <path d="M2 150V98C2 72 42 68 84 52C122 38 152 24 170 3C188 24 218 38 256 52C298 68 338 72 338 98V150Z" fill="url(#hxaf)"/>
+        <path d="M2 150V98C2 72 42 68 84 52C122 38 152 24 170 3C188 24 218 38 256 52C298 68 338 72 338 98V150" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+      <div class="hx-orn" aria-hidden="true"><i></i><svg viewBox="0 0 24 24"><rect x="3.600" y="5" width="16.800" height="15.200" rx="3.200" fill="none" stroke="currentColor" stroke-width="1.900"/><path d="M3.600 10h16.800M8 3.400v3.200M16 3.400v3.200" stroke="currentColor" stroke-width="1.900" stroke-linecap="round"/><g fill="currentColor"><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/><circle cx="16" cy="14" r="1"/><circle cx="8" cy="17.200" r="1"/><circle cx="12" cy="17.200" r="1"/></g></svg><i></i></div>
+      <div class="hd-dt"><span id="dt">--</span><span id="hj"></span></div>
+      <div class="hx-sep" aria-hidden="true"><i></i><b></b><i></i></div>
+    </div>
+
+    <div class="hx-clock">
+      <svg class="hx-ring" viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="hxrg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient></defs>
+        <circle class="tr" cx="100" cy="100" r="90"/>
+        <circle id="hxp" class="pg" cx="100" cy="100" r="90" transform="rotate(-90 100 100)" stroke-dasharray="565.49" stroke-dashoffset="565.49"/>
+        <circle class="dt" cx="100" cy="10" r="5"/><circle id="hxd" class="dt" cx="100" cy="10" r="5"/></svg>
+      <div class="hx-face">
+        <div class="cn"><span id="ci" aria-hidden="true">☀️</span><span id="cn">--</span></div>
+        <div class="ct" id="ct">--:--</div>
+      </div>
+    </div>
+    <p class="hx-next"><span class="l1">পরবর্তী সালাত:</span><span class="l2"><b id="nn">--</b> <b id="nt"></b></span></p>
+    <p class="hx-left"><i class="ico ck" aria-hidden="true"></i><span class="tx"><span class="l1">বাকি সময়:</span><b id="cd">00:00:00</b></span></p>
+
     <div class="hol" id="hol" hidden></div>
     <p id="st"></p>
-    <section class="g2 g2h">
-      <div class="bdg"><svg class="bi" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="gd1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#D9962A"/></linearGradient></defs><rect x="22.8" y="3" width="2.4" height="9" fill="url(#gd1)"/><circle cx="24" cy="3.5" r="2.4" fill="url(#gd1)"/><path d="M10 34C10 20 17 12.5 24 12.5S38 20 38 34Z" fill="url(#gd1)"/><rect x="6" y="34" width="36" height="9" rx="2" fill="url(#gd1)"/><path d="M20 43v-4.5a4 4 0 018 0V43z" fill="#4A1268"/></svg><div class="bt"><span class="mu">সেহরির শেষ সময়</span><b id="sh">--:--</b></div><button class="bell" data-k="Sehri" aria-label="সেহরি অ্যালার্ম">🔔</button></div>
-      <div class="bdg"><svg class="bi" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="gd2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#D9962A"/></linearGradient></defs><path d="M18 8a6 6 0 0112 0" fill="none" stroke="url(#gd2)" stroke-width="2.4" stroke-linecap="round"/><path d="M15 14h18l-2.5-4h-13z" fill="url(#gd2)"/><path d="M15 14h18l4 11-5 8H16l-5-8z" fill="url(#gd2)"/><path d="M24 17v14M19 19l-1.5 11M29 19l1.5 11" stroke="#4A1268" stroke-opacity=".45" stroke-width="1.6" fill="none"/><path d="M16 33h16l-2 6H18z" fill="url(#gd2)"/><rect x="21" y="39" width="6" height="5" rx="1.5" fill="url(#gd2)"/></svg><div class="bt"><span class="mu">ইফতারের সময়</span><b id="if">--:--</b></div><button class="bell" data-k="Iftar" aria-label="ইফতার অ্যালার্ম">🔔</button></div>
+
+    <section class="hx-g2">
+      <div class="hx-card">
+        <svg class="hx-ci" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="hxs1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8B5CF6"/><stop offset="1" stop-color="#4C1D95"/></linearGradient><linearGradient id="hxs2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#D9962A"/></linearGradient></defs><rect x="22.800" y="2" width="2.400" height="9" fill="url(#hxs2)"/><circle cx="24" cy="2.800" r="2.300" fill="url(#hxs2)"/><path d="M11 33C11 19 17 11.500 24 11.500S37 19 37 33Z" fill="url(#hxs1)"/><rect x="5" y="33" width="38" height="10" rx="2.200" fill="url(#hxs1)"/><path d="M20 43v-4.500a4 4 0 018 0V43z" fill="#FFE9A0"/></svg>
+        <div class="hx-ct"><span class="mu">সেহরির শেষ সময়</span><b id="sh">--:--</b></div>
+        <button class="bell" data-k="Sehri" aria-label="সেহরি অ্যালার্ম">🔔</button>
+      </div>
+      <div class="hx-card">
+        <svg class="hx-ci" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="hxs3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#D9962A"/></linearGradient></defs><path d="M18 8a6 6 0 0112 0" fill="none" stroke="url(#hxs3)" stroke-width="2.400" stroke-linecap="round"/><path d="M15 14h18l-2.500-4h-13z" fill="url(#hxs3)"/><path d="M15 14h18l4 11-5 8H16l-5-8z" fill="url(#hxs3)"/><path d="M24 17v14M19 19l-1.500 11M29 19l1.500 11" stroke="#6B3A06" stroke-opacity=".4" stroke-width="1.600" fill="none"/><path d="M16 33h16l-2 6H18z" fill="url(#hxs3)"/><rect x="21" y="39" width="6" height="5" rx="1.500" fill="url(#hxs3)"/></svg>
+        <div class="hx-ct"><span class="mu">ইফতারের সময়</span><b id="if">--:--</b></div>
+        <button class="bell" data-k="Iftar" aria-label="ইফতার অ্যালার্ম">🔔</button>
+      </div>
     </section>
   </header>
 
@@ -1563,25 +1733,68 @@ function chkRz(){try{const c=RZ();if(!c.on||!loc)return;const n=new Date(),t=get
 setTimeout(chkRz,4000);setInterval(chkRz,20*60*1000);
 
 function zakat(){
-  const S=LS.g('xzk',{u:'b',n:'s'}),F=[['gp','সোনার দাম (প্রতি ভরি, ৳)','Gold price (per bhori, ৳)'],['sp','রুপার দাম (প্রতি ভরি, ৳)','Silver price (per bhori, ৳)'],['gw','সোনার পরিমাণ','Gold amount'],['sw','রুপার পরিমাণ','Silver amount'],['ca','নগদ ও ব্যাংকে জমা (৳)','Cash and bank savings (৳)'],['bz','ব্যবসার পণ্য (বিক্রয়মূল্য, ৳)','Business stock (selling value, ৳)'],['rc','ফেরতযোগ্য পাওনা (৳)','Receivable debts (৳)'],['db','দেনা / ঋণ (৳) — বাদ যাবে','Debts you owe (৳) — deducted']];
-  TB.innerHTML=`<div class="rw"><span>${T('ওজনের একক','Weight unit')}</span><select id="xzu" style="width:auto"><option value="b">${T('ভরি','Bhori')}</option><option value="g">${T('গ্রাম','Gram')}</option></select></div><div class="rw"><span>${T('নিসাব ধরুন','Nisab based on')}</span><select id="xzn" style="width:auto"><option value="s">${T('রুপা (৫২.৫ ভরি)','Silver (52.5 bhori)')}</option><option value="g">${T('সোনা (৭.৫ ভরি)','Gold (7.5 bhori)')}</option></select></div>`+
-  F.map(f=>`<label>${T(f[1],f[2])}</label><input id="xz_${f[0]}" inputmode="decimal" autocomplete="off" value="${S[f[0]]||''}">`).join('')+`<div id="xzr" style="margin-top:14px"></div><p class="mu" style="font-size:12px">${T('আজকের বাজারদর নিজে লিখুন। ১ ভরি = ১১.৬৬৪ গ্রাম। নিসাবের পরিমাণ ও নিসাব নির্ধারণে আলেমদের মতভেদ আছে এবং সম্পদের ওপর পূর্ণ এক বছর (হাওল) অতিক্রান্ত হওয়া শর্ত। চূড়ান্ত সিদ্ধান্তের আগে নির্ভরযোগ্য আলেম বা মুফতির সাথে যাচাই করুন।','Enter today\'s market prices yourself. 1 bhori = 11.664 g. Scholars differ on the nisab, and a full lunar year (hawl) must pass over the wealth. Please confirm with a trusted scholar before deciding.')}</p>`;
-  $('xzu').value=S.u;$('xzn').value=S.n;
+  const S=LS.g('xzk',{u:'b',n:'s'});
+  const IC={gold:'<svg viewBox="0 0 24 24"><path d="M3.5 17.5l2.2-6h12.6l2.2 6z"/><path d="M8.5 11.5l1.2-3.5h4.6l1.2 3.5"/></svg>',
+    silver:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5v9M9.6 9.6c0-1 1-1.6 2.4-1.6s2.4.6 2.4 1.6-1 1.5-2.4 1.8-2.4.8-2.4 1.8 1 1.6 2.4 1.6 2.4-.6 2.4-1.6"/></svg>',
+    cash:'<svg viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="11" rx="2.5"/><circle cx="12" cy="12" r="2.6"/><path d="M6.5 9.5v.01M17.5 14.5v.01"/></svg>',
+    biz:'<svg viewBox="0 0 24 24"><path d="M5 8.5h14l-1 11H6z"/><path d="M9 8.5V7a3 3 0 016 0v1.5"/></svg>',
+    rec:'<svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 11l4.5 4.500 4.500-4.500M5 19.500h14"/></svg>',
+    debt:'<svg viewBox="0 0 24 24"><path d="M12 20V9M7.500 13L12 8.500 16.500 13M5 4.500h14"/></svg>'};
+  const F=[['gp','সোনার দাম (প্রতি ভরি, ৳)','Gold price (per bhori, ৳)','gold','#FFD36B','#C27A0E'],['sp','রুপার দাম (প্রতি ভরি, ৳)','Silver price (per bhori, ৳)','silver','#C9D3E8','#6B7A99'],
+    ['gw','সোনার পরিমাণ','Gold amount','gold','#FFD36B','#C27A0E'],['sw','রুপার পরিমাণ','Silver amount','silver','#C9D3E8','#6B7A99'],
+    ['ca','নগদ ও ব্যাংকে জমা (৳)','Cash and bank savings (৳)','cash','#4ADE80','#15803D'],['bz','ব্যবসার পণ্য (বিক্রয়মূল্য, ৳)','Business stock (selling value, ৳)','biz','#9F7BFF','#4C1D95'],
+    ['rc','ফেরতযোগ্য পাওনা (৳)','Receivable debts (৳)','rec','#5EB0FF','#1A5FD1'],['db','দেনা / ঋণ (৳) — বাদ যাবে','Debts you owe (৳) — deducted','debt','#FF8FA3','#BE185D']];
+  const fld=(f,w)=>`<div class="zk-f${w?' w':''}"><label for="xz_${f[0]}"><span class="zk-ic" style="--a:${f[4]};--b:${f[5]}">${IC[f[3]]}</span><span>${T(f[1],f[2])}</span></label><input id="xz_${f[0]}" inputmode="decimal" autocomplete="off" placeholder="0" value="${S[f[0]]||''}"></div>`;
+  const byId=Object.fromEntries(F.map(f=>[f[0],f]));
+  const art='<svg viewBox="0 0 122 104" aria-hidden="true"><defs><linearGradient id="zkg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A0"/><stop offset="1" stop-color="#D9962A"/></linearGradient></defs>'+
+    '<path d="M96 10a16 16 0 1 0 10 28 12.500 12.500 0 1 1-10-28z" fill="url(#zkg)" opacity=".95"/><path d="M60 22l1.500 3.400 3.400 1.500-3.400 1.500-1.500 3.400-1.500-3.400-3.400-1.500 3.400-1.500z" fill="#FFE9A8"/><path d="M110 60l1.100 2.500 2.500 1.100-2.500 1.100-1.100 2.500-1.100-2.500-2.500-1.100 2.500-1.100z" fill="#FFE9A8" opacity=".8"/>'+
+    '<path d="M16 92l10-22h46l10 22z" fill="url(#zkg)"/><path d="M26 70l5-11h36l5 11z" fill="#FFD36B"/><path d="M16 92h66" stroke="#9A5B07" stroke-opacity=".35" stroke-width="2"/>'+
+    '<g><ellipse cx="96" cy="90" rx="17" ry="6" fill="#B97410"/><rect x="79" y="80" width="34" height="10" fill="url(#zkg)"/><ellipse cx="96" cy="80" rx="17" ry="6" fill="#FFE08A"/><ellipse cx="96" cy="70" rx="17" ry="6" fill="#B97410"/><rect x="79" y="60" width="34" height="10" fill="url(#zkg)"/><ellipse cx="96" cy="60" rx="17" ry="6" fill="#FFE08A"/><text x="96" y="64" text-anchor="middle" font-size="9" font-weight="800" fill="#8A5206">৳</text></g></svg>';
+  TB.innerHTML=`<div class="zk-hero"><div class="zk-ht"><b>${T('আপনার সম্পদের জাকাত হিসাব করুন','Calculate the zakat on your wealth')}</b><span>${T('সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে','From gold, silver, cash and business wealth')}</span><i>${T('মোট সম্পদের ২.৫%','2.5% of total wealth')}</i></div>${art}</div>`+
+  `<div class="zk-opts"><div class="zk-opt"><span>${T('ওজনের একক','Weight unit')}</span><div class="zk-seg" data-k="u"><button type="button" data-v="b">${T('ভরি','Bhori')}</button><button type="button" data-v="g">${T('গ্রাম','Gram')}</button></div></div>`+
+  `<div class="zk-opt"><span>${T('নিসাব ধরুন','Nisab based on')}</span><div class="zk-seg" data-k="n"><button type="button" data-v="s">${T('রুপা (৫২.৫ ভরি)','Silver (52.5 bhori)')}</button><button type="button" data-v="g">${T('সোনা (৭.৫ ভরি)','Gold (7.5 bhori)')}</button></div></div></div>`+
+  `<h3 class="zk-sec"><i></i>${T('সোনা ও রুপা','Gold & silver')}</h3><div class="zk-grid">${fld(byId.gp)}${fld(byId.sp)}${fld(byId.gw)}${fld(byId.sw)}</div>`+
+  `<h3 class="zk-sec"><i></i>${T('নগদ ও ব্যবসা','Cash & business')}</h3><div class="zk-grid">${fld(byId.ca,1)}${fld(byId.bz)}${fld(byId.rc)}</div>`+
+  `<h3 class="zk-sec"><i></i>${T('দেনা','Debts')}</h3><div class="zk-grid">${fld(byId.db,1)}</div>`+
+  `<div id="xzr"></div><p class="mu" style="font-size:12px;margin-top:12px">${T('আজকের বাজারদর নিজে লিখুন। ১ ভরি = ১১.৬৬৪ গ্রাম। নিসাবের পরিমাণ ও নিসাব নির্ধারণে আলেমদের মতভেদ আছে এবং সম্পদের ওপর পূর্ণ এক বছর (হাওল) অতিক্রান্ত হওয়া শর্ত। চূড়ান্ত সিদ্ধান্তের আগে নির্ভরযোগ্য আলেম বা মুফতির সাথে যাচাই করুন।','Enter today\'s market prices yourself. 1 bhori = 11.664 g. Scholars differ on the nisab, and a full lunar year (hawl) must pass over the wealth. Please confirm with a trusted scholar before deciding.')}</p>`;
   const money=n=>'৳ '+N(Math.round(n).toLocaleString('en-US'));
-  const calc=()=>{const v={};F.forEach(f=>{S[f[0]]=$('xz_'+f[0]).value;v[f[0]]=num(S[f[0]])});S.u=$('xzu').value;S.n=$('xzn').value;LS.s('xzk',S);
+  const paintSeg=()=>TB.querySelectorAll('.zk-seg').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===S[g.dataset.k])));
+  const calc=()=>{const v={};F.forEach(f=>{S[f[0]]=$('xz_'+f[0]).value;v[f[0]]=num(S[f[0]])});LS.s('xzk',S);paintSeg();
     const k=S.u==='g'?1/11.664:1,gb=v.gw*k,sb=v.sw*k,tot=gb*v.gp+sb*v.sp+v.ca+v.bz+v.rc-v.db,nis=S.n==='g'?7.5*v.gp:52.5*v.sp,mn=S.n==='g'?T('সোনা','gold'):T('রুপা','silver');
-    let h=`<div class="rw"><span>${T('মোট জাকাতযোগ্য সম্পদ (ঋণ বাদে)','Total zakatable wealth (after debts)')}</span><b>${money(tot)}</b></div>`;
-    if(!nis){if(tot>0)h+=`<div class="big ok">${T('জাকাত: ','Zakat due: ')}${money(tot*.025)}</div><p class="mu" style="text-align:center">${T('মোট সম্পদের ২.৫%','2.5% of total wealth')}</p>`;
-      h+='<p class="mu">'+T('নিসাব পূর্ণ হয়েছে কি না যাচাই করতে চাইলে '+mn+'র দাম লিখুন।','To check whether the nisab is reached, enter the '+mn+' price.')+'</p>'}
-    else{h+=`<div class="rw"><span>${T('নিসাব ('+mn+')','Nisab ('+mn+')')}</span><b>${money(nis)}</b></div>`;
-      h+=tot>=nis?`<div class="big ok">${T('জাকাত: ','Zakat due: ')}${money(tot*.025)}</div><p class="mu" style="text-align:center">${T('মোট সম্পদের ২.৫%','2.5% of total wealth')}</p>`:`<div class="big">${T('নিসাব পূর্ণ হয়নি — জাকাত ফরজ নয়','Nisab not reached — zakat is not due')}</div>`}
-    $('xzr').innerHTML=h};
-  TB.querySelectorAll('input,select').forEach(e=>e.oninput=e.onchange=calc);calc();
+    const due=`<div class="zk-due"><small>${T('জাকাত: ','Zakat due: ')}</small><b>${money(tot*.025)}</b><em>${T('মোট সম্পদের ২.৫%','2.5% of total wealth')}</em></div>`;
+    let h=`<div class="zk-res"><div class="zk-r"><span>${T('মোট জাকাতযোগ্য সম্পদ (ঋণ বাদে)','Total zakatable wealth (after debts)')}</span><b>${money(tot)}</b></div>`;
+    if(!nis){if(tot>0)h+=due;
+      h+='<p class="zk-cap" style="margin-top:8px">'+T('নিসাব পূর্ণ হয়েছে কি না যাচাই করতে চাইলে '+mn+'র দাম লিখুন।','To check whether the nisab is reached, enter the '+mn+' price.')+'</p>'}
+    else{const pc=Math.max(0,Math.min(100,tot/nis*100));
+      h+=`<div class="zk-r"><span>${T('নিসাব ('+mn+')','Nisab ('+mn+')')}</span><b>${money(nis)}</b></div><div class="zk-bar"><i style="width:${pc}%"></i></div>`;
+      h+=tot>=nis?due:`<div class="zk-due no"><b>${T('নিসাব পূর্ণ হয়নি — জাকাত ফরজ নয়','Nisab not reached — zakat is not due')}</b></div>`}
+    $('xzr').innerHTML=h+'</div>'};
+  TB.querySelectorAll('.zk-seg button').forEach(b=>b.onclick=()=>{S[b.parentNode.dataset.k]=b.dataset.v;calc()});
+  TB.querySelectorAll('input').forEach(e=>e.oninput=calc);calc();
 }
 $('xk1').onclick=()=>openT(T('কিবলা কম্পাস','Qibla Compass'),qibla);
 $('xk2').onclick=()=>openT(T('রোজার ক্যালেন্ডার','Fasting Calendar'),roza);
 $('xk3').onclick=()=>openT(T('হিজরি ক্যালেন্ডার','Hijri Calendar'),hcal);
 $('xk4').onclick=()=>openT(T('জাকাত ক্যালকুলেটর','Zakat Calculator'),zakat);
+})();
+</script>
+<script>
+/* হোম হিরো: সেটিংস বাটন ও ঘড়ির রিং (বর্তমান ওয়াক্ত থেকে পরবর্তী ওয়াক্ত পর্যন্ত অগ্রগতি) */
+(function(){
+  const g=document.getElementById('hgear');if(g)g.onclick=()=>{try{showPg('set')}catch(e){}};
+  const P=document.getElementById('hxp'),D=document.getElementById('hxd'),L=2*Math.PI*90;
+  function ring(){try{
+    if(!P||typeof T==='undefined'||!T)return;
+    const now=new Date();let cur='Isha',nx=null;
+    PR.forEach(p=>{if(at(now,T[p])<=now)cur=p});
+    for(const p of ['Fajr','Dhuhr','Asr','Maghrib','Isha']){const d=at(now,T[p]);if(d>now){nx=d;break}}
+    if(!nx){const tm=new Date(now);tm.setDate(tm.getDate()+1);nx=at(tm,getDay(tm).t.Fajr)}
+    let st=at(now,T[cur]);if(st>now)st.setDate(st.getDate()-1);
+    const f=Math.max(0,Math.min(1,(now-st)/(nx-st)));
+    P.setAttribute('stroke-dashoffset',(L*(1-f)).toFixed(1));
+    const a=f*2*Math.PI;D.setAttribute('cx',(100+90*Math.sin(a)).toFixed(2));D.setAttribute('cy',(100-90*Math.cos(a)).toFixed(2));
+  }catch(e){}}
+  setInterval(ring,1000);setTimeout(ring,300);
 })();
 </script>
 </body>
