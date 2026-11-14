@@ -9,11 +9,11 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="নূর">
+<meta name="apple-mobile-web-app-title" content="নূর নামাজ">
 <script>(function(){var t=null;try{t=JSON.parse(localStorage.getItem('noorTheme'))}catch(e){}if(t!=='dark'&&t!=='light'){t='dark'}document.documentElement.setAttribute('data-theme',t)})();</script>
 <script>(function(){var en=false,z=1;try{en=JSON.parse(localStorage.getItem('lang'))==='en';z=+JSON.parse(localStorage.getItem('fz'))||1}catch(e){}window.__EN=en;var h=document.documentElement;h.style.setProperty('--z',z);if(en){h.lang='en';var o=Date.prototype.toLocaleDateString;Date.prototype.toLocaleDateString=function(l,x){return o.call(this,l==='bn-BD'?'en-GB':l,x)}}})();</script>
 
-<title>নূর - নামাজের সময়সূচি</title>
+<title>নূর নামাজ - নামাজের সময়সূচি</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
@@ -527,7 +527,7 @@ background:var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 .zk-due{display:flex;flex-direction:column;align-items:center;gap:3px;margin-top:8px;padding:16px 12px;border-radius:20px;text-align:center;color:#fff;background:linear-gradient(135deg,#7B3FF0,#3A0E92);box-shadow:0 16px 26px -16px rgba(66,15,156,.9)}
 .zk-due small{font-size:14px;font-weight:700;opacity:.92}.zk-due b{font-size:32px;font-weight:800;line-height:1.15;color:#FFE08A;font-variant-numeric:tabular-nums}.zk-due em{font-style:normal;font-size:12.5px;opacity:.88}
 .zk-due.no{background:var(--sf);color:var(--ink);border:1px dashed var(--curbd);box-shadow:none}.zk-due.no b{font-size:18px;color:var(--ink);line-height:1.5}
-.dhero{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin:0 0 12px;line-height:0}.dhero svg{display:block;width:100%;height:auto;max-height:200px}
+.dhero{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);margin:0 0 12px;line-height:0;background:var(--cg,var(--acg))}.dhero svg{display:block;width:100%;height:auto;max-height:200px}
 </style>
 </head>
 <body>
@@ -561,7 +561,7 @@ background:var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
           <path d="M32 54C24 47 12 46 3 49V31c9-3 21-2 29 5z" fill="#6D3BE6"/><path d="M32 54c8-7 20-8 29-5V31c-9-3-21-2-29 5z" fill="#5A28CC"/><path d="M32 54C24 47 12 46 3 49M32 54c8-7 20-8 29-5" fill="none" stroke="url(#hxg2)" stroke-width="2" stroke-linecap="round"/>
           <path d="M19 36C19 20 25 13 32 13s13 7 13 23z" fill="url(#hxg1)"/><rect x="31" y="5" width="2" height="9" fill="url(#hxg2)"/><circle cx="32" cy="4.500" r="2.400" fill="url(#hxg2)"/>
           <rect x="9" y="17" width="5" height="20" fill="url(#hxg2)"/><path d="M8 17q3.500-9 7 0z" fill="url(#hxg2)"/><rect x="50" y="17" width="5" height="20" fill="url(#hxg2)"/><path d="M49 17q3.500-9 7 0z" fill="url(#hxg2)"/></svg>
-        <div class="hx-name"><b>Noor</b><b>Namaz</b></div>
+        <div class="hx-name"><b>নূর</b><b>নামাজ</b></div>
       </div>
       <div class="hx-act">
         <button id="th" type="button" aria-label="ডার্ক মোড চালু করুন" title="ডার্ক/লাইট মোড">🌙</button>
@@ -620,6 +620,7 @@ background:var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 
   <button class="card dm" type="button" id="xmb"><span class="ic" style="--t1:#a78bfa;--t2:#5b21b6"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="5" width="16.8" height="15.2" rx="3.2"/><path d="M3.6 10h16.8M8 3.4v3.2M16 3.4v3.2"/><circle class="w" cx="8" cy="14" r=".95"/><circle class="w" cx="12" cy="14" r=".95"/><circle class="f" cx="16" cy="14" r=".95"/><circle class="w" cx="8" cy="17.2" r=".95"/><circle class="w" cx="12" cy="17.2" r=".95"/></svg></span><div><b>মাসিক সময়সূচি</b><span class="mu">পুরো মাসের নামাজের সময় একসাথে</span></div></button>
   <button class="card dm" type="button" id="xk1"><span class="ic" style="--t1:#5eb0ff;--t2:#1a5fd1"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path class="a" d="M12 2.6v1.8M12 19.6v1.8M2.6 12h1.8M19.6 12h1.8"/><path d="M15.9 8.1l-2.2 5.6-5.6 2.2 2.2-5.6z"/><circle class="w" cx="12" cy="12" r="1.1"/></svg></span><div><b>কিবলা কম্পাস</b><span class="mu">ফোনের সেন্সর দিয়ে কিবলার দিক</span></div></button>
+  <button class="card dm" type="button" id="xk5"><span class="ic" style="--t1:#f9a8d4;--t2:#9d174d"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="w" cx="12.0" cy="3.0" r="1.5"/><circle class="w" cx="16.6" cy="4.7" r="1.5"/><circle class="w" cx="19.1" cy="8.9" r="1.5"/><circle class="w" cx="18.2" cy="13.8" r="1.5"/><circle class="w" cx="14.5" cy="17.0" r="1.5"/><circle class="w" cx="9.5" cy="17.0" r="1.5"/><circle class="w" cx="5.8" cy="13.8" r="1.5"/><circle class="w" cx="4.9" cy="8.9" r="1.5"/><circle class="w" cx="7.4" cy="4.7" r="1.5"/><path class="a" d="M12 17.8v2"/><circle class="f" cx="12" cy="21.3" r="1.3"/></svg></span><div><b>ডিজিটাল তাসবিহ</b><span class="mu">গণনা, দৈনিক হিসাব ও ৭ দিনের ইতিহাস</span></div></button>
   <button class="card dm" type="button" id="xk2"><span class="ic" style="--t1:#7c83ff;--t2:#312e81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8v2.2"/><path d="M9.2 7.6h5.6L13.7 5h-3.4z"/><path d="M8.6 7.6c-1.5 2.6-1.5 7.4 0 10h6.8c1.5-2.6 1.5-7.4 0-10"/><path d="M9.6 17.6v2.2h4.8v-2.2"/><path class="f" d="M12 9.6c1.3 1.4 1.7 2.4 1.7 3.4a1.7 1.7 0 01-3.4 0c0-1 .4-2 1.7-3.4z"/></svg></span><div><b>রোজার ক্যালেন্ডার</b><span class="mu">সেহরি-ইফতার, রমজানের কাউন্টডাউন, সুন্নাহ রোজা</span></div></button>
   <button class="card dm" type="button" id="xk3"><span class="ic" style="--t1:#9f7bff;--t2:#4c1d95"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="5" width="16.8" height="15.2" rx="3.2"/><path d="M3.6 10h16.8M8 3.4v3.2M16 3.4v3.2"/><path class="f" d="M15 17.6a3.4 3.4 0 11-3.9-4.8 2.8 2.8 0 003.9 4.8z"/></svg></span><div><b>হিজরি ক্যালেন্ডার</b><span class="mu">হিজরি তারিখ ও ইসলামি দিবস</span></div></button>
   <button class="card dm" type="button" id="xk4"><span class="ic" style="--t1:#ffcb57;--t2:#b45309"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7.8c0-1.4 3.1-2.5 7-2.5s7 1.1 7 2.5-3.1 2.5-7 2.5-7-1.1-7-2.5z"/><path d="M5 7.8v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-4M5 11.8v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-4"/><path class="a" d="M12 7.2v.01M9 16.6l.01 0"/></svg></span><div><b>জাকাত ক্যালকুলেটর</b><span class="mu">সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে হিসাব</span></div></button>
@@ -673,7 +674,7 @@ background:var(--sf2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 </section>
 
 <section class="pg" id="pg-dua" hidden>
-<div class="dhero" role="img" aria-label="মসজিদ ও চাঁদ"><svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="dhg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04231f"/><stop offset=".6" stop-color="#0B6B58"/><stop offset="1" stop-color="#169a7c"/></linearGradient><radialGradient id="dhr" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(92 56) scale(95)"><stop offset="0" stop-color="#f6d98a" stop-opacity=".55"/><stop offset="1" stop-color="#f6d98a" stop-opacity="0"/></radialGradient><mask id="dhm"><rect width="600" height="220" fill="#fff"/><circle cx="102" cy="48" r="21" fill="#000"/></mask></defs><rect width="600" height="220" fill="url(#dhg)"/><circle cx="92" cy="56" r="95" fill="url(#dhr)"/><circle cx="90" cy="56" r="25" fill="#f6d98a" mask="url(#dhm)"/><g fill="#f6e6b3"><circle cx="170" cy="38" r="1.8"/><circle cx="230" cy="70" r="1.4"/><circle cx="300" cy="30" r="2"/><circle cx="360" cy="58" r="1.5"/><circle cx="430" cy="34" r="1.9"/><circle cx="520" cy="62" r="1.6"/><circle cx="555" cy="28" r="1.3"/><circle cx="40" cy="120" r="1.4"/><circle cx="260" cy="110" r="1.2"/><circle cx="500" cy="115" r="1.3"/><path d="M215 24l2.2 5.2 5.2 2.2-5.2 2.2-2.2 5.2-2.2-5.2-5.2-2.2 5.2-2.2z"/><path d="M485 78l1.8 4.2 4.2 1.8-4.2 1.8-1.8 4.2-1.8-4.2-4.2-1.8 4.2-1.8z"/></g><g fill="#03211d"><rect x="0" y="205" width="600" height="15"/><rect x="150" y="150" width="300" height="60"/><path d="M230 150A70 70 0 0 1 370 150z"/><path d="M185 150A25 25 0 0 1 235 150z"/><path d="M365 150A25 25 0 0 1 415 150z"/><rect x="298.8" y="62" width="2.4" height="20"/><circle cx="300" cy="60" r="3.2"/><rect x="120" y="96" width="18" height="114"/><rect x="113" y="104" width="32" height="6" rx="1"/><path d="M116 96L129 60 142 96z"/><rect x="128" y="50" width="2" height="12"/><rect x="462" y="96" width="18" height="114"/><rect x="455" y="104" width="32" height="6" rx="1"/><path d="M458 96L471 60 484 96z"/><rect x="470" y="50" width="2" height="12"/></g><g fill="#f6c453"><rect x="285" y="168" width="30" height="42" rx="15" opacity=".92"/><rect x="238" y="182" width="20" height="28" rx="10" opacity=".8"/><rect x="342" y="182" width="20" height="28" rx="10" opacity=".8"/><rect x="125" y="130" width="8" height="16" rx="4" opacity=".8"/><rect x="467" y="130" width="8" height="16" rx="4" opacity=".8"/></g></svg></div>
+<div class="dhero" role="img" aria-label="মসজিদ ও চাঁদ"><svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="dhg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#04231f"/><stop offset=".6" stop-color="#0B6B58"/><stop offset="1" stop-color="#169a7c"/></linearGradient><radialGradient id="dhr" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(92 56) scale(95)"><stop offset="0" stop-color="#FFE09A" stop-opacity=".45"/><stop offset="1" stop-color="#f6d98a" stop-opacity="0"/></radialGradient><mask id="dhm"><rect width="600" height="220" fill="#fff"/><circle cx="102" cy="48" r="21" fill="#000"/></mask></defs><circle cx="92" cy="56" r="95" fill="url(#dhr)"/><circle cx="90" cy="56" r="25" fill="#FFE09A" mask="url(#dhm)"/><g fill="#f6e6b3"><circle cx="170" cy="38" r="1.8"/><circle cx="230" cy="70" r="1.4"/><circle cx="300" cy="30" r="2"/><circle cx="360" cy="58" r="1.5"/><circle cx="430" cy="34" r="1.9"/><circle cx="520" cy="62" r="1.6"/><circle cx="555" cy="28" r="1.3"/><circle cx="40" cy="120" r="1.4"/><circle cx="260" cy="110" r="1.2"/><circle cx="500" cy="115" r="1.3"/><path d="M215 24l2.2 5.2 5.2 2.2-5.2 2.2-2.2 5.2-2.2-5.2-5.2-2.2 5.2-2.2z"/><path d="M485 78l1.8 4.2 4.2 1.8-4.2 1.8-1.8 4.2-1.8-4.2-4.2-1.8 4.2-1.8z"/></g><g fill="rgba(20,5,52,.5)"><rect x="0" y="205" width="600" height="15"/><rect x="150" y="150" width="300" height="60"/><path d="M230 150A70 70 0 0 1 370 150z"/><path d="M185 150A25 25 0 0 1 235 150z"/><path d="M365 150A25 25 0 0 1 415 150z"/><rect x="298.8" y="62" width="2.4" height="20"/><circle cx="300" cy="60" r="3.2"/><rect x="120" y="96" width="18" height="114"/><rect x="113" y="104" width="32" height="6" rx="1"/><path d="M116 96L129 60 142 96z"/><rect x="128" y="50" width="2" height="12"/><rect x="462" y="96" width="18" height="114"/><rect x="455" y="104" width="32" height="6" rx="1"/><path d="M458 96L471 60 484 96z"/><rect x="470" y="50" width="2" height="12"/></g><g fill="#F2C14E"><rect x="285" y="168" width="30" height="42" rx="15" opacity=".92"/><rect x="238" y="182" width="20" height="28" rx="10" opacity=".8"/><rect x="342" y="182" width="20" height="28" rx="10" opacity=".8"/><rect x="125" y="130" width="8" height="16" rx="4" opacity=".8"/><rect x="467" y="130" width="8" height="16" rx="4" opacity=".8"/></g></svg></div>
   <div class="dsub" id="dua-menu">
     <section class="card c"><h1>📖 দুআ ও যিকির</h1><p class="mu">একটি বেছে নিন</p></section>
     <button class="card dm" type="button" data-d="az"><span class="ic" style="--t1:#ffb454;--t2:#e0457b"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.5h18M7.2 17.5a4.8 4.8 0 019.6 0M8.5 21h7"/><path class="a" d="M12 5.6v2.2M5.3 9.3l1.5 1.5M18.7 9.3l-1.5 1.5"/></svg></span><div><b>সকাল-সন্ধ্যার দুআ</b><span class="mu">সকাল ও সন্ধ্যার সহিহ যিকির</span></div></button>
@@ -936,7 +937,7 @@ async function scheduleNative(){
         if(when<=now) return;
         const isP=ADHAN_FOR.includes(a);
         const msg=TT(isP?`${NM[a]}ের সময় হয়েছে`:`${NM[a]} হয়েছে`);
-        list.push({id:(dn%100000)*10+ALARM_IDX.indexOf(a),title:TT('নূর'),body:msg,channelId:isP?'adhan_v1':'alert_v1',
+        list.push({id:(dn%100000)*10+ALARM_IDX.indexOf(a),title:TT('নূর নামাজ'),body:msg,channelId:isP?'adhan_v1':'alert_v1',
           schedule:{at:when,allowWhileIdle:true},sound:isP?'adhan.mp3':undefined,autoCancel:true,smallIcon:'ic_stat_noor'});
       });
     }
@@ -951,7 +952,7 @@ if(NATIVE){
 }
 /* ===== ফোনের নিজের ঘড়ি/অ্যালার্ম অ্যাপে অ্যালার্ম বসানো ===== */
 // 🔔 চালু করলে ওয়াক্তের পরবর্তী সময়টা সরাসরি ফোনের অ্যালার্মে বসে; 🔕 করলে সেটা সরে যায়।
-const PA_LBL=a=>'নূর • '+NM[a];
+const PA_LBL=a=>'নূর নামাজ • '+NM[a];
 const paSleep=ms=>new Promise(r=>setTimeout(r,ms));
 let paBusy=false;
 function phoneToast(m){const d=document.createElement('div');d.textContent=m;
@@ -1054,7 +1055,7 @@ function ring(k){
   } else startBeep();
   if('Notification' in window&&Notification.permission==='granted'){
     const o={body:msg,tag:k,icon:undefined,requireInteraction:true};
-    try{swReg?swReg.showNotification(TT('নূর'),o):new Notification(TT('নূর'),o)}catch{}
+    try{swReg?swReg.showNotification(TT('নূর নামাজ'),o):new Notification(TT('নূর নামাজ'),o)}catch{}
   }
 }
 
@@ -1373,7 +1374,7 @@ $('xrem').onchange=e=>{CFG.rem=+e.target.value;LS.s('xcfg',CFG);resched()};
 /* ওয়েবে স্মরণ/জামাতের বার্তা */
 function notice(msg){$('rt').textContent='🔔 '+msg;$('ring').hidden=false;try{beep()}catch{}navigator.vibrate&&navigator.vibrate([200,100,200]);
   setTimeout(()=>{if($('rt').textContent==='🔔 '+msg)$('ring').hidden=true},10000);
-  if('Notification' in window&&Notification.permission==='granted'){try{swReg?swReg.showNotification(TT('নূর'),{body:msg}):new Notification(TT('নূর'),{body:msg})}catch{}}}
+  if('Notification' in window&&Notification.permission==='granted'){try{swReg?swReg.showNotification(TT('নূর নামাজ'),{body:msg}):new Notification(TT('নূর নামাজ'),{body:msg})}catch{}}}
 const fx={};
 const jmsg=p=>TT(CFG.jam?`${NM[p]}ের জামাত ${bn(CFG.jam)} মিনিট পরে (${f12(J[p])})`:`${NM[p]}ের জামাতের সময় হয়েছে`);
 const rmsg=p=>TT(`${NM[p]}ের আর ${bn(CFG.rem)} মিনিট বাকি`);
@@ -1386,7 +1387,7 @@ setInterval(()=>{if(!T||NATIVE)return;const now=new Date(),k=dkey(now);
 async function xs(){if(!LN||!loc||(CFG.rem<=0&&CFG.jam<0))return;
   const pm=await LN.checkPermissions();if(pm.display!=='granted')return;
   await LN.createChannel({id:'remind_v1',name:TT('স্মরণ ও জামাত'),description:TT('ওয়াক্তের আগে স্মরণ ও জামাতের অ্যালার্ম'),importance:5,visibility:1,vibration:true});
-  const now=new Date(),list=[],add=(id,at_,body)=>{if(at_>now)list.push({id,title:TT('নূর'),body,channelId:'remind_v1',schedule:{at:at_,allowWhileIdle:true},autoCancel:true,smallIcon:'ic_stat_noor'})};
+  const now=new Date(),list=[],add=(id,at_,body)=>{if(at_>now)list.push({id,title:TT('নূর নামাজ'),body,channelId:'remind_v1',schedule:{at:at_,allowWhileIdle:true},autoCancel:true,smallIcon:'ic_stat_noor'})};
   for(let i=0;i<6;i++){const day=new Date(now);day.setDate(day.getDate()+i);const t=getDay(day).t,dn=Math.floor(new Date(day.getFullYear(),day.getMonth(),day.getDate()).getTime()/864e5),b=9e8+(dn%1e5)*100;
     P5.forEach((p,x)=>{
       if(CFG.rem>0&&alarms[p])add(b+x,addM(at(day,t[p]),-CFG.rem),rmsg(p));
@@ -1424,8 +1425,8 @@ $('xgp').onclick=()=>$('gps').click();
 setInterval(()=>{const t=$('loc').textContent.trim();if($('xlc').textContent!==t)$('xlc').textContent=t},2000);$('xlc').textContent=$('loc').textContent.trim();
 if(!EN)return;
 /* ইংরেজি ইন্টারফেস */
-document.title='Noor - Prayer Times';
-const RAW=[['বন্ধ করুন','Dismiss'],['অবস্থান নিশ্চিত করা হচ্ছে...','Detecting location...'],['পরবর্তী সালাত:','Next prayer:'],['বাকি সময়:','Time left:'],['সেহরির শেষ সময়','Sehri ends'],['ইফতারের সময়','Iftar time'],['আজকের সালাতের সময়',"Today's prayer times"],['অ্যালার্ম','Alarm'],
+document.title='Noor Namaz - Prayer Times';const hn=document.querySelector('.hx-name');if(hn)hn.innerHTML='<b>Noor</b><b>Namaz</b>';
+const RAW=[['নূর নামাজ','Noor Namaz'],['বন্ধ করুন','Dismiss'],['অবস্থান নিশ্চিত করা হচ্ছে...','Detecting location...'],['পরবর্তী সালাত:','Next prayer:'],['বাকি সময়:','Time left:'],['সেহরির শেষ সময়','Sehri ends'],['ইফতারের সময়','Iftar time'],['আজকের সালাতের সময়',"Today's prayer times"],['অ্যালার্ম','Alarm'],
 ['নিষিদ্ধ সময় (এ সময়ে নফল সালাত পড়া যাবে না)','Forbidden times (no voluntary prayer)'],['নিষিদ্ধ সময় শেষ হতে বাকি','Forbidden time ends in'],['পরবর্তী নিষিদ্ধ সময়','Next forbidden time'],['শুরু হতে বাকি','starts in'],['সূর্যোদয়ের সময়','Sunrise'],['ঠিক দুপুর','Midday (zenith)'],['সূর্যাস্তের সময়','Sunset'],
 ['আজকের আয়াত',"Today's ayah"],['আজকের হাদীস',"Today's hadith"],['মাসিক সময়সূচি','Monthly timetable'],['পুরো মাসের নামাজের সময় একসাথে','Prayer times for the whole month'],['তারিখ','Date'],
 ['দুআ ও যিকির','Duas & Dhikr'],['একটি বেছে নিন','Choose one'],['সকাল-সন্ধ্যার দুআ','Morning & evening adhkar'],['সকাল ও সন্ধ্যার সহিহ যিকির','Authentic morning & evening dhikr'],['নামাজের পরের দুআ','Dhikr after prayer'],['সালামের পরের মাসনূন দুআ ও যিকির','Masnun duas after salam'],['সালামের পরের সহিহ মাসনূন দুআ ও যিকির','Authentic masnun duas after salam'],['দুআর তালিকা','Dua list'],['সকাল','Morning'],['সন্ধ্যা','Evening'],
@@ -1645,6 +1646,40 @@ if(EN&&window.caches&&navigator.onLine&&!g('qrAlle',false))setTimeout(()=>{dlAll
 
 <div id="xtl" hidden><div class="mtb"><div class="mth"><b id="xtt"></b><button class="btn" id="xtx" type="button">✕</button></div><div class="mts xk" id="xtb"></div></div></div>
 <div id="xtoast" hidden></div>
+<style id="tsbcss">
+#xk5{--tile:#F4E4F1}
+.xk .tsb{padding:12px;border-radius:22px;color:#fff;background:var(--cg,var(--acg));-webkit-user-select:none;user-select:none}
+.xk .tsb button{font-family:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.xk .tsb-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.xk .tsb-chips button{max-width:100%;text-align:center;padding:8px 13px;border-radius:14px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font-size:13.5px;font-weight:700;line-height:1.3}
+.xk .tsb-chips button.on{background:#F2C14E;border-color:#F2C14E;color:#2A1D02}
+.xk .tsb-card{margin-top:10px;padding:14px 10px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.2);text-align:center}
+.xk .tsb-ar{font-family:'Scheherazade New','Noto Naskh Arabic','Amiri Quran','Traditional Arabic',serif;font-size:30px;font-weight:700;line-height:1.9;color:#F2C14E;word-spacing:.15em}
+.xk .tsb-nm{font-size:16px;font-weight:800;color:#fff}
+.xk .tsb-tg{margin:8px auto 0;padding:4px 18px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:15px;font-weight:700}
+.xk .tsb-ring{position:relative;display:grid;place-items:center;width:min(60vw,230px);aspect-ratio:1;margin:10px auto;padding:0;border:0;border-radius:50%;color:#fff;background:radial-gradient(circle at 50% 40%,rgba(255,255,255,.1),rgba(0,0,0,.3))}
+.xk .tsb-ring:active{transform:scale(.97)}
+.xk .tsb-ring svg{position:absolute;inset:0;width:100%;height:100%}
+.xk .tsb-in{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px}
+.xk .tsb-n{font-size:64px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.xk .tsb-l{font-size:13px;color:rgba(255,255,255,.78)}
+.xk .tsb-h{min-height:34px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.75)}
+.xk .tsb-rs{margin-top:6px;padding:9px 24px;border-radius:999px;border:1px solid rgba(242,193,78,.55);background:rgba(242,193,78,.12);color:#F2C14E;font-size:14px;font-weight:700}
+.xk .tsb-st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.xk .tsb-st>div{padding:10px 4px;border-radius:16px;background:rgba(0,0,0,.22);text-align:center}
+.xk .tsb-st span{display:block;font-size:11.5px;color:rgba(255,255,255,.78)}.xk .tsb-st b{display:block;margin-top:2px;font-size:20px;font-weight:800;color:#F2C14E}
+.xk .tsb-hd{margin:14px 2px 6px;font-size:14px;font-weight:800;color:#F2C14E}
+.xk .tsb-b{display:flex;gap:6px;padding:10px 6px 8px;border-radius:16px;background:rgba(0,0,0,.2)}
+.xk .tsb-b .c{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}
+.xk .tsb-b em{min-height:14px;font-style:normal;font-size:11px;font-weight:700;color:#fff}
+.xk .tsb-b .bw{display:flex;align-items:flex-end;justify-content:center;width:100%;height:64px}
+.xk .tsb-b i{display:block;width:70%;max-width:24px;border-radius:6px 6px 2px 2px;background:linear-gradient(#FFE09A,#F2C14E)}
+.xk .tsb-b span{font-size:11px;color:rgba(255,255,255,.75)}
+#xtl[data-k=tsb] .mth{position:relative;overflow:hidden;align-items:flex-start;min-height:118px;margin:-14px -14px 0;padding:16px 14px 60px;border-radius:28px 28px 0 0;background:var(--cg,var(--acg));color:#fff}
+#xtl[data-k=tsb] .mth b{position:relative;z-index:1;padding-top:6px;font-size:21px;font-weight:800;color:#fff}
+#xtl[data-k=tsb] .mth .btn{position:relative;z-index:1;color:#fff;background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.32)}
+#xtl .tsb-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+</style>
 <script>
 (function(){
 const EN=!!window.__EN,T=(b,e)=>EN?e:b,N=n=>EN?String(n):bn(n);
@@ -1660,12 +1695,12 @@ const gd=d=>EN?MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear():bn(d.getDa
 const at=(d,t)=>{const[h,m]=t.split(':');const x=new Date(d);x.setHours(+h,+m,0,0);return x};
 const hms=ms=>{ms=Math.max(0,Math.floor(ms/1000));return N(p2(Math.floor(ms/3600))+':'+p2(Math.floor(ms/60)%60)+':'+p2(ms%60))};
 const num=v=>{v=String(v).replace(/[০-৯]/g,c=>'০১২৩৪৫৬৭৮৯'.indexOf(c)).replace(/,/g,'');const n=parseFloat(v);return isFinite(n)?n:0};
-function openT(t,fn){if(stopF){stopF();stopF=null}XT.textContent=t;TB.innerHTML='';TL.hidden=false;stopF=fn()||null}
+function openT(t,fn){if(stopF){stopF();stopF=null}XT.textContent=t;TB.innerHTML='';TL.removeAttribute('data-k');TL.querySelectorAll('.tsb-bg').forEach(e=>e.remove());TL.hidden=false;stopF=fn()||null}
 function closeT(){TL.hidden=true;if(stopF){stopF();stopF=null}}
 $('xtx').onclick=closeT;TL.onclick=e=>{if(e.target===TL)closeT()};
 addEventListener('keydown',e=>{if(e.key==='Escape')closeT()});
 const need=()=>{if(!loc){TB.innerHTML='<p class="mu">'+T('আগে সেটিংস থেকে অবস্থান নির্ধারণ করুন।','Please set your location in Settings first.')+'</p>';return true}return false};
-const CARDS=[['xk1','কিবলা কম্পাস','Qibla Compass','ফোনের সেন্সর দিয়ে কিবলার দিক','Qibla direction using your phone sensor'],['xk2','রোজার ক্যালেন্ডার','Fasting Calendar','সেহরি-ইফতার, রমজানের কাউন্টডাউন, সুন্নাহ রোজা','Sehri-Iftar, Ramadan countdown, Sunnah fasts'],['xk3','হিজরি ক্যালেন্ডার','Hijri Calendar','হিজরি তারিখ ও ইসলামি দিবস','Hijri dates and Islamic occasions'],['xk4','জাকাত ক্যালকুলেটর','Zakat Calculator','সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে হিসাব','Calculate from gold, silver, cash and business assets']];
+const CARDS=[['xk1','কিবলা কম্পাস','Qibla Compass','ফোনের সেন্সর দিয়ে কিবলার দিক','Qibla direction using your phone sensor'],['xk2','রোজার ক্যালেন্ডার','Fasting Calendar','সেহরি-ইফতার, রমজানের কাউন্টডাউন, সুন্নাহ রোজা','Sehri-Iftar, Ramadan countdown, Sunnah fasts'],['xk3','হিজরি ক্যালেন্ডার','Hijri Calendar','হিজরি তারিখ ও ইসলামি দিবস','Hijri dates and Islamic occasions'],['xk4','জাকাত ক্যালকুলেটর','Zakat Calculator','সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে হিসাব','Calculate from gold, silver, cash and business assets'],['xk5','ডিজিটাল তাসবিহ','Digital Tasbih','গণনা, দৈনিক হিসাব ও ৭ দিনের ইতিহাস','Counter, daily stats and 7-day history']];
 if(EN)CARDS.forEach(c=>{const e=$(c[0]).querySelector('div');e.querySelector('b').textContent=c[2];e.querySelector('.mu').textContent=c[4]});
 
 function qibla(){
@@ -1744,7 +1779,7 @@ function roza(){
   return()=>clearInterval(iv);
 }
 function toast(m){const t=$('xtoast');t.textContent=m;t.hidden=false;setTimeout(()=>{t.hidden=true},9000);
-  try{if('Notification' in window&&Notification.permission==='granted'){swReg?swReg.showNotification(T('নূর','Noor'),{body:m}):new Notification(T('নূর','Noor'),{body:m})}}catch{}}
+  try{if('Notification' in window&&Notification.permission==='granted'){swReg?swReg.showNotification(T('নূর নামাজ','Noor Namaz'),{body:m}):new Notification(T('নূর নামাজ','Noor Namaz'),{body:m})}}catch{}}
 function chkRz(){try{const c=RZ();if(!c.on||!loc)return;const n=new Date(),t=getDay(n).t;if(n<at(n,t.Maghrib))return;
   const tm=dd(nd(),1),w=fastWhy(tm),key=tm.toDateString();if(!w||c.sent===key)return;c.sent=key;LS.s('xrz',c);
   toast(T('আগামীকাল ('+DOW[tm.getDay()]+') রোজা রাখা সুন্নাহ — '+w.join(', ')+'। সেহরির শেষ সময় '+f12(getDay(tm).t.Fajr)+'।','Tomorrow ('+DOW[tm.getDay()]+') is a Sunnah fasting day — '+w.join(', ')+'. Sehri ends at '+f12e(getDay(tm).t.Fajr)+'.'))}catch{}}
@@ -1790,10 +1825,64 @@ function zakat(){
   TB.querySelectorAll('.zk-seg button').forEach(b=>b.onclick=()=>{S[b.parentNode.dataset.k]=b.dataset.v;calc()});
   TB.querySelectorAll('input').forEach(e=>e.oninput=calc);calc();
 }
+function tasbih(){
+  const KEY='noorTsb',TG=[33,100,500,1000,0];
+  const D=[['sa','সুবহানাল্লাহ','SubhanAllah','سُبْحَانَ اللَّهِ',33],['ah','আলহামদুলিল্লাহ','Alhamdulillah','الْحَمْدُ لِلَّهِ',33],['ak','আল্লাহু আকবার','Allahu Akbar','اللَّهُ أَكْبَرُ',33],['sb','সুবহানাল্লাহি ওয়া বিহামদিহি, সুবহানাল্লাহিল আযীম','SubhanAllahi wa bihamdihi, SubhanAllahil Azeem','سُبْحَانَ اللَّهِ وَبِحَمْدِهِ سُبْحَانَ اللَّهِ الْعَظِيمِ',100]];
+  const SH=EN?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র','শনি'];
+  let S={};try{S=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){S={}}
+  if(typeof S!=='object'||S===null)S={};
+  S.c=S.c||{};S.tg=S.tg||{};S.day=S.day||{};
+  if(!(S.sel>=0&&S.sel<D.length))S.sel=0;
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+  const dk=d=>d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+  const cur=()=>D[S.sel];
+  const tgt=()=>{const v=S.tg[cur()[0]];return v===undefined?cur()[4]:v};
+  const vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+  const R=78,C=2*Math.PI*R;
+  const H=TL.querySelector('.mth');if(H){H.insertAdjacentHTML('afterbegin','<svg class="tsb-bg" viewBox="0 0 460 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><mask id="tbm"><rect width="460" height="120" fill="#fff"/><circle cx="64" cy="27" r="15" fill="#000"/></mask></defs><circle cx="52" cy="33" r="19" fill="#F2C14E" mask="url(#tbm)"/><g fill="#fff" opacity=".85"><circle cx="112" cy="24" r="1.6"/><circle cx="150" cy="50" r="1.2"/><circle cx="330" cy="22" r="1.7"/><circle cx="372" cy="48" r="1.3"/><circle cx="405" cy="70" r="1.5"/><circle cx="90" cy="70" r="1.2"/><circle cx="268" cy="14" r="1.3"/><path d="M200 12l1.6 3.8 3.8 1.6-3.8 1.6-1.6 3.8-1.6-3.8-3.8-1.6 3.8-1.6z"/></g><g fill="rgba(0,0,0,.32)"><rect x="0" y="106" width="460" height="14"/><rect x="170" y="84" width="120" height="26"/><path d="M202 84A28 28 0 0 1 258 84z"/><path d="M174 84A14 14 0 0 1 202 84z"/><path d="M258 84A14 14 0 0 1 286 84z"/><rect x="229.3" y="44" width="1.4" height="12"/><circle cx="230" cy="43" r="2.2"/><rect x="138" y="62" width="10" height="50"/><rect x="134" y="67" width="18" height="4" rx="1"/><path d="M135 62L143 44 151 62z"/><rect x="312" y="62" width="10" height="50"/><rect x="308" y="67" width="18" height="4" rx="1"/><path d="M309 62L317 44 325 62z"/></g><g fill="#F2C14E" opacity=".85"><rect x="222" y="92" width="16" height="22" rx="8"/><rect x="190" y="96" width="10" height="14" rx="5"/><rect x="260" y="96" width="10" height="14" rx="5"/></g></svg>');TL.setAttribute('data-k','tsb')}
+  TB.innerHTML=`<div class="tsb">
+  <div class="tsb-chips">${D.map(x=>`<button type="button">${T(x[1],x[2])}</button>`).join('')}</div>
+  <div class="tsb-card">
+    <div class="tsb-ar ar" id="tsa"></div>
+    <div class="tsb-nm" id="tsm"></div>
+    <button type="button" class="tsb-tg" id="tsg" aria-label="${T('লক্ষ্য পরিবর্তন করুন','Change target')}"></button>
+    <button type="button" class="tsb-ring" id="tsr" aria-label="${T('গণনা করুন','Count')}">
+      <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="${R}" fill="none" stroke="rgba(242,193,78,.25)" stroke-width="3"/><circle id="tsp" cx="100" cy="100" r="${R}" fill="none" stroke="#f2c14e" stroke-width="4" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${C.toFixed(1)}" transform="rotate(-90 100 100)"/><circle id="tsd" r="6" fill="#f2c14e" cx="100" cy="22"/></svg>
+      <span class="tsb-in"><span class="tsb-n" id="tsn">0</span><span class="tsb-l">${T('বার পঠিত','times recited')}</span></span>
+    </button>
+    <div class="tsb-h" id="tsh"></div>
+    <button type="button" class="tsb-rs" id="tsz">↻ ${T('রিসেট','Reset')}</button>
+  </div>
+  <div class="tsb-st"><div><span>⭐ ${T('মোট','Total')}</span><b id="tst">0</b></div><div><span>📅 ${T('আজ','Today')}</span><b id="tsy">0</b></div><div><span>🔥 ${T('সর্বোচ্চ (দিন)','Highest (day)')}</span><b id="tsx">0</b></div></div>
+  <div class="tsb-hd">${T('শেষ ৭ দিনের গণনা','Last 7 days')}</div>
+  <div class="tsb-b" id="tsb7"></div>
+</div>`;
+  function upd(){
+    const d=cur(),id=d[0],c=S.c[id]||0,tg=tgt(),tk=dk(new Date());
+    const p=tg?Math.min(1,c/tg):(c%100)/100,a=p*2*Math.PI;
+    $('tsa').textContent=d[3];$('tsm').textContent=T(d[1],d[2]);
+    $('tsn').textContent=N(c);$('tsg').textContent=N(c)+'/'+(tg?N(tg):'∞');
+    $('tsp').setAttribute('stroke-dashoffset',(C*(1-p)).toFixed(1));
+    $('tsd').setAttribute('cx',(100+R*Math.sin(a)).toFixed(2));$('tsd').setAttribute('cy',(100-R*Math.cos(a)).toFixed(2));
+    $('tsh').textContent=tg&&c>=tg?T('✓ সম্পূর্ণ হয়েছে — আবার ট্যাপ করলে নতুন রাউন্ড শুরু হবে','✓ Completed — tap again to start a new round'):T('গণনা করতে বৃত্তের ভেতরে ট্যাপ করুন','Tap inside the circle to count');
+    const vals=Object.values(S.day),total=vals.reduce((x,y)=>x+y,0),hi=vals.length?Math.max(...vals):0;
+    $('tst').textContent=N(total);$('tsy').textContent=N(S.day[tk]||0);$('tsx').textContent=N(hi);
+    TB.querySelectorAll('.tsb-chips button').forEach((b,i)=>b.classList.toggle('on',i===S.sel));
+    const days=[];for(let i=6;i>=0;i--){const x=dd(nd(),-i);days.push([SH[x.getDay()],S.day[dk(x)]||0])}
+    const mx=Math.max(1,...days.map(z=>z[1]));
+    $('tsb7').innerHTML=days.map(z=>`<div class="c"><em>${z[1]?N(z[1]):''}</em><div class="bw"><i style="height:${Math.max(3,Math.round(z[1]/mx*100))}%"></i></div><span>${z[0]}</span></div>`).join('');
+  }
+  TB.querySelectorAll('.tsb-chips button').forEach((b,i)=>b.onclick=()=>{S.sel=i;save();upd()});
+  $('tsr').onclick=()=>{const id=cur()[0],tg=tgt(),tk=dk(new Date());let c=S.c[id]||0;if(tg&&c>=tg)c=0;c++;S.c[id]=c;S.day[tk]=(S.day[tk]||0)+1;vib(tg&&c>=tg?[40,50,40,50,90]:12);save();upd()};
+  $('tsz').onclick=()=>{S.c[cur()[0]]=0;vib(20);save();upd()};
+  $('tsg').onclick=()=>{const i=TG.indexOf(tgt());S.tg[cur()[0]]=TG[(i+1)%TG.length];save();upd()};
+  upd();
+}
 $('xk1').onclick=()=>openT(T('কিবলা কম্পাস','Qibla Compass'),qibla);
 $('xk2').onclick=()=>openT(T('রোজার ক্যালেন্ডার','Fasting Calendar'),roza);
 $('xk3').onclick=()=>openT(T('হিজরি ক্যালেন্ডার','Hijri Calendar'),hcal);
 $('xk4').onclick=()=>openT(T('জাকাত ক্যালকুলেটর','Zakat Calculator'),zakat);
+$('xk5').onclick=()=>openT(T('ডিজিটাল তাসবিহ','Digital Tasbih'),tasbih);
 })();
 </script>
 <script>

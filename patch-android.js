@@ -22,6 +22,15 @@ for (const d of fs.readdirSync(res).filter(x => x.startsWith('mipmap-'))) {
   }
 }
 
+// 3.5) অ্যাপের নাম (ফোনের আইকনের নিচে): Noor Namaz
+const sx = 'android/app/src/main/res/values/strings.xml';
+if (fs.existsSync(sx)) {
+  let s = fs.readFileSync(sx, 'utf8');
+  s = s.replace(/(<string name="app_name">)[^<]*(<\/string>)/, '$1Noor Namaz$2')
+       .replace(/(<string name="title_activity_main">)[^<]*(<\/string>)/, '$1Noor Namaz$2');
+  fs.writeFileSync(sx, s);
+}
+
 // 4) পারমিশন
 const mf = 'android/app/src/main/AndroidManifest.xml';
 let x = fs.readFileSync(mf, 'utf8');

@@ -1,13 +1,13 @@
 {
-  "name": "নূর - সালাফি নামাজের সময়সূচি",
-  "short_name": "নূর",
+  "name": "Noor Namaz - সালাফি নামাজের সময়সূচি",
+  "short_name": "Noor Namaz",
   "description": "সালাফি নামাজের সময়সূচি (অফলাইনেও চলে)",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#07070a",
-  "theme_color": "#07070a",
+  "background_color": "#0F081F",
+  "theme_color": "#420F9C",
   "lang": "bn",
   "icons": [
     {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
