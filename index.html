@@ -724,8 +724,444 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
 .qsb .qsx b{font-size:clamp(16px,5.4vw,23px);font-weight:800;line-height:1.25;color:var(--ink)}
 .qsb .qsx span{font-size:clamp(12px,3.7vw,15px);line-height:1.3;color:var(--mu)}
 </style>
+<!-- ===== LOGIN 1/2 (শুরু): সেশন আগে-থেকে-চেক + লগইন স্টাইল ===== -->
+<script>(function(){var ok=false;try{ok=!!(localStorage.getItem('lgnS')||sessionStorage.getItem('lgnS'))}catch(e){}document.documentElement.setAttribute('data-auth',ok?'in':'out')})();</script>
+<style id="lgn-css">
+html[data-auth=in] #lgn{display:none!important}
+html[data-auth=out]{overflow:hidden}
+#lgn,#lgn *{box-sizing:border-box}
+#lgn{--lp:#7B4FD6;--lp2:#9B7BE6;position:fixed;inset:0;z-index:100000;display:flex;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:max(18px,env(safe-area-inset-top)) 16px max(18px,env(safe-area-inset-bottom));color:var(--ink);
+  background:radial-gradient(120% 70% at 50% -10%,rgba(139,92,246,.30),transparent 60%),radial-gradient(90% 60% at 100% 110%,var(--glow),transparent 60%),var(--bg)}
+#lgn .lgn-card{margin:auto;width:100%;max-width:400px;padding:26px 20px 20px;border-radius:28px;background:var(--sf);border:1px solid var(--ln);box-shadow:var(--sh);
+  animation:lgnIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes lgnIn{from{opacity:0;transform:translateY(14px) scale(.98)}}
+@media (prefers-reduced-motion:reduce){#lgn .lgn-card{animation:none}}
+
+#lgn .lgn-brand{text-align:center;margin-bottom:18px}
+#lgn .lgn-logo{display:block;width:64px;height:64px;margin:0 auto 10px;border-radius:22%;overflow:hidden;box-shadow:0 6px 18px -6px rgba(80,21,183,.6)}
+#lgn .lgn-logo svg,#lgn .lgn-logo img{display:block;width:100%;height:100%}
+#lgn .lgn-brand b{display:block;font-size:24px;font-weight:800;letter-spacing:.2px;color:var(--ink)}
+#lgn .lgn-brand p{margin-top:4px;font-size:14px;color:var(--mu)}
+
+#lgn .lgn-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;margin-bottom:16px;border-radius:16px;background:var(--sf2);border:1px solid var(--ln)}
+#lgn .lgn-tabs button{height:42px;border-radius:12px;font-size:14.5px;font-weight:700;color:var(--mu);transition:background .2s,color .2s}
+#lgn .lgn-tabs button[aria-selected=true]{color:#fff;background:linear-gradient(135deg,var(--lp),var(--lp2));box-shadow:0 6px 14px -8px rgba(80,21,183,.7)}
+
+#lgn .lgn-fl{display:block;margin-bottom:12px}
+#lgn .lgn-fl>span{display:block;margin:0 2px 6px;font-size:13px;font-weight:700;color:var(--mu)}
+#lgn .lgn-in{display:block;width:100%;height:52px;padding:0 16px;border-radius:16px;border:1.5px solid var(--ln);background:var(--sf2);color:var(--ink);font-size:16px;outline:0;transition:border-color .2s,box-shadow .2s}
+#lgn .lgn-in:focus{border-color:var(--lp2);box-shadow:0 0 0 4px rgba(139,92,246,.22)}
+#lgn .lgn-pw{position:relative}
+#lgn .lgn-pw .lgn-in{padding-inline-end:50px}
+#lgn #lgn-eye{position:absolute;top:0;bottom:0;inset-inline-end:4px;width:44px;display:grid;place-items:center;color:var(--mu)}
+#lgn #lgn-eye svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#lgn #lgn-eye .sl{display:none}
+#lgn #lgn-eye.on .sl{display:block}
+#lgn[data-m=in] [data-up]{display:none}
+#lgn[data-m=up] #lgn-fg{display:none}
+
+#lgn .lgn-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 2px 8px;font-size:13.5px}
+#lgn .lgn-ck{display:flex;align-items:center;gap:8px;color:var(--mu);cursor:pointer}
+#lgn .lgn-ck input{flex:none;width:20px;height:20px;padding:0;border-radius:6px;accent-color:var(--lp)}
+#lgn .lgn-lk{padding:6px 2px;font-size:13.5px;font-weight:700;color:var(--hxk)}
+#lgn #lgn-err{min-height:22px;margin:0 2px 8px;font-size:13.5px;font-weight:600;line-height:1.4;color:var(--warn)}
+#lgn .lgn-go{display:block;width:100%;height:54px;border-radius:18px;font-size:16.5px;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--lp),var(--lp2));box-shadow:0 12px 24px -12px rgba(80,21,183,.8);transition:transform .15s,opacity .2s}
+#lgn .lgn-go:active{transform:scale(.98)}
+#lgn .lgn-go[disabled]{opacity:.6;cursor:progress}
+#lgn .lgn-note{margin:14px 4px 0;text-align:center;font-size:12px;line-height:1.5;color:var(--mu)}
+#lgn button:focus-visible,#lgn input:focus-visible{outline:2px solid var(--lp2);outline-offset:2px}
+
+/* হোম হেডারের লগআউট বাটন (থিম/সেটিংস বাটনের মতো) */
+#lgn-out{width:44px;height:44px;padding:0;border-radius:50%;display:grid;place-items:center;color:var(--hxk);background:var(--hxcard);
+  border:2px solid rgba(80,21,183,.55);box-shadow:0 6px 14px -8px rgba(80,21,183,.6)}
+:root[data-theme=dark] #lgn-out{border-color:rgba(183,156,255,.55)}
+#lgn-out svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<style id="acc-css">
+#xacct[hidden],#xsec[hidden],.acc-box[hidden]{display:none!important}
+.acc-user{display:flex;align-items:center;gap:14px;margin:10px 0 8px;padding:14px;border-radius:20px;background:var(--sf2);border:1px solid var(--ln)}
+.acc-av{width:56px;height:56px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:24px;font-weight:800;color:#fff;background:linear-gradient(150deg,#9f7bff,#4c1d95);box-shadow:0 8px 16px -8px #4c1d95}
+.acc-who{min-width:0}
+.acc-who b{display:block;font-size:17px;font-weight:800;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-who span{display:block;margin-top:2px;font-size:13px;color:var(--mu);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acc-ed{display:flex;gap:8px;margin:6px 0 4px}
+.acc-ed .btn{flex:none}
+.acc-in{width:100%;min-width:0;padding:11px 12px;border-radius:13px;border:1px solid var(--ln);background:var(--sf2);color:var(--ink);font:inherit;font-size:15px}
+.acc-in:focus-visible{outline:0;border-color:var(--ac2);box-shadow:0 0 0 3px var(--acs)}
+.acc-kv{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 2px;font-size:14.5px}
+.acc-kv+.acc-kv{border-top:1px solid var(--ln)}
+.acc-kv span{color:var(--mu);flex:none}
+.acc-kv b{min-width:0;color:var(--ink);font-weight:700;text-align:right}
+.acc-it+.acc-it{border-top:1px solid var(--ln)}
+.acc-act{display:flex;align-items:center;gap:12px;width:100%;margin:0;padding:12px 2px;border:0;border-radius:0;background:none;box-shadow:none;color:var(--ink);font:inherit;font-size:16px;text-align:left;cursor:pointer}
+.acc-act .si{width:38px;height:38px;border-radius:12px}
+.acc-act.dg .st b{color:var(--warn)}
+.acc-box{display:flex;flex-direction:column;gap:8px;margin:0 0 12px;padding:12px;border-radius:16px;background:var(--sf2);border:1px solid var(--ln)}
+.acc-box .acc-in{background:var(--sf)}
+.acc-box .mu{margin:0;font-size:12.5px}
+.acc-msg{min-height:0;margin:6px 4px 4px;font-size:13.5px;font-weight:600;line-height:1.4;color:var(--warn)}
+.acc-msg:empty{display:none}
+.acc-msg.ok{color:var(--ac2)}
+</style>
+<!-- ===== LOGIN 1/2 (শেষ) ===== -->
 </head>
 <body>
+<!-- ===== LOGIN 2/2 (শুরু): লগইন পেজ + লজিক ===== -->
+<div id="lgn" data-m="in" role="dialog" aria-modal="true" aria-labelledby="lgn-t">
+  <div class="lgn-card">
+    <div class="lgn-brand">
+      <div class="lgn-logo" id="lgn-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="lgn-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7B4FD6"/><stop offset="1" stop-color="#9B7BE6"/></linearGradient></defs><rect width="24" height="24" fill="url(#lgn-g)"/><path transform="translate(4.56 4.56) scale(.62)" d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.7 6.7 0 0 0 10.7 10.7z" fill="#fff"/></svg></div>
+      <b id="lgn-t">নূর নামাজ</b>
+      <p id="lgn-sub">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+    </div>
+
+    <div class="lgn-tabs" role="tablist">
+      <button type="button" role="tab" id="lgn-tin" data-m="in" aria-selected="true" data-en="Sign in">প্রবেশ</button>
+      <button type="button" role="tab" id="lgn-tup" data-m="up" aria-selected="false" data-en="Sign up">নতুন অ্যাকাউন্ট</button>
+    </div>
+
+    <form id="lgn-f" novalidate>
+      <label class="lgn-fl" data-up><span data-en="Your name">আপনার নাম</span>
+        <input class="lgn-in" id="lgn-n" type="text" autocomplete="name"></label>
+      <label class="lgn-fl"><span data-en="Email">ইমেইল</span>
+        <input class="lgn-in" id="lgn-e" type="email" inputmode="email" autocomplete="username" autocapitalize="none" spellcheck="false"></label>
+      <label class="lgn-fl"><span data-en="Password">পাসওয়ার্ড</span>
+        <div class="lgn-pw">
+          <input class="lgn-in" id="lgn-p" type="password" autocomplete="current-password">
+          <button type="button" id="lgn-eye" aria-label="পাসওয়ার্ড দেখান"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="sl" d="M4 4l16 16"/></svg></button>
+        </div></label>
+      <label class="lgn-fl" data-up><span data-en="Confirm password">পাসওয়ার্ড আবার দিন</span>
+        <input class="lgn-in" id="lgn-p2" type="password" autocomplete="new-password"></label>
+
+      <div class="lgn-row">
+        <label class="lgn-ck"><input type="checkbox" id="lgn-r" checked><span data-en="Keep me signed in">আমাকে মনে রাখুন</span></label>
+        <button type="button" class="lgn-lk" id="lgn-fg" data-en="Forgot password?">পাসওয়ার্ড ভুলে গেছেন?</button>
+      </div>
+      <p id="lgn-err" role="alert" aria-live="polite"></p>
+      <button type="submit" class="lgn-go" id="lgn-go">প্রবেশ করুন</button>
+    </form>
+    <p class="lgn-note" data-en="Your account is securely stored in the cloud.">আপনার অ্যাকাউন্ট নিরাপদে ক্লাউডে সংরক্ষিত থাকে।</p>
+  </div>
+</div>
+
+<script id="lgn-js">
+/* ============================================================
+   Firebase Authentication — এখানে আপনার নিজের Firebase কনফিগ বসান
+   (Firebase Console → Project settings → Your apps → Web app → firebaseConfig)
+   ============================================================ */
+window.NOOR_FIREBASE = {
+  apiKey: "AIzaSyCFMXhMJCa6M477pcZuuiO9d-QzsiKa2n4",
+  authDomain: "noor-namaz.firebaseapp.com",
+  projectId: "noor-namaz",
+  storageBucket: "noor-namaz.firebasestorage.app",
+  messagingSenderId: "424035484524",
+  appId: "1:424035484524:web:9c0bc38b266e5b23c32949"
+};
+
+(function(){
+'use strict';
+var H=document.documentElement,EN=!!window.__EN,SKEY='lgnS',mode='in',locked=[];
+var FB_VER='10.14.1';
+var CFG=window.NOOR_FIREBASE;
+var $=function(i){return document.getElementById(i)};
+var ov=$('lgn'),f=$('lgn-f'),err=$('lgn-err'),go=$('lgn-go');
+function t(bn,en){return EN?en:bn}
+
+if(EN){
+  [].forEach.call(ov.querySelectorAll('[data-en]'),function(el){el.textContent=el.getAttribute('data-en')});
+  $('lgn-eye').setAttribute('aria-label','Show password');
+}
+
+/* ---------- Firebase লোড (দরকারের সময়) ---------- */
+var FB=null,auth=null,loading=null;
+function cfgOk(){return CFG&&CFG.apiKey&&CFG.apiKey.indexOf('YOUR_')!==0&&CFG.projectId&&CFG.projectId.indexOf('YOUR_')!==0}
+function load(){
+  if(FB)return Promise.resolve(FB);
+  if(!cfgOk())return Promise.reject(new Error('cfg'));
+  if(loading)return loading;
+  var base='https://www.gstatic.com/firebasejs/'+FB_VER+'/';
+  loading=Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js')]).then(function(a){
+    var app=a[0].initializeApp(CFG);
+    auth=a[1].getAuth(app);
+    FB=a[1];
+    return FB;
+  }).catch(function(x){loading=null;throw new Error('net')});
+  return loading;
+}
+
+/* ---------- সেশন চিহ্ন (পেজ খোলার সময় ঝলক এড়াতে) ---------- */
+function clearS(){try{localStorage.removeItem(SKEY);sessionStorage.removeItem(SKEY)}catch(e){}}
+function readS(){try{return JSON.parse(localStorage.getItem(SKEY)||sessionStorage.getItem(SKEY))}catch(e){return null}}
+function setS(u,remember){
+  var v=JSON.stringify({n:u.displayName||u.name||'',e:u.email||''});
+  try{(remember?localStorage:sessionStorage).setItem(SKEY,v);(remember?sessionStorage:localStorage).removeItem(SKEY)}catch(e){}
+}
+
+/* ---------- UI ---------- */
+function inertApp(on){
+  if(on){
+    [].forEach.call(document.body.children,function(el){
+      if(el===ov||el.tagName==='SCRIPT'||el.hasAttribute('inert'))return;
+      el.setAttribute('inert','');locked.push(el);
+    });
+  }else{locked.forEach(function(el){el.removeAttribute('inert')});locked=[]}
+}
+function setMode(m){
+  mode=m;ov.setAttribute('data-m',m);
+  $('lgn-tin').setAttribute('aria-selected',m==='in');$('lgn-tup').setAttribute('aria-selected',m==='up');
+  $('lgn-sub').textContent=m==='in'?t('আপনার অ্যাকাউন্টে প্রবেশ করুন','Sign in to your account'):t('নতুন অ্যাকাউন্ট খুলুন','Create a new account');
+  go.textContent=m==='in'?t('প্রবেশ করুন','Sign in'):t('অ্যাকাউন্ট খুলুন','Create account');
+  $('lgn-p').setAttribute('autocomplete',m==='in'?'current-password':'new-password');
+  err.textContent='';
+}
+function fail(msg,id){err.textContent=msg;if(id)$(id).focus()}
+function busy(b){go.disabled=b}
+function lock(){
+  clearS();H.setAttribute('data-auth','out');inertApp(true);
+  f.reset();setMode('in');
+  setTimeout(function(){$('lgn-e').focus()},60);
+}
+function unlock(){H.setAttribute('data-auth','in');inertApp(false);f.reset();setMode('in')}
+
+var MSG={
+  name:['আপনার নাম লিখুন','Please enter your name'],
+  email:['সঠিক ইমেইল ঠিকানা দিন','Enter a valid email address'],
+  short:['পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে','Password must be at least 6 characters'],
+  match:['দুটি পাসওয়ার্ড মিলছে না','Passwords do not match'],
+  exists:['এই ইমেইলে আগেই অ্যাকাউন্ট খোলা হয়েছে। “প্রবেশ” ট্যাব থেকে ঢুকুন।','An account with this email already exists. Use the “Sign in” tab.'],
+  bad:['ইমেইল বা পাসওয়ার্ড ভুল। প্রথমবার হলে “নতুন অ্যাকাউন্ট” ট্যাব থেকে খুলুন।','Wrong email or password. First time here? Use the “Sign up” tab.'],
+  net:['ইন্টারনেট সংযোগ চেক করুন, তারপর আবার চেষ্টা করুন।','Check your internet connection and try again.'],
+  many:['অনেকবার চেষ্টা করা হয়েছে। একটু পরে আবার চেষ্টা করুন।','Too many attempts. Please try again later.'],
+  off:['Firebase-এ Email/Password সাইন-ইন চালু করা হয়নি।','Email/Password sign-in is not enabled in Firebase.'],
+  cfg:['Firebase কনফিগ বসানো হয়নি। ফাইলে NOOR_FIREBASE-এ নিজের কনফিগ দিন।','Firebase config is missing. Fill in NOOR_FIREBASE in the file.'],
+  curin:['বর্তমান পাসওয়ার্ড লিখুন','Enter your current password'],
+  curbad:['বর্তমান পাসওয়ার্ড ভুল','Current password is incorrect'],
+  same:['নতুন পাসওয়ার্ড আগেরটার থেকে আলাদা হতে হবে','New password must be different from the current one'],
+  pwok:['পাসওয়ার্ড বদলানো হয়েছে','Password updated'],
+  nameok:['নাম বদলানো হয়েছে','Name updated'],
+  recent:['নিরাপত্তার জন্য একবার লগআউট করে আবার লগইন করুন, তারপর চেষ্টা করুন।','For security, log out and sign in again, then try once more.'],
+  other:['কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।','Something went wrong. Please try again.']
+};
+function m(k){return MSG[k][EN?1:0]}
+function key(x){
+  if(!x)return 'other';
+  if(x.message==='cfg'||x.message==='net')return x.message;
+  switch(x.code){
+    case 'auth/email-already-in-use':return 'exists';
+    case 'auth/invalid-credential':case 'auth/invalid-login-credentials':
+    case 'auth/user-not-found':case 'auth/wrong-password':return 'bad';
+    case 'auth/weak-password':return 'short';
+    case 'auth/invalid-email':return 'email';
+    case 'auth/network-request-failed':return 'net';
+    case 'auth/too-many-requests':return 'many';
+    case 'auth/operation-not-allowed':return 'off';
+    case 'x-curbad':return 'curbad';
+    case 'auth/requires-recent-login':case 'auth/user-token-expired':case 'auth/user-not-found':return 'recent';
+  }
+  return 'other';
+}
+
+$('lgn-tin').onclick=function(){setMode('in')};
+$('lgn-tup').onclick=function(){setMode('up')};
+$('lgn-eye').onclick=function(){
+  var show=$('lgn-p').type==='password';
+  $('lgn-p').type=$('lgn-p2').type=show?'text':'password';
+  this.classList.toggle('on',show);
+  this.setAttribute('aria-label',show?t('পাসওয়ার্ড লুকান','Hide password'):t('পাসওয়ার্ড দেখান','Show password'));
+};
+
+/* ---------- প্রবেশ / নতুন অ্যাকাউন্ট ---------- */
+f.addEventListener('submit',function(e){
+  e.preventDefault();if(go.disabled)return;err.textContent='';
+  var name=$('lgn-n').value.trim(),email=$('lgn-e').value.trim().toLowerCase(),pw=$('lgn-p').value,pw2=$('lgn-p2').value,rem=$('lgn-r').checked;
+  if(mode==='up'&&name.length<2)return fail(m('name'),'lgn-n');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))return fail(m('email'),'lgn-e');
+  if(pw.length<6)return fail(m('short'),'lgn-p');
+  if(mode==='up'&&pw!==pw2)return fail(m('match'),'lgn-p2');
+  busy(true);
+  var up=mode==='up';
+  load().then(function(){
+    return FB.setPersistence(auth,rem?FB.browserLocalPersistence:FB.browserSessionPersistence);
+  }).then(function(){
+    if(up){
+      return FB.createUserWithEmailAndPassword(auth,email,pw).then(function(c){
+        return FB.updateProfile(c.user,{displayName:name}).catch(function(){}).then(function(){return c.user});
+      });
+    }
+    return FB.signInWithEmailAndPassword(auth,email,pw).then(function(c){return c.user});
+  }).then(function(u){
+    setS(u.displayName?u:{displayName:name,email:email},rem);busy(false);unlock();paintAcct(u);
+  }).catch(function(x){busy(false);fail(m(key(x)))});
+});
+
+/* ---------- পাসওয়ার্ড ভুলে গেলে: ইমেইলে রিসেট লিংক ---------- */
+$('lgn-fg').onclick=function(){
+  var email=$('lgn-e').value.trim().toLowerCase();
+  if(!email)return fail(t('আগে ইমেইল লিখুন','Enter your email first'),'lgn-e');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))return fail(m('email'),'lgn-e');
+  load().then(function(){return FB.sendPasswordResetEmail(auth,email)}).then(function(){
+    err.textContent=t('পাসওয়ার্ড রিসেটের লিংক ইমেইলে পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।','Password reset link sent to your email (check spam too).');
+  }).catch(function(x){fail(m(key(x)))});
+};
+
+/* ---------- সেটিংসের ভেতরে: প্রোফাইল ও নিরাপত্তা ---------- */
+function ic(c1,c2,p){return '<span class="si" style="--t1:'+c1+';--t2:'+c2+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg></span>'}
+var P={
+  user:'<path d="M12 12.2a4.1 4.1 0 100-8.2 4.1 4.1 0 000 8.2zM4.6 20a7.4 7.4 0 0114.8 0"/>',
+  shield:'<path d="M12 3.2l7 2.8v5.4c0 4.4-3 7.7-7 9.4-4-1.7-7-5-7-9.4V6z"/><path d="M9 12l2.2 2.2L15.4 10"/>',
+  lock:'<rect x="5" y="10.5" width="14" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5"/>',
+  mail:'<rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="M4 7.5l8 6 8-6"/>',
+  out:'<path d="M9 4.5H6.5A2.5 2.5 0 004 7v10a2.5 2.5 0 002.5 2.5H9"/><path d="M15 8l4 4-4 4M19 12H9"/>',
+  trash:'<path d="M5 7h14M10 7V4.5h4V7M7 7l1 12.5h8L17 7M10 11v5M14 11v5"/>'
+};
+function say(id,txt,ok){var el=$(id);if(!el)return;el.textContent=txt||'';el.className='acc-msg'+(ok?' ok':'')}
+function isRem(){try{return !!localStorage.getItem(SKEY)}catch(e){return true}}
+function curU(){return auth&&auth.currentUser}
+function fmt(v){try{var d=new Date(v);if(isNaN(d.getTime()))return '—';return d.toLocaleDateString(EN?'en-GB':'bn-BD',{day:'numeric',month:'long',year:'numeric'})}catch(e){return '—'}}
+function run(fm,msgId,p){
+  var sb=fm.querySelector('button[type=submit]');if(sb)sb.disabled=true;
+  return p.catch(function(x){say(msgId,m(key(x)))}).then(function(){if(sb)sb.disabled=false});
+}
+function reauth(pw){
+  return load().then(function(){
+    var u=curU();if(!u||!u.email)throw {code:'auth/requires-recent-login'};
+    return FB.reauthenticateWithCredential(u,FB.EmailAuthProvider.credential(u.email,pw)).then(function(){return u});
+  }).catch(function(x){
+    var c=x&&x.code;
+    if(c==='auth/invalid-credential'||c==='auth/wrong-password'||c==='auth/invalid-login-credentials')throw {code:'x-curbad'};
+    throw x;
+  });
+}
+
+/* প্রোফাইল কার্ড — ব্যবহারকারী বদলালে নতুন করে আঁকা হয় */
+function paintAcct(u){
+  var A=$('xacct'),S=$('xsec');if(!A||!S)return;
+  var s=readS()||{};
+  var email=(u&&u.email)||s.e||'';
+  var name=(u&&u.displayName)||s.n||(email?email.split('@')[0]:'');
+  var show=!!email;A.hidden=!show;S.hidden=!show;
+  if(!show){A.innerHTML='';return}
+  A.innerHTML=
+    '<div class="sh">'+ic('#9f7bff','#4c1d95',P.user)+'<div><h1>'+t('প্রোফাইল','Profile')+'</h1><p class="mu">'+t('আপনার অ্যাকাউন্টের তথ্য','Your account details')+'</p></div></div>'
+   +'<div class="acc-user"><div class="acc-av" id="acc-av"></div><div class="acc-who"><b id="acc-nm"></b><span id="acc-em"></span></div></div>'
+   +'<form class="acc-ed" id="acc-nf" novalidate><input class="acc-in" id="acc-ni" type="text" maxlength="40" autocomplete="name" aria-label="'+t('আপনার নাম','Your name')+'"><button class="btn" type="submit">'+t('সংরক্ষণ','Save')+'</button></form>'
+   +'<div class="sl"><div class="acc-kv"><span>'+t('অ্যাকাউন্ট খোলা হয়েছে','Member since')+'</span><b id="acc-cr"></b></div>'
+   +'<div class="acc-kv"><span>'+t('সর্বশেষ প্রবেশ','Last sign-in')+'</span><b id="acc-ls"></b></div></div>'
+   +'<p class="acc-msg" id="acc-m1" role="status"></p>';
+  $('acc-av').textContent=(Array.from(name||email)[0]||'?').toUpperCase();
+  $('acc-nm').textContent=name;$('acc-em').textContent=email;$('acc-ni').value=name;
+  $('acc-cr').textContent=u&&u.metadata?fmt(u.metadata.creationTime):'—';
+  $('acc-ls').textContent=u&&u.metadata?fmt(u.metadata.lastSignInTime):'—';
+}
+
+/* নিরাপত্তা কার্ড — একবারই তৈরি হয় */
+function buildSec(){
+  var S=$('xsec');if(!S||S.getAttribute('data-ok'))return;S.setAttribute('data-ok','1');
+  S.innerHTML=
+    '<div class="sh">'+ic('#22c1dc','#0b6a8a',P.shield)+'<div><h1>'+t('নিরাপত্তা','Security')+'</h1><p class="mu">'+t('পাসওয়ার্ড ও অ্যাকাউন্ট সুরক্ষা','Password & account protection')+'</p></div></div>'
+   +'<div class="sl">'
+   +'<div class="acc-it"><button type="button" class="acc-act" data-a="pw">'+ic('#7c83ff','#312e81',P.lock)+'<span class="st"><b>'+t('পাসওয়ার্ড পরিবর্তন','Change password')+'</b></span></button>'
+   +'<form class="acc-box" id="acc-pwf" hidden novalidate>'
+   +'<input class="acc-in" id="acc-p0" type="password" autocomplete="current-password" placeholder="'+t('বর্তমান পাসওয়ার্ড','Current password')+'" aria-label="'+t('বর্তমান পাসওয়ার্ড','Current password')+'">'
+   +'<input class="acc-in" id="acc-p1" type="password" autocomplete="new-password" placeholder="'+t('নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)','New password (min 6 characters)')+'" aria-label="'+t('নতুন পাসওয়ার্ড','New password')+'">'
+   +'<input class="acc-in" id="acc-p2" type="password" autocomplete="new-password" placeholder="'+t('নতুন পাসওয়ার্ড আবার দিন','Confirm new password')+'" aria-label="'+t('নতুন পাসওয়ার্ড আবার দিন','Confirm new password')+'">'
+   +'<button class="btn" type="submit">'+t('পাসওয়ার্ড বদলান','Update password')+'</button></form></div>'
+   +'<div class="acc-it"><button type="button" class="acc-act" data-a="rs">'+ic('#38bdf8','#0369a1',P.mail)+'<span class="st"><b>'+t('রিসেট লিংক ইমেইলে পাঠান','Email me a reset link')+'</b></span></button></div>'
+   +'<div class="acc-it"><button type="button" class="acc-act" data-a="out">'+ic('#ffb454','#e0457b',P.out)+'<span class="st"><b>'+t('লগআউট','Log out')+'</b></span></button></div>'
+   +'<div class="acc-it"><button type="button" class="acc-act dg" data-a="del">'+ic('#ff8fa3','#be185d',P.trash)+'<span class="st"><b>'+t('অ্যাকাউন্ট মুছুন','Delete account')+'</b></span></button>'
+   +'<form class="acc-box" id="acc-delf" hidden novalidate>'
+   +'<p class="mu">'+t('অ্যাকাউন্ট চিরতরে মুছে যাবে। নিশ্চিত করতে পাসওয়ার্ড দিন। (এই ফোনের নামাজের সেটিংস ও ডেটা মুছবে না।)','Your account will be permanently deleted. Enter your password to confirm. (Prayer settings and data on this device are kept.)')+'</p>'
+   +'<input class="acc-in" id="acc-d0" type="password" autocomplete="current-password" placeholder="'+t('পাসওয়ার্ড','Password')+'" aria-label="'+t('পাসওয়ার্ড','Password')+'">'
+   +'<button class="btn" type="submit" style="color:var(--warn)">'+t('হ্যাঁ, অ্যাকাউন্ট মুছুন','Yes, delete my account')+'</button></form></div>'
+   +'</div><p class="acc-msg" id="acc-m2" role="status"></p>';
+}
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest&&e.target.closest('[data-a]'),S=$('xsec');
+  if(!b||!S||!S.contains(b))return;
+  var a=b.getAttribute('data-a');say('acc-m2','');
+  if(a==='pw'||a==='del'){
+    var id=a==='pw'?'acc-pwf':'acc-delf',oth=a==='pw'?'acc-delf':'acc-pwf';
+    $(oth).hidden=true;$(id).hidden=!$(id).hidden;
+    if(!$(id).hidden){var i0=$(id).querySelector('input');if(i0)i0.focus()}
+  }else if(a==='rs'){
+    var em=(curU()&&curU().email)||(readS()||{}).e;
+    if(!em)return say('acc-m2',m('other'));
+    load().then(function(){return FB.sendPasswordResetEmail(auth,em)}).then(function(){
+      say('acc-m2',t('পাসওয়ার্ড রিসেটের লিংক ইমেইলে পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।','Password reset link sent to your email (check spam too).'),true);
+    }).catch(function(x){say('acc-m2',m(key(x)))});
+  }else if(a==='out'){
+    if(!confirm(t('লগআউট করবেন?','Log out?')))return;
+    load().then(function(){return FB.signOut(auth)}).catch(function(){lock()});
+  }
+});
+
+document.addEventListener('submit',function(e){
+  var fm=e.target,id=fm&&fm.id;
+  if(id==='acc-nf'){
+    e.preventDefault();
+    var nm=$('acc-ni').value.trim();
+    if(nm.length<2)return say('acc-m1',m('name'));
+    say('acc-m1','');
+    run(fm,'acc-m1',load().then(function(){
+      var u=curU();if(!u)throw {code:'auth/requires-recent-login'};
+      return FB.updateProfile(u,{displayName:nm}).then(function(){return u});
+    }).then(function(u){
+      setS({displayName:nm,email:u.email},isRem());paintAcct(u);say('acc-m1',m('nameok'),true);
+    }));
+  }else if(id==='acc-pwf'){
+    e.preventDefault();
+    var c=$('acc-p0').value,n=$('acc-p1').value,n2=$('acc-p2').value;
+    say('acc-m2','');
+    if(!c)return say('acc-m2',m('curin'));
+    if(n.length<6)return say('acc-m2',m('short'));
+    if(n!==n2)return say('acc-m2',m('match'));
+    if(n===c)return say('acc-m2',m('same'));
+    run(fm,'acc-m2',reauth(c).then(function(u){return FB.updatePassword(u,n)}).then(function(){
+      fm.reset();fm.hidden=true;say('acc-m2',m('pwok'),true);
+    }));
+  }else if(id==='acc-delf'){
+    e.preventDefault();
+    var d=$('acc-d0').value;say('acc-m2','');
+    if(!d)return say('acc-m2',m('curin'));
+    if(!confirm(t('অ্যাকাউন্ট চিরতরে মুছে ফেলবেন?','Permanently delete your account?')))return;
+    run(fm,'acc-m2',reauth(d).then(function(u){return FB.deleteUser(u)}).then(function(){lock();paintAcct(null)}));
+  }
+});
+
+setMode('in');
+
+/* ---------- পেজ লোড: লোগো, লগআউট বাটন, Firebase সেশন যাচাই ---------- */
+function ready(fn){document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fn):fn()}
+ready(function(){
+  var lg=document.querySelector('.hx-logo'),src=lg&&lg.getAttribute('src');
+  if(src){var im=new Image();im.alt='';im.src=src;im.onload=function(){var box=$('lgn-logo');box.textContent='';box.appendChild(im)}}
+
+  buildSec();paintAcct(null);
+
+  if(H.getAttribute('data-auth')==='out'){inertApp(true);setTimeout(function(){$('lgn-e').focus()},80)}
+
+  load().then(function(){
+    FB.onAuthStateChanged(auth,function(u){
+      if(u){
+        if(!readS())setS(u,true);
+        if(H.getAttribute('data-auth')==='out')unlock();
+        paintAcct(u);
+      }else{
+        lock();paintAcct(null);
+      }
+    });
+  }).catch(function(x){
+    /* Firebase লোড হয়নি (কনফিগ নেই বা অফলাইন): লক থাকলে কারণ দেখান */
+    if(H.getAttribute('data-auth')==='out')fail(m(key(x)));
+  });
+});
+})();
+</script>
+<!-- ===== LOGIN 2/2 (শেষ) ===== -->
+
 <div id="aur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <div id="ring" hidden role="alert"><span id="rt"></span><button class="btn" id="rs">বন্ধ করুন</button></div>
 <div id="gr" hidden role="dialog" aria-modal="true" aria-labelledby="grt"><div class="grb"><div class="gri" id="gri"></div><h2 id="grt"></h2><p class="grm" id="grm"></p><p class="gra" id="gra" lang="ar" dir="rtl"></p><p class="grt" id="grtr"></p><button class="btn" id="grx" type="button">বন্ধ করুন</button></div></div>
@@ -757,7 +1193,6 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
       </div>
       <div class="hx-act">
         <button id="th" type="button" aria-label="ডার্ক মোড চালু করুন" title="ডার্ক/লাইট মোড"><svg class="i2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 1 1 9.8 3.5a6.7 6.7 0 0 0 10.7 10.7z"/></svg></button>
-        <button id="hgear" type="button" aria-label="সেটিংস" title="সেটিংস"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg></button>
       </div>
     </div>
 
@@ -947,6 +1382,8 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
 <g fill="url(#sgold)"><rect x="331" y="52" width="2" height="22"/><circle cx="332" cy="49" r="3.6"/><rect x="243.500" y="46" width="2" height="12"/><circle cx="244.500" cy="44" r="2.6"/><rect x="417" y="62" width="2" height="12"/><circle cx="418" cy="60" r="2.4"/></g>
 <g fill="#FFE5A0" fill-opacity=".9"><path d="M278 170v-22a7 7 0 0114 0v22z"/><path d="M325 170v-26a7 7 0 0114 0v26z"/><path d="M372 170v-22a7 7 0 0114 0v22z"/></g>
 </svg><div class="sbt"><b>সেটিংস</b><span>আপনার নামাজের সঙ্গী, আপনার মতো করে</span></div></div>
+  <section class="card sc" id="xacct" aria-label="Profile" hidden></section>
+  <section class="card sc" id="xsec" aria-label="Security" hidden></section>
   <section class="card sc" id="xloc">
     <div class="sh"><span class="si" style="--t1:#ff8fa3;--t2:#be185d"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 00-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><div><h1>সহিহ সময়সূচি</h1><p class="mu">অবস্থান বদলাতে জেলা/শহরের নাম লিখুন অথবা জিপিএস চাপুন।</p></div></div>
     <form class="row" id="sf">
@@ -1189,7 +1626,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='44';
+const APP_BUILD='43';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
