@@ -37,7 +37,7 @@
 *{box-sizing:border-box;margin:0}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
-html,body{max-width:100%;overflow-x:hidden}
+html{max-width:100%;overflow-x:hidden}body{max-width:100%;overflow-x:hidden;overflow-x:clip}
 body{font-family:'NoorNum','Plus Jakarta Sans','Hind Siliguri','Noto Sans Bengali','Kohinoor Bangla',system-ui,sans-serif;font-size:15px;line-height:1.5;color:var(--ink);
 background:radial-gradient(110% 45% at 50% -8%,var(--glow),transparent 62%) no-repeat,var(--bg);background-attachment:fixed;min-height:100dvh;padding:12px;
 padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;transition:background-color .3s,color .3s}
@@ -710,6 +710,20 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
 :root[data-theme=dark] #nav button.on{color:#FFFFFF!important;background:rgba(183,156,255,.24)!important}
 #nav button.on span{font-weight:800!important}
 </style>
+<style id="qstickycss">
+/* কুরআন: স্ক্রলেও ওপরের বার সবসময় দেখা যায় */
+#qr-read .qhd{position:sticky;top:0;z-index:30;box-sizing:border-box;max-width:none;width:calc(100% + 24px / var(--z,1));margin:calc(-12px / var(--z,1)) calc(-12px / var(--z,1)) 0;padding:calc(12px / var(--z,1) + 10px + env(safe-area-inset-top,0px)) 14px 10px;border-radius:0;border:0;border-bottom:1px solid var(--ln);background:var(--bg);box-shadow:0 8px 18px -14px rgba(0,0,0,.55)}
+#qr-read .qhd .qi{background:none;border:0;color:var(--ink);width:42px;height:42px}
+#qr-read .qhd .qi svg{width:26px;height:26px}
+#qr-read .qhd .qc h1{font-size:19px;font-weight:800;letter-spacing:0}
+#qr-read .qhd .qc .mu{margin-top:2px;font-size:13.5px;color:var(--mu)}
+/* সূরার অলংকৃত ব্যানার */
+.qsb{position:relative;width:100%;aspect-ratio:360/100;color:var(--gold);background:var(--sf);border-radius:12px}
+.qsb svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.qsb .qsx{position:absolute;left:30%;right:30%;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;padding:0 4px}
+.qsb .qsx b{font-size:clamp(16px,5.4vw,23px);font-weight:800;line-height:1.25;color:var(--ink)}
+.qsb .qsx span{font-size:clamp(12px,3.7vw,15px);line-height:1.3;color:var(--mu)}
+</style>
 </head>
 <body>
 <div id="aur" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -802,6 +816,7 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
   <button class="card dm" type="button" id="xk5"><span class="ic" style="--t1:#f9a8d4;--t2:#9d174d"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="w" cx="12.0" cy="3.0" r="1.5"/><circle class="w" cx="16.6" cy="4.7" r="1.5"/><circle class="w" cx="19.1" cy="8.9" r="1.5"/><circle class="w" cx="18.2" cy="13.8" r="1.5"/><circle class="w" cx="14.5" cy="17.0" r="1.5"/><circle class="w" cx="9.5" cy="17.0" r="1.5"/><circle class="w" cx="5.8" cy="13.8" r="1.5"/><circle class="w" cx="4.9" cy="8.9" r="1.5"/><circle class="w" cx="7.4" cy="4.7" r="1.5"/><path class="a" d="M12 17.8v2"/><circle class="f" cx="12" cy="21.3" r="1.3"/></svg></span><div><b>ডিজিটাল তাসবিহ</b><span class="mu">গণনা, দৈনিক হিসাব ও ৭ দিনের ইতিহাস</span></div></button>
   <button class="card dm" type="button" id="xk2"><span class="ic" style="--t1:#7c83ff;--t2:#312e81"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8v2.2"/><path d="M9.2 7.6h5.6L13.7 5h-3.4z"/><path d="M8.6 7.6c-1.5 2.6-1.5 7.4 0 10h6.8c1.5-2.6 1.5-7.4 0-10"/><path d="M9.6 17.6v2.2h4.8v-2.2"/><path class="f" d="M12 9.6c1.3 1.4 1.7 2.4 1.7 3.4a1.7 1.7 0 01-3.4 0c0-1 .4-2 1.7-3.4z"/></svg></span><div><b>রোজার ক্যালেন্ডার</b><span class="mu">সেহরি-ইফতার, রমজানের কাউন্টডাউন, সুন্নাহ রোজা</span></div></button>
   <button class="card dm" type="button" id="xk3"><span class="ic" style="--t1:#9f7bff;--t2:#4c1d95"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="5" width="16.8" height="15.2" rx="3.2"/><path d="M3.6 10h16.8M8 3.4v3.2M16 3.4v3.2"/><path class="f" d="M15 17.6a3.4 3.4 0 11-3.9-4.8 2.8 2.8 0 003.9 4.8z"/></svg></span><div><b>হিজরি ক্যালেন্ডার</b><span class="mu">হিজরি তারিখ ও ইসলামি দিবস</span></div></button>
+  <button class="card dm" type="button" id="xk6"><span class="ic" style="--t1:#34d399;--t2:#047857"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="5" width="16.8" height="15.2" rx="3.2"/><path d="M3.6 10h16.8M8 3.4v3.2M16 3.4v3.2"/><path class="f" d="M12 12.4c1.9 0 3 1.2 3 2.6 0 1.7-1.4 2.9-3 2.9s-3-1.2-3-2.9c0-1.4 1.1-2.6 3-2.6z"/></svg></span><div><b>বাংলা ক্যালেন্ডার</b><span class="mu">বঙ্গাব্দের তারিখ, ঋতু ও বিশেষ দিন</span></div></button>
   <button class="card dm" type="button" id="xk4"><span class="ic" style="--t1:#ffcb57;--t2:#b45309"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7.8c0-1.4 3.1-2.5 7-2.5s7 1.1 7 2.5-3.1 2.5-7 2.5-7-1.1-7-2.5z"/><path d="M5 7.8v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-4M5 11.8v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-4"/><path class="a" d="M12 7.2v.01M9 16.6l.01 0"/></svg></span><div><b>জাকাত ক্যালকুলেটর</b><span class="mu">সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে হিসাব</span></div></button>
 </section>
 
@@ -847,6 +862,7 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
       <p class="mu" id="qd-lg" style="font-size:12px;margin-top:8px"></p>
       <div class="qtb"><button class="btn" type="button" data-act="pv">‹</button><button class="btn" type="button" data-act="nx">›</button></div>
     </section>
+    <div class="qsb" id="qr-ban"><svg viewBox="0 0 360 100" preserveAspectRatio="none" aria-hidden="true"><defs><g id="qbm" fill="none" stroke="currentColor" stroke-width="1.1"><circle r="36"/><circle r="31" stroke-dasharray="1.5 3.2"/><rect x="-19" y="-19" width="38" height="38" rx="2"/><rect x="-19" y="-19" width="38" height="38" rx="2" transform="rotate(45)"/><circle r="9"/><circle r="2.6" fill="currentColor" stroke="none"/><path d="M0-36v-6M0 36v6M-36 0h-6M36 0h6" stroke-width="1.4"/></g></defs><rect x="1.5" y="1.5" width="357" height="97" rx="9" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="6" width="348" height="88" rx="6" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/><use href="#qbm" transform="translate(52 50)"/><use href="#qbm" transform="translate(308 50)"/><path d="M94 50h10M256 50h10" stroke="currentColor" stroke-width="1.4"/><rect x="104" y="14" width="152" height="72" rx="36" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="109" y="19" width="142" height="62" rx="31" fill="none" stroke="currentColor" stroke-width=".7"/></svg><div class="qsx"><b id="qb-n"></b><span id="qb-m"></span></div></div>
     <section class="card" id="qr-ays"></section>
     <div class="qtb"><button class="btn" type="button" data-act="pv">‹</button><button class="btn" type="button" data-act="nx">›</button></div>
   </div>
@@ -1173,7 +1189,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='43';
+const APP_BUILD='44';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
@@ -1674,6 +1690,7 @@ const EN=!!window.__EN,Q=id=>document.getElementById(id),L=(b,e)=>EN?e:b,BDG='�
 const BNN='আল-ফাতিহা|আল-বাকারা|আলে ইমরান|আন-নিসা|আল-মায়িদাহ|আল-আনআম|আল-আ‘রাফ|আল-আনফাল|আত-তাওবাহ|ইউনুস|হূদ|ইউসুফ|আর-রা‘দ|ইবরাহীম|আল-হিজর|আন-নাহল|আল-ইসরা|আল-কাহফ|মারইয়াম|ত্বা-হা|আল-আম্বিয়া|আল-হাজ্জ|আল-মুমিনূন|আন-নূর|আল-ফুরকান|আশ-শুআরা|আন-নামল|আল-কাসাস|আল-আনকাবূত|আর-রূম|লুকমান|আস-সাজদাহ|আল-আহযাব|সাবা|ফাতির|ইয়াসীন|আস-সাফফাত|সোয়াদ|আয-যুমার|গাফির|ফুসসিলাত|আশ-শূরা|আয-যুখরুফ|আদ-দুখান|আল-জাসিয়াহ|আল-আহকাফ|মুহাম্মাদ|আল-ফাতহ|আল-হুজুরাত|ক্বাফ|আয-যারিয়াত|আত-তূর|আন-নাজম|আল-ক্বামার|আর-রহমান|আল-ওয়াক্বিআহ|আল-হাদীদ|আল-মুজাদালাহ|আল-হাশর|আল-মুমতাহিনাহ|আস-সাফ|আল-জুমুআহ|আল-মুনাফিকূন|আত-তাগাবুন|আত-তালাক্ব|আত-তাহরীম|আল-মুলক|আল-কলম|আল-হাক্কাহ|আল-মাআরিজ|নূহ|আল-জিন|আল-মুযযাম্মিল|আল-মুদ্দাসসির|আল-ক্বিয়ামাহ|আল-ইনসান|আল-মুরসালাত|আন-নাবা|আন-নাযিআত|আবাসা|আত-তাকবীর|আল-ইনফিতার|আল-মুতাফফিফীন|আল-ইনশিক্বাক্ব|আল-বুরূজ|আত-তারিক্ব|আল-আ‘লা|আল-গাশিয়াহ|আল-ফাজর|আল-বালাদ|আশ-শামস|আল-লাইল|আদ-দুহা|আশ-শারহ|আত-তীন|আল-আলাক্ব|আল-ক্বদর|আল-বাইয়্যিনাহ|আয-যিলযাল|আল-আদিয়াত|আল-ক্বারিআহ|আত-তাকাসুর|আল-আসর|আল-হুমাযাহ|আল-ফীল|কুরাইশ|আল-মাঊন|আল-কাওসার|আল-কাফিরূন|আন-নাসর|আল-লাহাব|আল-ইখলাস|আল-ফালাক্ব|আন-নাস'.split('|');
 const ENN='Al-Fatihah|Al-Baqarah|Ali ‘Imran|An-Nisa|Al-Ma’idah|Al-An‘am|Al-A‘raf|Al-Anfal|At-Tawbah|Yunus|Hud|Yusuf|Ar-Ra‘d|Ibrahim|Al-Hijr|An-Nahl|Al-Isra|Al-Kahf|Maryam|Ta-Ha|Al-Anbiya|Al-Hajj|Al-Mu’minun|An-Nur|Al-Furqan|Ash-Shu‘ara|An-Naml|Al-Qasas|Al-‘Ankabut|Ar-Rum|Luqman|As-Sajdah|Al-Ahzab|Saba|Fatir|Ya-Sin|As-Saffat|Sad|Az-Zumar|Ghafir|Fussilat|Ash-Shura|Az-Zukhruf|Ad-Dukhan|Al-Jathiyah|Al-Ahqaf|Muhammad|Al-Fath|Al-Hujurat|Qaf|Adh-Dhariyat|At-Tur|An-Najm|Al-Qamar|Ar-Rahman|Al-Waqi‘ah|Al-Hadid|Al-Mujadila|Al-Hashr|Al-Mumtahanah|As-Saff|Al-Jumu‘ah|Al-Munafiqun|At-Taghabun|At-Talaq|At-Tahrim|Al-Mulk|Al-Qalam|Al-Haqqah|Al-Ma‘arij|Nuh|Al-Jinn|Al-Muzzammil|Al-Muddaththir|Al-Qiyamah|Al-Insan|Al-Mursalat|An-Naba|An-Nazi‘at|‘Abasa|At-Takwir|Al-Infitar|Al-Mutaffifin|Al-Inshiqaq|Al-Buruj|At-Tariq|Al-A‘la|Al-Ghashiyah|Al-Fajr|Al-Balad|Ash-Shams|Al-Layl|Ad-Duha|Ash-Sharh|At-Tin|Al-‘Alaq|Al-Qadr|Al-Bayyinah|Az-Zalzalah|Al-‘Adiyat|Al-Qari‘ah|At-Takathur|Al-‘Asr|Al-Humazah|Al-Fil|Quraysh|Al-Ma‘un|Al-Kawthar|Al-Kafirun|An-Nasr|Al-Masad|Al-Ikhlas|Al-Falaq|An-Nas'.split('|');
 const CNT=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
+const BNM='সূচনা|গাভী|ইমরানের পরিবার|নারী|খাদ্যভর্তি খাঞ্চা|গৃহপালিত পশু|উঁচু স্থানসমূহ|যুদ্ধলব্ধ সম্পদ|তাওবাহ (অনুশোচনা)|ইউনুস (আ.)|হূদ (আ.)|ইউসুফ (আ.)|বজ্রধ্বনি|ইবরাহীম (আ.)|পাথুরে ভূমি|মৌমাছি|রাত্রিকালীন ভ্রমণ|গুহা|মারইয়াম (আ.)|ত্বা-হা|নবীগণ|হজ্জ|মুমিনগণ|আলো|সত্য-মিথ্যার পার্থক্যকারী|কবিগণ|পিপীলিকা|কাহিনি|মাকড়সা|রোমানগণ|লুকমান|সিজদাহ|সম্মিলিত বাহিনী|সাবা|আদি স্রষ্টা|ইয়া-সীন|সারিবদ্ধ ফেরেশতাগণ|সোয়াদ|দলসমূহ|ক্ষমাশীল|বিশদ ব্যাখ্যা|পরামর্শ|স্বর্ণালংকার|ধোঁয়া|নতজানু|বালুর পাহাড়|মুহাম্মাদ ﷺ|বিজয়|কক্ষসমূহ|ক্বাফ|বিক্ষিপ্তকারী বাতাস|তূর পাহাড়|তারকা|চাঁদ|পরম দয়াময়|অবশ্যম্ভাবী ঘটনা|লোহা|অভিযোগকারিণী নারী|সমাবেশ|পরীক্ষিতা নারী|সারি|জুমুআ|মুনাফিকগণ|লাভ-ক্ষতির প্রকাশ|তালাক|নিষিদ্ধকরণ|সার্বভৌম কর্তৃত্ব|কলম|অনিবার্য সত্য|উর্ধ্বারোহণের সিঁড়ি|নূহ (আ.)|জিন|বস্ত্রাবৃত|চাদরাবৃত|কিয়ামত|মানুষ|প্রেরিত বায়ু|মহাসংবাদ|উৎপাটনকারী ফেরেশতাগণ|ভ্রূকুঞ্চিত করল|ভাঁজ করে নেওয়া|বিদীর্ণ হওয়া|মাপে কম দানকারী|ফেটে যাওয়া|নক্ষত্রপুঞ্জ|রাতের আগন্তুক|সর্বোচ্চ|আচ্ছন্নকারী|ভোরবেলা|নগরী|সূর্য|রাত|পূর্বাহ্ন|প্রশান্তি|ডুমুর|রক্তপিণ্ড|মহিমান্বিত রাত|সুস্পষ্ট প্রমাণ|ভূমিকম্প|ধাবমান অশ্ব|মহাপ্রলয়|প্রাচুর্যের প্রতিযোগিতা|সময়|নিন্দুক|হাতি|কুরাইশ|নিত্য ব্যবহার্য বস্তু|প্রাচুর্য|কাফিরগণ|সাহায্য|খেজুর-আঁশের রশি|একনিষ্ঠতা|ঊষা|মানবজাতি'.split('|'),ENM='The Opening|The Cow|The Family of Imran|The Women|The Table Spread|The Cattle|The Heights|The Spoils of War|The Repentance|Jonah|Hud|Joseph|The Thunder|Abraham|The Rocky Tract|The Bee|The Night Journey|The Cave|Mary|Ta-Ha|The Prophets|The Pilgrimage|The Believers|The Light|The Criterion|The Poets|The Ant|The Stories|The Spider|The Romans|Luqman|The Prostration|The Combined Forces|Sheba|The Originator|Ya-Sin|Those Ranged in Ranks|Sad|The Groups|The Forgiver|Explained in Detail|The Consultation|The Ornaments of Gold|The Smoke|The Kneeling|The Wind-Curved Sandhills|Muhammad|The Victory|The Rooms|Qaf|The Winnowing Winds|The Mount|The Star|The Moon|The Most Merciful|The Inevitable|The Iron|The Pleading Woman|The Exile|She That Is to Be Examined|The Ranks|Friday|The Hypocrites|Mutual Loss and Gain|The Divorce|The Prohibition|The Sovereignty|The Pen|The Reality|The Ascending Stairways|Noah|The Jinn|The Enshrouded One|The Cloaked One|The Resurrection|The Human|The Emissaries|The Tidings|Those Who Drag Forth|He Frowned|The Overthrowing|The Cleaving|The Defrauding|The Sundering|The Mansions of the Stars|The Nightcomer|The Most High|The Overwhelming|The Dawn|The City|The Sun|The Night|The Morning Hours|The Relief|The Fig|The Clot|The Power|The Clear Proof|The Earthquake|The Courser|The Calamity|The Rivalry in World Increase|The Declining Day|The Traducer|The Elephant|Quraysh|The Small Kindnesses|The Abundance|The Disbelievers|The Divine Support|The Palm Fiber|The Sincerity|The Daybreak|Mankind'.split('|');
 const nm=i=>EN?ENN[i]:BNN[i],norm=s=>s.toLowerCase().replace(/[-‘’'ʻ\s]/g,'');
 const g=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},p=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -1766,7 +1783,7 @@ function btnLabels(){
 function showList(){stopA();qpShow(false);if(!dling)paintDl();Q('qr-list').hidden=false;Q('qr-read').hidden=true;cur=0;paintRes();paintList(Q('qr-q').value);btnLabels()}
 async function openS(n,ay){
   if(n<1||n>114)return;cur=n;stopA();qpShow(true);Q('qr-list').hidden=true;Q('qr-read').hidden=false;btnLabels();
-  Q('qr-t').textContent=L('সূরা ','Surah ')+nm(n-1);
+  Q('qr-t').textContent=nm(n-1);Q('qb-n').textContent=nm(n-1);Q('qb-m').textContent=(EN?ENM:BNM)[n-1];
   Q('qr-m').textContent=L('সূরাঃ ','Surah ')+D(n)+L(', পারাঃ ',', Juz ')+D(juz(n,1))+L(', পৃষ্ঠাঃ ',', Page ')+D(PG[n-1]);
   Q('qr-ays').innerHTML='<p class="mu">'+L('লোড হচ্ছে...','Loading...')+'</p>';scrollTo(0,0);
   try{
@@ -1907,7 +1924,7 @@ function closeT(){TL.hidden=true;if(stopF){stopF();stopF=null}}
 $('xtx').onclick=closeT;TL.onclick=e=>{if(e.target===TL)closeT()};
 addEventListener('keydown',e=>{if(e.key==='Escape')closeT()});
 const need=()=>{if(!loc){TB.innerHTML='<p class="mu">'+T('আগে সেটিংস থেকে অবস্থান নির্ধারণ করুন।','Please set your location in Settings first.')+'</p>';return true}return false};
-const CARDS=[['xk1','কিবলা কম্পাস','Qibla Compass','ফোনের সেন্সর দিয়ে কিবলার দিক','Qibla direction using your phone sensor'],['xk2','রোজার ক্যালেন্ডার','Fasting Calendar','সেহরি-ইফতার, রমজানের কাউন্টডাউন, সুন্নাহ রোজা','Sehri-Iftar, Ramadan countdown, Sunnah fasts'],['xk3','হিজরি ক্যালেন্ডার','Hijri Calendar','হিজরি তারিখ ও ইসলামি দিবস','Hijri dates and Islamic occasions'],['xk4','জাকাত ক্যালকুলেটর','Zakat Calculator','সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে হিসাব','Calculate from gold, silver, cash and business assets'],['xk5','ডিজিটাল তাসবিহ','Digital Tasbih','গণনা, দৈনিক হিসাব ও ৭ দিনের ইতিহাস','Counter, daily stats and 7-day history']];
+const CARDS=[['xk1','কিবলা কম্পাস','Qibla Compass','ফোনের সেন্সর দিয়ে কিবলার দিক','Qibla direction using your phone sensor'],['xk2','রোজার ক্যালেন্ডার','Fasting Calendar','সেহরি-ইফতার, রমজানের কাউন্টডাউন, সুন্নাহ রোজা','Sehri-Iftar, Ramadan countdown, Sunnah fasts'],['xk3','হিজরি ক্যালেন্ডার','Hijri Calendar','হিজরি তারিখ ও ইসলামি দিবস','Hijri dates and Islamic occasions'],['xk4','জাকাত ক্যালকুলেটর','Zakat Calculator','সোনা-রুপা, নগদ ও ব্যবসার সম্পদ থেকে হিসাব','Calculate from gold, silver, cash and business assets'],['xk5','ডিজিটাল তাসবিহ','Digital Tasbih','গণনা, দৈনিক হিসাব ও ৭ দিনের ইতিহাস','Counter, daily stats and 7-day history'],['xk6','বাংলা ক্যালেন্ডার','Bangla Calendar','বঙ্গাব্দের তারিখ, ঋতু ও বিশেষ দিন','Bangla date, season and special days']];
 if(EN)CARDS.forEach(c=>{const e=$(c[0]).querySelector('div');e.querySelector('b').textContent=c[2];e.querySelector('.mu').textContent=c[4]});
 
 function qibla(){
@@ -1961,6 +1978,57 @@ function hcal(){
     TB.innerHTML=`<div class="rw hch"><button class="btn" id="xhp" type="button">‹</button><b>${HN[h0.m-1]} ${N(h0.y)}${T(' হিজরি',' AH')}<span class="sm">${gd(days[0][0])} – ${gd(days[days.length-1][0])}</span></b><button class="btn" id="xhn" type="button">›</button></div><table class="hct">${c}</table><div class="lg"><span><i class="t"></i>${T('আজ','Today')}</span><span><i class="f"></i>${T('শুক্রবার','Friday')}</span><span><i class="e"></i>${T('ইসলামি দিবস','Occasion')}</span></div><p class="mu" id="xhd" style="margin-top:8px">${T('কোনো দিনে চাপুন','Tap a day')}</p><h3>${T('আসন্ন ইসলামি দিবস','Upcoming Islamic occasions')}</h3>${up.join('')}<p class="mu" style="font-size:12px">${T('তারিখ উম্মুল কুরা ক্যালেন্ডার অনুযায়ী; বাংলাদেশে চাঁদ দেখার ভিত্তিতে ১ দিন এদিক-ওদিক হতে পারে।','Dates follow the Umm al-Qura calendar; with local moon sighting they may differ by a day.')}</p>`;
     $('xhp').onclick=()=>{anc=dd(days[0][0],-1);draw()};$('xhn').onclick=()=>{anc=dd(days[days.length-1][0],1);draw()};
     TB.querySelectorAll('td[data-i]').forEach(td=>td.onclick=()=>{const [g,p]=days[+td.dataset.i],e=evs(p);TB.querySelectorAll('td.sel').forEach(x=>x.classList.remove('sel'));td.classList.add('sel');$('xhd').innerHTML=`<b>${DOW[g.getDay()]}, ${gd(g)}</b><br>${N(p.d)} ${HN[p.m-1]} ${N(p.y)}${T(' হিজরি',' AH')}${e.length?'<br>• '+e.join('<br>• '):''}`})};
+  draw();
+}
+
+/* ───── বাংলা ক্যালেন্ডার (বাংলাদেশ সংশোধিত বঙ্গাব্দ: ১ বৈশাখ = ১৪ এপ্রিল) ───── */
+const BMS=[[4,14],[5,15],[6,15],[7,16],[8,16],[9,16],[10,17],[11,16],[12,16],[1,15],[2,14],[3,15]];
+const BMN=EN?['Boishakh','Joishtho','Asharh','Srabon','Bhadro','Ashwin','Kartik','Agrahayan','Poush','Magh','Falgun','Chaitra']:['বৈশাখ','জ্যৈষ্ঠ','আষাঢ়','শ্রাবণ','ভাদ্র','আশ্বিন','কার্তিক','অগ্রহায়ণ','পৌষ','মাঘ','ফাল্গুন','চৈত্র'];
+const BSN=EN?['Grishma (Summer)','Barsha (Monsoon)','Sharat (Autumn)','Hemanta (Late autumn)','Sheet (Winter)','Basanta (Spring)']:['গ্রীষ্ম','বর্ষা','শরৎ','হেমন্ত','শীত','বসন্ত'];
+const bSea=m=>BSN[Math.floor(m/2)];
+function bnParts(g){
+  const Y=g.getFullYear(),t=new Date(Y,g.getMonth(),g.getDate(),12);
+  let best=null;
+  for(let yy=Y-1;yy<=Y;yy++)for(let mi=0;mi<12;mi++){
+    const st=new Date(yy,BMS[mi][0]-1,BMS[mi][1],12);
+    if(st<=t&&(!best||st>best.st))best={st,m:mi}
+  }
+  return {y:Y-(t>=new Date(Y,3,14,12)?593:594),m:best.m,d:Math.round((t-best.st)/864e5)+1}
+}
+function bcal(){
+  const T0=nd();let cur=bnParts(T0);let ym={y:cur.y,m:cur.m};
+  const bStart=(y,m)=>{ // বঙ্গাব্দ y-এর মাস m-এর ১ তারিখ (গ্রেগরিয়ান)
+    const gy=y+593+(m>=9?1:0);return new Date(gy,BMS[m][0]-1,BMS[m][1],12)};
+  const evB=(g,b)=>{const a=[],gm=g.getMonth()+1,gdn=g.getDate();
+    if(b.m===0&&b.d===1)a.push(T('পহেলা বৈশাখ (বাংলা নববর্ষ)','Pohela Boishakh (Bangla New Year)'));
+    if(b.m===10&&b.d===1)a.push(T('পহেলা ফাল্গুন','Pohela Falgun'));
+    if(b.m===7&&b.d===1)a.push(T('নবান্ন (১ অগ্রহায়ণ)','Nabanna (1 Agrahayan)'));
+    if(gm===2&&gdn===21)a.push(T('শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস','Language Martyrs’ Day & International Mother Language Day'));
+    if(gm===3&&gdn===26)a.push(T('স্বাধীনতা দিবস','Independence Day'));
+    if(gm===5&&gdn===1)a.push(T('মে দিবস','May Day'));
+    if(gm===12&&gdn===16)a.push(T('বিজয় দিবস','Victory Day'));
+    return a};
+  const draw=()=>{
+    const s0=bStart(ym.y,ym.m);
+    let nm1=ym.m+1,ny1=ym.y;if(nm1>11){nm1=0;ny1++}
+    const s1=bStart(ny1,nm1);const len=Math.round((s1-s0)/864e5);
+    const days=[];for(let i=0;i<len;i++)days.push(dd(s0,i));
+    const tdy=T0.toDateString();
+    let c='<tr>'+(EN?['Sat','Sun','Mon','Tue','Wed','Thu','Fri']:['শনি','রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র']).map(x=>'<th>'+x+'</th>').join('')+'</tr><tr>';
+    const off=(days[0].getDay()+1)%7;for(let i=0;i<off;i++)c+='<td></td>';
+    days.forEach((g,i)=>{if((off+i)%7===0&&i)c+='</tr><tr>';const b={y:ym.y,m:ym.m,d:i+1};
+      c+=`<td data-i="${i}" class="${g.toDateString()===tdy?'td':''}${evB(g,b).length?' ev':''}">${N(i+1)}<span class="sm">${N(g.getDate())}</span></td>`});
+    c+='</tr>';
+    // আসন্ন বিশেষ দিন
+    const up=[];for(let i=0;i<400&&up.length<6;i++){const x=dd(T0,i),b=bnParts(x),e=evB(x,b);if(e.length)up.push(`<div class="rw"><span>${e[0]}<span class="sm">${N(b.d)} ${BMN[b.m]} ${N(b.y)} · ${gd(x)}</span></span><b>${i?T(bn(i)+' দিন বাকি',i+' days left'):T('আজ','Today')}</b></div>`)}
+    const yrLbl=T(' বঙ্গাব্দ',' BS');
+    TB.innerHTML=`<div class="rw hch"><button class="btn" id="bcP" type="button">‹</button><b>${BMN[ym.m]} ${N(ym.y)}${yrLbl}<span class="sm">${bSea(ym.m)} · ${gd(days[0])} – ${gd(days[len-1])}</span></b><button class="btn" id="bcN" type="button">›</button></div><table class="hct">${c}</table><div class="lg"><span><i class="t"></i>${T('আজ','Today')}</span><span><i class="f"></i>${T('শুক্রবার','Friday')}</span><span><i class="e"></i>${T('বিশেষ দিন','Special day')}</span></div><p class="mu" id="xhd" style="margin-top:8px">${(()=>{const b=bnParts(T0);return `<b>${DOW[T0.getDay()]}, ${gd(T0)}</b><br>${N(b.d)} ${BMN[b.m]} ${N(b.y)}${yrLbl} · ${bSea(b.m)}`})()}</p><h3>${T('আসন্ন বিশেষ দিন','Upcoming special days')}</h3>${up.join('')}<p class="mu" style="font-size:12px">${T('বাংলাদেশের সংশোধিত বাংলা পঞ্জিকা অনুযায়ী (১ বৈশাখ = ১৪ এপ্রিল)।','Based on the revised Bangladesh Bangla calendar (1 Boishakh = 14 April).')}</p>`;
+    $('bcP').onclick=()=>{ym.m--;if(ym.m<0){ym.m=11;ym.y--}draw()};
+    $('bcN').onclick=()=>{ym.m++;if(ym.m>11){ym.m=0;ym.y++}draw()};
+    TB.querySelectorAll('td[data-i]').forEach(td=>td.onclick=()=>{const i=+td.dataset.i,g=days[i],e=evB(g,{y:ym.y,m:ym.m,d:i+1});
+      TB.querySelectorAll('td.sel').forEach(x=>x.classList.remove('sel'));td.classList.add('sel');
+      $('xhd').innerHTML=`<b>${DOW[g.getDay()]}, ${gd(g)}</b><br>${N(i+1)} ${BMN[ym.m]} ${N(ym.y)}${yrLbl} · ${bSea(ym.m)}${e.length?'<br>• '+e.join('<br>• '):''}`});
+  };
   draw();
 }
 
@@ -2090,6 +2158,7 @@ $('xk2').onclick=()=>openT(T('রোজার ক্যালেন্ডার'
 $('xk3').onclick=()=>openT(T('হিজরি ক্যালেন্ডার','Hijri Calendar'),hcal);
 $('xk4').onclick=()=>openT(T('জাকাত ক্যালকুলেটর','Zakat Calculator'),zakat);
 $('xk5').onclick=()=>openT(T('ডিজিটাল তাসবিহ','Digital Tasbih'),tasbih);
+   $('xk6').onclick=()=>openT(T('বাংলা ক্যালেন্ডার','Bangla Calendar'),bcal);
 })();
 </script>
 <script>
