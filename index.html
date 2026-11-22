@@ -1626,7 +1626,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='43';
+const APP_BUILD='47';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
@@ -2715,7 +2715,7 @@ ${row('🔈','#ff8fa3','#be185d',t('আযানের ভলিউম','Adhan v
 ${row('📳','#9f7bff','#4c1d95',t('কম্পন','Vibration'),sw('nlvb',g('nl_vib',true)))}
 ${row('✨','#ffb454','#e0457b',t('অ্যানিমেশন (বন্ধ করলে ব্যাটারি বাঁচে)','Animations (turn off to save battery)'),sw('nlmo',!g('nl_nomo',false)))}
 ${row('🕌','#22c1dc','#0b6a8a',t('শুক্রবারের স্মরণ','Friday reminder'),sw('nlfr',g('nl_fri',true)))}</div>`);
-    const c3=mk('nlc3','');const c4=mk('nlc4',head('💾',t('ডেটা ও অ্যাপ','Data & app'))+`<div class="row2"><button class="btn" id="nlex" type="button">${t('ব্যাকআপ নিন','Backup')}</button><button class="btn" id="nlim" type="button">${t('রিস্টোর','Restore')}</button><button class="btn" id="nlrs" type="button">${t('সব রিসেট','Reset all')}</button></div><input type="file" id="nlfi" accept="application/json" hidden><p class="mu" style="margin-top:10px;font-size:12px">${t('নূর নামাজ · ভার্সন ৪৬','Noor Namaz · 46')}</p>`);
+    const c3=mk('nlc3','');const c4=mk('nlc4',head('💾',t('ডেটা ও অ্যাপ','Data & app'))+`<div class="row2"><button class="btn" id="nlex" type="button">${t('ব্যাকআপ নিন','Backup')}</button><button class="btn" id="nlim" type="button">${t('রিস্টোর','Restore')}</button><button class="btn" id="nlrs" type="button">${t('সব রিসেট','Reset all')}</button></div><input type="file" id="nlfi" accept="application/json" hidden><p class="mu" style="margin-top:10px;font-size:12px">${t('নূর নামাজ · ভার্সন ২.০','Noor Namaz · v2.0')}</p>`);
     [c1,c2,c3,c4].forEach(c=>set.appendChild(c));paintTrk();
   }
   function paintTrk(){
