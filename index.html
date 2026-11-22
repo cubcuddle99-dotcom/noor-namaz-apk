@@ -235,7 +235,7 @@ background:var(--navbg);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdro
 #qfab{position:fixed;right:max(14px,calc(50% - 206px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:var(--gold);color:#1B1205;font-size:24px;z-index:7;box-shadow:0 10px 24px rgba(0,0,0,.4)}#qfab[hidden]{display:none}
 
 @media(min-width:760px){body{padding-top:28px}.wrap{max-width:480px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
 /* ===== রেফারেন্স ডিজাইন: আইভরি + গাঢ় সবুজ + সোনালি ===== */
 :root{--bg:#F3EFE6;--glow:rgba(201,150,43,.15);--sf:#FFFDF8;--sf2:#F4EFE3;--ink:#12322A;--mu:#6B7A72;--ln:rgba(18,50,42,.09);--ac:#0F5C45;--ac2:#1A7A5C;--acs:rgba(15,92,69,.10);
 --acg:linear-gradient(135deg,#0F5C45,#0B4A39);--gold:#C9962B;--golds:rgba(201,150,43,.16);--navbg:#0F5C45;--ring:#0F5C45;--dp:#2A4A41;--curbd:rgba(15,92,69,.35);--btnbd:rgba(15,92,69,.25);
@@ -654,11 +654,11 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 #nlsky .lit{fill:none;stroke:url(#nlg);stroke-width:3.4;stroke-linecap:round;filter:drop-shadow(0 0 5px rgba(242,193,78,.7))}
 #nlsky .mk{fill:var(--sf);stroke:var(--mu);stroke-width:1.6}
 #nlsky .mk.on{fill:var(--gold);stroke:var(--gold2)}
-#nlsky .nm{font:700 9.5px 'Hind Siliguri',sans-serif;fill:var(--ink);text-anchor:middle}
-#nlsky .tm{font:600 8.5px 'Hind Siliguri',sans-serif;fill:var(--mu);text-anchor:middle}
+#nlsky .nm{font:700 9.5px 'NoorNum','Plus Jakarta Sans','Hind Siliguri',sans-serif;fill:var(--ink);text-anchor:middle}
+#nlsky .tm{font:700 9.5px 'NoorNum','Plus Jakarta Sans','Hind Siliguri',sans-serif;fill:var(--ink);opacity:.8;text-anchor:middle}
 #nlsky .halo{animation:nlPulse 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes nlPulse{50%{transform:scale(1.35);opacity:.12}}
-@media (prefers-reduced-motion:reduce){.hx-say .n,#nlsky .halo{animation:none}}
+
 </style>
 <style id="noor-motion">
 .hd{position:relative}.hx-clock{position:relative}
@@ -682,7 +682,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;op
 @keyframes nlRp{to{transform:scale(1);opacity:0}}
 #list .p,.hx-card,.bell{position:relative;overflow:hidden}
 #nlsky .mk{transform-box:fill-box;transform-origin:center}
-@media (prefers-reduced-motion:reduce){.nl-stars,.nl-halo{display:none}.hx-ring .nl-tk,#cd.nl-t{animation:none}}
+
 </style>
 <style id="noor-glass">
 #nav{background:rgba(255,255,255,.42)!important;-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);border-top:1px solid rgba(123,79,214,.28)!important;box-shadow:0 -10px 30px -14px rgba(80,40,160,.35)!important}
@@ -1173,7 +1173,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='__BUILD__';
+const APP_BUILD='41';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
@@ -2146,7 +2146,7 @@ $('xk5').onclick=()=>openT(T('ডিজিটাল তাসবিহ','Digital
 <script>
 /* নূর মোশন: তারা, উল্কা, ঘুরন্ত বলয়, টিক-পালস, রিপল, আকাশ-পথে সূর্যের যাত্রা */
 (function(){
-  const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const RM=false;
   function setup(){
     const hd=document.querySelector('.hd');
     if(hd&&!hd.querySelector('.nl-stars')){const w=document.createElement('div');w.className='nl-stars';let h='';
@@ -2207,7 +2207,7 @@ ${PN.map(p=>row('⏱','#22c1dc','#0b6a8a',t(p[1],p[2])+t(' (মিনিট)',' 
     const c2=mk('nlc2',head('🔊',t('আওয়াজ ও অনুভূতি',"Sound & feel"))+`<div class="sl">
 ${row('🔈','#ff8fa3','#be185d',t('আযানের ভলিউম','Adhan volume'),`<input type="range" id="nlvol" min="0" max="1" step=".05" value="${g('nl_vol',1)}">`)}
 ${row('📳','#9f7bff','#4c1d95',t('কম্পন','Vibration'),sw('nlvb',g('nl_vib',true)))}
-${row('✨','#ffb454','#e0457b',t('অ্যানিমেশন বন্ধ (ব্যাটারি বাঁচান)','Reduce animations'),sw('nlmo',g('nl_nomo',false)))}
+${row('✨','#ffb454','#e0457b',t('অ্যানিমেশন (বন্ধ করলে ব্যাটারি বাঁচে)','Animations (turn off to save battery)'),sw('nlmo',!g('nl_nomo',false)))}
 ${row('🕌','#22c1dc','#0b6a8a',t('শুক্রবারের স্মরণ','Friday reminder'),sw('nlfr',g('nl_fri',true)))}</div>`);
     const c3=mk('nlc3','');const c4=mk('nlc4',head('💾',t('ডেটা ও অ্যাপ','Data & app'))+`<div class="row2"><button class="btn" id="nlex" type="button">${t('ব্যাকআপ নিন','Backup')}</button><button class="btn" id="nlim" type="button">${t('রিস্টোর','Restore')}</button><button class="btn" id="nlrs" type="button">${t('সব রিসেট','Reset all')}</button></div><input type="file" id="nlfi" accept="application/json" hidden><p class="mu" style="margin-top:10px;font-size:12px">${t('নূর নামাজ · ভার্সন ২.০','Noor Namaz · v2.0')}</p>`);
     [c1,c2,c3,c4].forEach(c=>set.appendChild(c));paintTrk();
@@ -2223,7 +2223,7 @@ ${row('🕌','#22c1dc','#0b6a8a',t('শুক্রবারের স্মর�
     if(el.classList.contains('nlo')){const o=g('nl_off',{}),k=el.dataset.k;o[k]=Math.max(-30,Math.min(30,(o[k]||0)+ +el.dataset.d));st('nl_off',o);OFF=o;const v=document.getElementById('nlv'+k);v.textContent=(o[k]>0?'+':'')+o[k];redo()}
     else if(el.id==='nl24'){const v=!g('nl_h24',false);st('nl_h24',v);el.classList.toggle('on',v);redo();try{tick()}catch(x){}}
     else if(el.id==='nlvb'){const v=!g('nl_vib',true);st('nl_vib',v);el.classList.toggle('on',v)}
-    else if(el.id==='nlmo'){const v=!g('nl_nomo',false);st('nl_nomo',v);el.classList.toggle('on',v);apply()}
+    else if(el.id==='nlmo'){const nomo=!g('nl_nomo',false);st('nl_nomo',nomo);el.classList.toggle('on',!nomo);apply()}
     else if(el.id==='nlfr'){const v=!g('nl_fri',true);st('nl_fri',v);el.classList.toggle('on',v)}
     else if(el.classList.contains('chip')){const T0=trk(),k=dk(new Date()),a=T0.days[k]||[0,0,0,0,0];a[+el.dataset.i]=!a[+el.dataset.i];T0.days[k]=a;st('nl_trk',T0);paintTrk()}
     else if(el.classList.contains('nlq')){const T0=trk();T0.qaza=Math.max(0,(T0.qaza||0)+ +el.dataset.d);st('nl_trk',T0);paintTrk()}
