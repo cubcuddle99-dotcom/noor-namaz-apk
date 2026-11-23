@@ -815,6 +815,15 @@ html[data-auth=out]{overflow:hidden}
 html[data-gv] #lgn .lgn-x{display:grid}
 html[data-gv] #lgn .lgn-or,html[data-gv] #lgn .lgn-guest{display:none}
 #acc-lg{width:100%}
+#lgn #lgn-vf{display:none}
+#lgn[data-v] #lgn-vf{display:block}
+#lgn[data-v] .lgn-tabs,#lgn[data-v] #lgn-f,#lgn[data-v] .lgn-or,#lgn[data-v] .lgn-guest{display:none}
+#lgn #lgn-vm{margin:2px 2px 14px;font-size:14.5px;line-height:1.7;color:var(--ink);text-align:center;word-break:break-word}
+#lgn #lgn-vmsg{min-height:22px;margin:0 2px 8px;font-size:13.5px;font-weight:600;line-height:1.4;text-align:center;color:var(--warn)}
+#lgn #lgn-vmsg.ok{color:var(--ac2)}
+#lgn .lgn-sec{display:block;width:100%;height:48px;margin-top:10px;border-radius:16px;border:1px solid var(--ln);background:var(--sf2);color:var(--ink);font:inherit;font-size:15.5px;font-weight:700;cursor:pointer}
+#lgn .lgn-sec:focus-visible{outline:0;box-shadow:0 0 0 3px var(--acs)}
+#lgn .lgn-sec:disabled,#lgn #lgn-vok:disabled{opacity:.6}
 </style>
 <!-- ===== LOGIN 1/2 (শেষ) ===== -->
 </head>
@@ -854,6 +863,13 @@ html[data-gv] #lgn .lgn-or,html[data-gv] #lgn .lgn-guest{display:none}
       <p id="lgn-err" role="alert" aria-live="polite"></p>
       <button type="submit" class="lgn-go" id="lgn-go">প্রবেশ করুন</button>
     </form>
+    <div id="lgn-vf">
+      <p id="lgn-vm"></p>
+      <p id="lgn-vmsg" role="alert" aria-live="polite"></p>
+      <button type="button" class="lgn-go" id="lgn-vok" data-en="I have verified">আমি যাচাই করেছি</button>
+      <button type="button" class="lgn-sec" id="lgn-vrs" data-en="Resend link">আবার পাঠান</button>
+      <button type="button" class="lgn-sec" id="lgn-vbk" data-en="Use a different email">অন্য ইমেইল দিয়ে চেষ্টা করুন</button>
+    </div>
     <div class="lgn-or"><span data-en="or">অথবা</span></div>
     <button type="button" class="lgn-guest" id="lgn-gu" data-en="Continue without signing in">লগইন ছাড়া ব্যবহার করুন</button>
     <p class="lgn-note" data-en="Your account is securely stored in the cloud.">আপনার অ্যাকাউন্ট নিরাপদে ক্লাউডে সংরক্ষিত থাকে।</p>
@@ -933,11 +949,11 @@ function setMode(m){
 function fail(msg,id){err.textContent=msg;if(id)$(id).focus()}
 function busy(b){go.disabled=b}
 function lock(){
-  clearS();H.removeAttribute('data-gv');H.setAttribute('data-auth','out');inertApp(true);
+  clearS();H.removeAttribute('data-gv');ov.removeAttribute('data-v');H.setAttribute('data-auth','out');inertApp(true);
   f.reset();setMode('in');
   setTimeout(function(){$('lgn-e').focus()},60);
 }
-function unlock(){H.removeAttribute('data-gv');H.setAttribute('data-auth','in');inertApp(false);f.reset();setMode('in')}
+function unlock(){H.removeAttribute('data-gv');ov.removeAttribute('data-v');H.setAttribute('data-auth','in');inertApp(false);f.reset();setMode('in')}
 
 var MSG={
   name:['আপনার নাম লিখুন','Please enter your name'],
@@ -956,6 +972,8 @@ var MSG={
   pwok:['পাসওয়ার্ড বদলানো হয়েছে','Password updated'],
   nameok:['নাম বদলানো হয়েছে','Name updated'],
   recent:['নিরাপত্তার জন্য একবার লগআউট করে আবার লগইন করুন, তারপর চেষ্টা করুন।','For security, log out and sign in again, then try once more.'],
+  vpend:['এখনো যাচাই হয়নি। ইমেইলের লিংকে ক্লিক করে আবার চেষ্টা করুন।','Not verified yet. Click the link in your email, then try again.'],
+  vsent:['যাচাইয়ের লিংক আবার পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।','Verification link sent again (check spam too).'],
   other:['কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।','Something went wrong. Please try again.']
 };
 function m(k){return MSG[k][EN?1:0]}
@@ -1006,7 +1024,13 @@ f.addEventListener('submit',function(e){
     }
     return FB.signInWithEmailAndPassword(auth,email,pw).then(function(c){return c.user});
   }).then(function(u){
-    setS(u.displayName?u:{displayName:name,email:email},rem);noGuest();busy(false);unlock();paintAcct(u);
+    pendRem=rem;
+    if(up)return FB.sendEmailVerification(u).catch(function(){}).then(function(){return u});
+    return u;
+  }).then(function(u){
+    busy(false);
+    if(!u.emailVerified){showVerify(u);return}
+    finish(u,rem);
   }).catch(function(x){busy(false);fail(m(key(x)))});
 });
 
@@ -1153,6 +1177,36 @@ document.addEventListener('submit',function(e){
   }
 });
 
+/* ---------- ইমেইল যাচাই ---------- */
+var pendRem=true;
+function vsay(txt,ok){var el=$('lgn-vmsg');el.textContent=txt||'';el.className=ok?'ok':''}
+function showVerify(u){
+  ov.setAttribute('data-v','1');
+  $('lgn-sub').textContent=t('ইমেইল যাচাই করুন','Verify your email');
+  $('lgn-vm').textContent=t('লগইন করতে আপনার ইমেইল যাচাই করতে হবে। ','You need to verify your email to continue. ')+((u&&u.email)||'')+t(' ঠিকানায় পাঠানো লিংকে ক্লিক করুন (স্প্যাম ফোল্ডারও দেখুন), তারপর নিচের বোতাম চাপুন।',' — click the link we sent (check spam too), then press the button below.');
+  vsay('');
+}
+function finish(u,rem){setS(u,rem);noGuest();busy(false);unlock();paintAcct(u)}
+$('lgn-vok').onclick=function(){
+  var bt=this;bt.disabled=true;vsay('');
+  load().then(function(){
+    var u=curU();if(!u)throw {code:'auth/requires-recent-login'};
+    return u.reload().then(function(){return u});
+  }).then(function(u){
+    if(u.emailVerified)finish(u,pendRem);else vsay(m('vpend'));
+  }).catch(function(x){vsay(m(key(x)))}).then(function(){bt.disabled=false});
+};
+$('lgn-vrs').onclick=function(){
+  var bt=this;bt.disabled=true;vsay('');
+  load().then(function(){
+    var u=curU();if(!u)throw {code:'auth/requires-recent-login'};
+    return FB.sendEmailVerification(u);
+  }).then(function(){vsay(m('vsent'),true)}).catch(function(x){vsay(m(key(x)))}).then(function(){bt.disabled=false});
+};
+$('lgn-vbk').onclick=function(){
+  load().then(function(){return FB.signOut(auth)}).catch(function(){}).then(function(){ov.removeAttribute('data-v');setMode('in')});
+};
+
 /* ---------- লগইন ছাড়া ব্যবহার (অতিথি) ---------- */
 function isGuest(){try{return !!localStorage.getItem('lgnG')}catch(e){return false}}
 function noGuest(){try{localStorage.removeItem('lgnG')}catch(e){}}
@@ -1161,7 +1215,7 @@ function openLogin(){
   H.setAttribute('data-gv','1');H.setAttribute('data-auth','out');inertApp(true);
   setTimeout(function(){$('lgn-e').focus()},60);
 }
-function closeLogin(){H.removeAttribute('data-gv');H.setAttribute('data-auth','in');inertApp(false);f.reset();setMode('in')}
+function closeLogin(){H.removeAttribute('data-gv');ov.removeAttribute('data-v');H.setAttribute('data-auth','in');inertApp(false);f.reset();setMode('in')}
 $('lgn-x').setAttribute('aria-label',t('বন্ধ করুন','Close'));
 $('lgn-x').onclick=closeLogin;
 $('lgn-gu').onclick=function(){
@@ -1190,6 +1244,12 @@ ready(function(){
   load().then(function(){
     FB.onAuthStateChanged(auth,function(u){
       if(u){
+        if(!u.emailVerified){
+          if(readS())lock();
+          if(H.getAttribute('data-auth')==='out')showVerify(u);
+          paintAcct(null);
+          return;
+        }
         noGuest();
         if(!readS())setS(u,true);
         if(H.getAttribute('data-auth')==='out')unlock();
@@ -1671,7 +1731,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='48';
+const APP_BUILD='49';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
