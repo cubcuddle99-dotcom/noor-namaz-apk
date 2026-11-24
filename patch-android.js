@@ -129,4 +129,21 @@ if (process.env.KEYSTORE_PATH) {
   g = g.replace(/(buildTypes\s*\{\s*release\s*\{)/, '$1\n            signingConfig signingConfigs.release');
 }
 fs.writeFileSync(gf, g);
+
+// 6) Google লগইনের প্লাগইন androidx.browser 1.9.0 টেনে আনে, যেটা Android Gradle plugin 8.9.1+ ও compileSdk 36 চায়।
+//    আমাদের প্রজেক্টে ৮.৭.২ / ৩৫ আছে, তাই লাইব্রেরিটা পুরনো (১.৮.০) সংস্করণে স্থির রাখি।
+const rf = 'android/build.gradle';
+let r = fs.readFileSync(rf, 'utf8');
+if (!r.includes("androidx.browser:browser:1.8.0")) {
+  r += `
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.browser:browser:1.8.0'
+        }
+    }
+}
+`;
+  fs.writeFileSync(rf, r);
+}
 console.log('Android patch done, build', build);
