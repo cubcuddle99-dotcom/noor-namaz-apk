@@ -37,6 +37,7 @@ nav a{padding:7px 14px;border:1px solid var(--ln);border-radius:999px;text-decor
   <ul>
     <li><b>অ্যাকাউন্টের তথ্য:</b> আপনার নাম ও ইমেইল ঠিকানা। এগুলো আপনি অ্যাকাউন্ট খোলার সময় নিজে দেন।</li>
     <li><b>পাসওয়ার্ড:</b> পাসওয়ার্ড সরাসরি আমাদের কাছে থাকে না। এটি Google-এর Firebase Authentication সেবায় নিরাপদভাবে সংরক্ষিত হয়।</li>
+    <li><b>Google দিয়ে প্রবেশ:</b> আপনি “Google দিয়ে চালিয়ে যান” বেছে নিলে আপনার Google অ্যাকাউন্টের নাম ও ইমেইল ঠিকানা আমরা পাই। Google পাসওয়ার্ড আমরা কখনো পাই না।</li>
     <li><b>অবস্থান:</b> নামাজের সঠিক সময় দেখাতে আপনি জিপিএস ব্যবহার করলে বা শহরের নাম লিখলে সেই অবস্থান ব্যবহৃত হয়। এটি আপনার ডিভাইসেই সংরক্ষিত থাকে।</li>
     <li><b>অ্যাপের সেটিংস ও ইবাদত ট্র্যাকার:</b> হিসাব পদ্ধতি, ভাষা, ডার্ক মোড, কোন ওয়াক্ত পড়েছেন, কাযা নামাজের সংখ্যা ইত্যাদি আপনার ডিভাইসেই থাকে, আমাদের সার্ভারে যায় না।</li>
   </ul>
@@ -53,7 +54,8 @@ nav a{padding:7px 14px;border:1px solid var(--ln);border-radius:999px;text-decor
   <h2>৩. তৃতীয় পক্ষের সেবা</h2>
   <p>অ্যাপ চালাতে নিচের সেবাগুলোর সাথে যোগাযোগ করতে হয়। সংশ্লিষ্ট সেবা প্রদানকারীর নিজস্ব গোপনীয়তা নীতি প্রযোজ্য।</p>
   <ul>
-    <li><b>Google Firebase Authentication:</b> লগইন ও অ্যাকাউন্ট ব্যবস্থাপনার জন্য (নাম, ইমেইল, পাসওয়ার্ডের এনক্রিপ্টেড রূপ)।</li>
+    <li><b>Google Firebase Authentication:</b> লগইন, ইমেইল যাচাই (আপনার ইমেইলে একটি যাচাইয়ের লিংক পাঠানো হয়) ও অ্যাকাউন্ট ব্যবস্থাপনার জন্য (নাম, ইমেইল, পাসওয়ার্ডের এনক্রিপ্টেড রূপ)।</li>
+    <li><b>Google Sign-In:</b> “Google দিয়ে চালিয়ে যান” বোতামে লগইনের জন্য।</li>
     <li><b>OpenStreetMap Nominatim:</b> শহরের নাম থেকে অবস্থান খুঁজতে। এ জন্য আপনার লেখা শহরের নাম বা অবস্থানের স্থানাঙ্ক পাঠানো হতে পারে।</li>
     <li><b>Al Quran Cloud ও EveryAyah:</b> কুরআনের লেখা ও তিলাওয়াতের অডিও আনতে। এ জন্য আপনার ব্যক্তিগত তথ্য পাঠানো হয় না।</li>
     <li><b>Google Fonts:</b> অক্ষরের ধরন (ফন্ট) লোড করতে।</li>
@@ -100,6 +102,7 @@ nav a{padding:7px 14px;border:1px solid var(--ln);border-radius:999px;text-decor
   <ul>
     <li><b>Account information:</b> your name and email address, which you provide when you create an account.</li>
     <li><b>Password:</b> we do not hold your password directly. It is stored securely by Google’s Firebase Authentication service.</li>
+    <li><b>Sign in with Google:</b> if you choose “Continue with Google”, we receive the name and email address of your Google account. We never receive your Google password.</li>
     <li><b>Location:</b> if you use GPS or type a city name to get accurate prayer times, that location is used. It is stored on your device.</li>
     <li><b>App settings and worship tracker:</b> calculation method, language, dark mode, which prayers you marked, qaza count and similar data stay on your device and are not sent to our servers.</li>
   </ul>
@@ -116,7 +119,8 @@ nav a{padding:7px 14px;border:1px solid var(--ln);border-radius:999px;text-decor
   <h2>3. Third-party services</h2>
   <p>The App communicates with the services below to work. Each provider’s own privacy policy applies.</p>
   <ul>
-    <li><b>Google Firebase Authentication:</b> sign-in and account management (name, email, and an encrypted form of your password).</li>
+    <li><b>Google Firebase Authentication:</b> sign-in, email verification (a verification link is sent to your email) and account management (name, email, and an encrypted form of your password).</li>
+    <li><b>Google Sign-In:</b> for signing in with the “Continue with Google” button.</li>
     <li><b>OpenStreetMap Nominatim:</b> to find a location from a city name. The city name you type or location coordinates may be sent for this.</li>
     <li><b>Al Quran Cloud and EveryAyah:</b> to fetch Quran text and recitation audio. No personal information is sent for this.</li>
     <li><b>Google Fonts:</b> to load fonts.</li>
