@@ -830,13 +830,13 @@ html[data-gv] #lgn .lgn-or,html[data-gv] #lgn .lgn-guest{display:none}
 #lgn .lgn-sec:disabled,#lgn #lgn-vok:disabled{opacity:.6}
 </style>
 <style id="ggl-css">
-#lgn .lgn-g{display:none;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;border-radius:16px;border:1px solid var(--ln);background:var(--sf2);color:var(--ink);font:inherit;font-size:15.5px;font-weight:700;cursor:pointer}
-html[data-native] #lgn .lgn-g{display:flex}
+#lgn .lgn-g{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:50px;border-radius:16px;border:1px solid var(--ln);background:var(--sf2);color:var(--ink);font:inherit;font-size:15.5px;font-weight:700;cursor:pointer}
 #lgn[data-v] .lgn-g{display:none!important}
 #lgn .lgn-g:focus-visible{outline:0;box-shadow:0 0 0 3px var(--acs)}
 #lgn .lgn-g:disabled{opacity:.6}
 #lgn .lgn-g+.lgn-guest{margin-top:10px}
-html[data-gv][data-native] #lgn .lgn-or{display:flex}
+html[data-gv] #lgn .lgn-or{display:flex}
+html[data-gv] #lgn[data-v] .lgn-or{display:none}
 </style>
 <!-- ===== LOGIN 1/2 (শেষ) ===== -->
 </head>
@@ -884,7 +884,7 @@ html[data-gv][data-native] #lgn .lgn-or{display:flex}
       <button type="button" class="lgn-sec" id="lgn-vbk" data-en="Use a different email">অন্য ইমেইল দিয়ে চেষ্টা করুন</button>
     </div>
     <div class="lgn-or"><span data-en="or">অথবা</span></div>
-    <button type="button" class="lgn-g" id="lgn-g"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span data-en="Continue with Google">Google দিয়ে চালিয়ে যান</span></button>
+    <button type="button" class="lgn-g" id="lgn-gbtn"><svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span data-en="Continue with Google">Google দিয়ে চালিয়ে যান</span></button>
     <button type="button" class="lgn-guest" id="lgn-gu" data-en="Continue without signing in">লগইন ছাড়া ব্যবহার করুন</button>
     <p class="lgn-note" data-en="Your account is securely stored in the cloud.">আপনার অ্যাকাউন্ট নিরাপদে ক্লাউডে সংরক্ষিত থাকে।</p>
   </div>
@@ -991,6 +991,7 @@ var MSG={
   recent:['নিরাপত্তার জন্য একবার লগআউট করে আবার লগইন করুন, তারপর চেষ্টা করুন।','For security, log out and sign in again, then try once more.'],
   vpend:['এখনো যাচাই হয়নি। ইমেইলের লিংকে ক্লিক করে আবার চেষ্টা করুন।','Not verified yet. Click the link in your email, then try again.'],
   vsent:['যাচাইয়ের লিংক আবার পাঠানো হয়েছে (স্প্যাম ফোল্ডারও দেখুন)।','Verification link sent again (check spam too).'],
+  gweb:['Google দিয়ে প্রবেশ শুধু Android অ্যাপে চলে।','Google sign-in works only in the Android app.'],
   gfail:['Google দিয়ে প্রবেশ করা যায়নি।','Google sign-in failed.'],
   gcfg:['Google Web Client ID বসানো হয়নি (ফাইলে NOOR_GOOGLE_WEB_CLIENT_ID দিন)।','Google Web Client ID is missing (set NOOR_GOOGLE_WEB_CLIENT_ID in the file).'],
   gplug:['Google প্লাগইন পাওয়া যায়নি। অ্যাপটি নতুন করে ইনস্টল করুন।','Google plugin not found. Please reinstall the app.'],
@@ -1228,8 +1229,13 @@ $('lgn-vbk').onclick=function(){
 };
 
 /* ---------- Google দিয়ে প্রবেশ (শুধু অ্যাপে/APK-তে) ---------- */
-var CAPN=!!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform());
-if(CAPN)H.setAttribute('data-native','1');
+function isNat(){
+  try{
+    var C=window.Capacitor;
+    return !!((C&&((C.isNativePlatform&&C.isNativePlatform())||(C.getPlatform&&C.getPlatform()!=='web')))||window.androidBridge);
+  }catch(e){return false}
+}
+if(isNat())H.setAttribute('data-native','1');
 var SL=null,slReady=false;
 function gId(){var v=window.NOOR_GOOGLE_WEB_CLIENT_ID;return(v&&v.indexOf('YOUR_')!==0)?v:''}
 function slPlugin(){
@@ -1250,13 +1256,16 @@ function gerr(x){
   if(/cancel/i.test(code+' '+msg))return;                 // ব্যবহারকারী নিজেই বন্ধ করেছে
   if(code==='x-gcfg')return fail(m('gcfg'));
   if(code==='x-gplug')return fail(m('gplug'));
+  if(code==='x-gweb')return fail(m('gweb'));
   if(code.indexOf('auth/')===0||msg==='net'||msg==='cfg')return fail(m(key(x)));
   var d=(code+' '+msg).trim().replace(/\s+/g,' ').slice(0,90);
   fail(m('gfail')+(d?' ['+d+']':''));
 }
-$('lgn-g').onclick=function(){
+$('lgn-gbtn').onclick=function(){
   var bt=this;if(bt.disabled)return;
-  bt.disabled=true;err.textContent='';
+  err.textContent='';
+  if(!isNat()){fail(m('gweb'));return}
+  bt.disabled=true;
   var tok;
   slInit().then(function(){
     return slPlugin().login({provider:'google',options:{}});
@@ -1799,7 +1808,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='49';
+const APP_BUILD='5';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
