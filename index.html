@@ -713,6 +713,8 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
 <style id="qstickycss">
 /* কুরআন: স্ক্রলেও ওপরের বার সবসময় দেখা যায় */
 #qr-read .qhd{position:sticky;top:0;z-index:30;box-sizing:border-box;max-width:none;width:calc(100% + 24px / var(--z,1));margin:calc(-12px / var(--z,1)) calc(-12px / var(--z,1)) 0;padding:calc(12px / var(--z,1) + 10px + env(safe-area-inset-top,0px)) 14px 10px;border-radius:0;border:0;border-bottom:1px solid var(--ln);background:var(--bg);box-shadow:0 8px 18px -14px rgba(0,0,0,.55)}
+#qr-read .qhd #qr-ds{position:absolute;top:100%;left:calc(12px / var(--z,1));right:calc(12px / var(--z,1));margin-top:6px;z-index:31;max-height:calc(78vh / var(--z,1));overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 16px 34px -10px rgba(0,0,0,.45)}
+#qr-read .qhd #qr-ds[hidden]{display:none}
 #qr-read .qhd .qi{background:none;border:0;color:var(--ink);width:42px;height:42px}
 #qr-read .qhd .qi svg{width:26px;height:26px}
 #qr-read .qhd .qc h1{font-size:19px;font-weight:800;letter-spacing:0}
@@ -733,8 +735,6 @@ html[data-nomo] .nl-stars,html[data-nomo] .nl-halo{display:none}
 html.lite .hx-ring #hxd,html.lite .hx-scene .sd,html.lite .hx-scene .sc,html.lite #nlsky .halo,html.lite .hx-ring .nl-tk,html.lite .hx-say .n{animation:none!important}
 html.lite .hx-clock{animation:mdZoom .8s cubic-bezier(.2,.9,.3,1) .1s both!important}
 html.lite #list .p.cur{animation:mdRow .5s cubic-bezier(.22,.8,.3,1) both!important}
-html.lite .nl-stars i{animation:none!important;opacity:.55}
-html.lite .nl-stars b{animation:none!important}
 /* কুরআনের টগল: আবার না এঁকে শুধু ক্লাস বদলে দেখানো/লুকানো (তাই তাৎক্ষণিক, পড়ার জায়গাও হারায় না) */
 #pg-qr.tjoff .xg,#pg-qr.tjoff .xq,#pg-qr.tjoff .xm{color:inherit}
 #pg-qr.troff p.qr,#pg-qr.txoff p.qx{display:none}
@@ -1534,8 +1534,7 @@ ready(function(){
     <section class="card" id="qr-sl"></section>
   </div>
   <div class="pg" id="qr-read" hidden>
-    <section class="card qhd"><button class="qi" type="button" data-act="bk">←</button><div class="qc"><h1 id="qr-t"></h1><p class="mu" id="qr-m"></p></div><button class="qi" type="button" id="qr-st" aria-label="Display"><svg class="i2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.4"/><circle cx="8" cy="17" r="2.4"/></svg></button></section>
-    <section class="card" id="qr-ds" hidden>
+    <section class="card qhd"><button class="qi" type="button" data-act="bk">←</button><div class="qc"><h1 id="qr-t"></h1><p class="mu" id="qr-m"></p></div><button class="qi" type="button" id="qr-st" aria-label="Display"><svg class="i2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.4"/><circle cx="8" cy="17" r="2.4"/></svg></button>    <section class="card" id="qr-ds" hidden>
       <label class="qsl"><span id="qd-a"></span><input type="range" id="qr-za" min="20" max="56" step="2"></label>
       <label class="qsl"><span id="qd-r"></span><input type="range" id="qr-zr" min="12" max="32"></label>
       <label class="qsl"><span id="qd-t"></span><input type="range" id="qr-zt" min="12" max="30"></label>
@@ -1543,6 +1542,7 @@ ready(function(){
       <label class="qsl qtw"><span id="qd-j"></span><input type="checkbox" class="sw" id="qr-tj"></label>
       <p class="mu" id="qd-lg" style="font-size:12px;margin-top:8px"></p>
       <div class="qtb"><button class="btn" type="button" data-act="pv">‹</button><button class="btn" type="button" data-act="nx">›</button></div>
+    </section>
     </section>
     <div class="qsb" id="qr-ban"><svg viewBox="0 0 360 100" preserveAspectRatio="none" aria-hidden="true"><defs><g id="qbm" fill="none" stroke="currentColor" stroke-width="1.1"><circle r="36"/><circle r="31" stroke-dasharray="1.5 3.2"/><rect x="-19" y="-19" width="38" height="38" rx="2"/><rect x="-19" y="-19" width="38" height="38" rx="2" transform="rotate(45)"/><circle r="9"/><circle r="2.6" fill="currentColor" stroke="none"/><path d="M0-36v-6M0 36v6M-36 0h-6M36 0h6" stroke-width="1.4"/></g></defs><rect x="1.5" y="1.5" width="357" height="97" rx="9" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="6" y="6" width="348" height="88" rx="6" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 3"/><use href="#qbm" transform="translate(52 50)"/><use href="#qbm" transform="translate(308 50)"/><path d="M94 50h10M256 50h10" stroke="currentColor" stroke-width="1.4"/><rect x="104" y="14" width="152" height="72" rx="36" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="109" y="19" width="142" height="62" rx="31" fill="none" stroke="currentColor" stroke-width=".7"/></svg><div class="qsx"><b id="qb-n"></b><span id="qb-m"></span></div></div>
     <section class="card" id="qr-ays"></section>
@@ -1874,7 +1874,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='59';
+const APP_BUILD='60';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
@@ -2463,7 +2463,7 @@ function paintAyahs(n,d,ay){
     let a=x.a;
     if(x.n===1&&n!==1&&n!==9&&strip(a).startsWith('بسم')){const w=a.split(' ');if(w.length>=4)a=w.slice(4).join(' ')}
     const mk=last&&last.s===n&&last.a===x.n;
-    return '<div class="qy'+(mk?' mk':'')+'" id="qy-'+x.n+'"><div class="qh"><span class="qn">'+D(n)+':'+D(x.n)+'</span><button class="qbm'+(mk?' on':'')+'" type="button" data-a="'+x.n+'" aria-label="'+L('এখানে থামুন','Bookmark')+'">'+ICN.bm+'</button></div><p class="ar" lang="ar">'+tj(a)+'</p>'+(TRD[n-1]&&TRD[n-1][x.n-1]?'<p class="qr">'+esc(TRD[n-1][x.n-1])+'</p>':'')+(x.t?'<p class="qx">'+esc(x.t)+'</p>':'')+'</div>'};
+    return '<div class="qy'+(mk?' mk':'')+'" id="qy-'+x.n+'"><div class="qh"><span class="qn">'+D(n)+':'+D(x.n)+'</span><button class="qbm'+(mk?' on':'')+'" type="button" data-a="'+x.n+'" aria-label="'+L('এখানে থামুন','Bookmark')+'">'+ICN.bm+'</button></div><p class="ar" lang="ar">'+tj(a)+'</p>'+(trd()[n-1]&&trd()[n-1][x.n-1]?'<p class="qr">'+esc(trd()[n-1][x.n-1])+'</p>':'')+(x.t?'<p class="qx">'+esc(x.t)+'</p>':'')+'</div>'};
   const tk=++rtk,N=d.length,el=Q('qr-ays');
   const first=Math.min(N,Math.max(12,ay?ay+10:0));
   el.innerHTML=nt+bis+d.slice(0,first).map(x=>one(x)).join('');
@@ -2519,7 +2519,7 @@ pg.addEventListener('click',e=>{
 });
 
 /* ---- তাজবীদ (আংশিক), পারা/পৃষ্ঠা, অডিও প্লেয়ার ---- */
-const TRD=JSON.parse(Q(EN?'qr-trE':'qr-tr').textContent);
+let _TRD=null;const trd=()=>_TRD||(_TRD=JSON.parse(Q(EN?'qr-trE':'qr-tr').textContent));
 const RX=/([\u0621-\u064A\u0671])([\u064B-\u065F\u0670\u06D6-\u06ED]*)/g;
 function tj(a){a=esc(a);return a.replace(RX,(m,l,k)=>{
   if('نم'.includes(l)&&k.includes('\u0651'))return '<i class="xg">'+m+'</i>';
