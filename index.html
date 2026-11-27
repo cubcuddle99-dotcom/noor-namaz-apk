@@ -2757,7 +2757,7 @@ function roza(){
   $('xrb').onclick=()=>{const c=RZ();c.on=!c.on;LS.s('xrz',c);bt();if(c.on){try{'Notification' in window&&Notification.permission==='default'&&Notification.requestPermission()}catch{}chkRz()}};
   return()=>clearInterval(iv);
 }
-function toast(m){const t=$('xtoast');t.textContent=m;t.hidden=false;setTimeout(()=>{t.hidden=true},9000);
+window.toast=toast;function toast(m){const t=$('xtoast');t.textContent=m;t.hidden=false;setTimeout(()=>{t.hidden=true},9000);
   try{if('Notification' in window&&Notification.permission==='granted'){swReg?swReg.showNotification(T('নূর নামাজ','Noor Namaz'),{body:m}):new Notification(T('নূর নামাজ','Noor Namaz'),{body:m})}}catch{}}
 function chkRz(){try{const c=RZ();if(!c.on||!loc)return;const n=new Date(),t=getDay(n).t;if(n<at(n,t.Maghrib))return;
   const tm=dd(nd(),1),w=fastWhy(tm),key=tm.toDateString();if(!w||c.sent===key)return;c.sent=key;LS.s('xrz',c);
@@ -3011,7 +3011,7 @@ ${row('🕌','#22c1dc','#0b6a8a',t('শুক্রবারের স্মর�
   document.addEventListener('input',e=>{if(e.target.id==='nlvol'){st('nl_vol',+e.target.value);vol()}
     else if(e.target.id==='nlfa'||e.target.id==='nlia'){const a=parseFloat(document.getElementById('nlfa').value),b=parseFloat(document.getElementById('nlia').value);if(a>=10&&a<=22&&b>=0&&b<=22){METH.cus=[a,b];st('nl_cus',[a,b]);if(g('nl_m','umm')==='cus'){CFG={fa:a,ia:b};redo()}}}});
   setInterval(build,600);
-  setTimeout(()=>{try{if(new Date().getDay()===5&&g('nl_fri',true)&&g('nl_frd','')!==dk(new Date())){st('nl_frd',dk(new Date()));toast(t('আজ জুমা মুবারক! সূরা কাহফ পড়ুন, দরুদ বেশি পড়ুন, গোসল ও সুগন্ধি ভুলবেন না।','Jumu\'ah Mubarak! Read Surah Al-Kahf and send salawat.'))}}catch(e){}},2500);
+  setTimeout(()=>{try{if(new Date().getDay()===5&&g('nl_fri',true)&&g('nl_frd','')!==dk(new Date())){toast(t('আজ জুমা মুবারক! সূরা কাহফ পড়ুন, দরুদ বেশি পড়ুন, গোসল ও সুগন্ধি ভুলবেন না।','Jumu\'ah Mubarak! Read Surah Al-Kahf and send salawat.'));st('nl_frd',dk(new Date()))}}catch(e){}},2500);
 })();
 </script>
 </body>
