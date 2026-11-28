@@ -896,6 +896,51 @@ html[data-gv] #lgn .lgn-or{display:flex}
 html[data-gv] #lgn[data-v] .lgn-or{display:none}
 </style>
 <!-- ===== LOGIN 1/2 (শেষ) ===== -->
+<style id="wx-css">
+#wxb{display:block;width:100%;text-align:start;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;border:1px solid rgba(255,255,255,.55);border-radius:22px;padding:14px 16px;background:linear-gradient(135deg,#F4EEFF,#DDCFFF);color:#2B1466;box-shadow:0 12px 28px -14px rgba(60,20,140,.55)}
+#wxb:active{filter:brightness(.97)}
+#wxs[hidden]{display:none!important}
+#wxb .r1{display:flex;align-items:center;gap:8px;font-size:15px}#wxb .r1 b{font-weight:700}#wxb .r1 em{margin-inline-start:auto;font-style:normal;font-size:13px;color:#6B5A99}
+#wxb .r2{display:flex;align-items:center;gap:12px;margin-top:8px}
+#wxb .r2>div{flex:1;min-width:0}
+#wxb .tt{display:block;font-size:34px;font-weight:700;line-height:1.1;letter-spacing:-.5px}
+#wxb .cc{display:block;font-size:15px;font-weight:700;margin-top:2px}
+#wxb .ss{display:block;font-size:12.5px;color:#6B5A99;margin-top:1px}
+#wxb .go{flex:none;padding:10px 16px;border-radius:999px;background:#6A2FE0;color:#fff;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(106,47,224,.8)}
+#wxb .wxi{width:30px;height:30px}#wxb .wxi svg{width:26px;height:26px}
+#wxb .r2 .wxi{width:56px;height:56px}#wxb .r2 .wxi svg{width:52px;height:52px}
+#wxb .wx-s1{color:#5B6FE0}#wxb .wx-s2{color:#7F94A8}#wxb .wx-s6{color:#6B5A99}
+.wxi{flex:none;display:grid;place-items:center;width:34px;height:34px}
+.wxi svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.wxi .wf{fill:currentColor;stroke:none}
+.wx-s0{color:#E8A317}.wx-s1{color:#8FA6FF}.wx-s2{color:#8FA7B8}.wx-s3{color:#4AA3FF}.wx-s4{color:#B08CFF}.wx-s5{color:#8CCBEE}.wx-s6{color:var(--mu)}
+#wxs{position:fixed;inset:0;z-index:50;background:rgba(5,4,16,.55);display:flex;align-items:flex-end;justify-content:center}
+.wxp{width:100%;max-width:452px;max-height:calc(90vh / var(--z,1));max-height:calc(90dvh / var(--z,1));overflow-y:auto;overscroll-behavior:contain;background:var(--sf);color:var(--ink);border:1px solid var(--ln);border-bottom:0;border-radius:26px 26px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));box-shadow:0 -14px 40px rgba(0,0,0,.35);zoom:var(--z,1);animation:wxup .22s ease-out}
+@keyframes wxup{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+html.wxo{overflow:hidden}
+.wxh{display:flex;align-items:flex-start;gap:10px}.wxh>div{flex:1;min-width:0}
+.wxh h2{font-size:17px;font-weight:700}
+.wxx{flex:none;width:36px;height:36px;border-radius:12px;border:1px solid var(--ln);background:var(--sf2);color:var(--ink);font-size:20px;line-height:1;cursor:pointer}
+.wxn{margin-top:2px;font-size:12.5px;color:var(--mu)}.wxn.old{color:var(--warn)}
+.wxm{display:flex;align-items:center;gap:14px;margin:14px 0 12px}
+.wxm .wxi{width:64px;height:64px}.wxm .wxi svg{width:58px;height:58px}
+.wxm .big{font-size:44px;font-weight:700;line-height:1;letter-spacing:-1.5px}
+.wxm .cd{font-size:15px;font-weight:600}.wxm .hl{font-size:13px;color:var(--mu);margin-top:3px}
+.wxg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wxg>div,.wxr>div{background:var(--sf2);border:1px solid var(--ln);border-radius:14px;padding:10px 12px}
+.wxg span,.wxr span{display:block;font-size:12px;color:var(--mu)}.wxg b,.wxr b{display:block;font-size:16px;font-weight:700;margin-top:2px}
+.wxr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.wxk{margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--mu)}
+.wxhr{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}.wxhr::-webkit-scrollbar{display:none}
+.wxhr>div{flex:none;width:58px;text-align:center;background:var(--sf2);border:1px solid var(--ln);border-radius:14px;padding:8px 4px}
+.wxhr small{display:block;font-size:11.5px;color:var(--mu)}.wxhr .wxi{width:30px;height:30px;margin:4px auto}.wxhr .wxi svg{width:26px;height:26px}
+.wxhr b{display:block;font-size:14px}.wxhr em{display:block;font-style:normal;font-size:11px;color:#4AA3FF;min-height:14px}
+.wxdy>div{display:flex;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px solid var(--ln)}.wxdy>div:last-child{border:0}
+.wxdy .dn{flex:1;font-size:14px;font-weight:600}.wxdy .dp{width:44px;text-align:end;font-size:12px;color:#4AA3FF}
+.wxdy .dt{width:84px;text-align:end;font-size:14px}.wxdy .dt i{font-style:normal;color:var(--mu)}
+.wxdy .wxi{width:28px;height:28px}.wxdy .wxi svg{width:24px;height:24px}
+.wxf{margin-top:14px;font-size:11.5px;color:var(--mu);text-align:center}
+</style>
 </head>
 <body>
 <!-- ===== LOGIN 2/2 (শুরু): লগইন পেজ + লজিক ===== -->
@@ -1489,7 +1534,8 @@ ready(function(){
     <div class="lh"><span>আজকের সালাতের সময়</span><span class="la"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 22a2.4 2.4 0 002.4-2.4h-4.8A2.4 2.4 0 0012 22zm7-6.2V11c0-3.3-2.2-6-5.2-6.8V3.5a1.8 1.8 0 10-3.6 0v.7C7.2 5 5 7.7 5 11v4.8l-2 2V19h18v-1.2z"/></svg><span>অ্যালার্ম</span></span></div>
     <div id="list"></div>
   </section>
-  <section class="card" id="xbc"><div class="mu" style="margin:0 0 8px">⛔ নিষিদ্ধ সময় (এ সময়ে নফল সালাত পড়া যাবে না)</div><div class="bcd" id="xbcd"></div><div id="xbn"></div><p class="mu" style="font-size:12px;margin-top:8px">সময়গুলো আনুমানিক (সূর্যোদয়ের পর ও মাগরিবের আগে প্রায় ১৫ মিনিট, যোহরের আগে প্রায় ১০ মিনিট)।</p></section>
+  <button class="card" id="wxb" type="button" aria-haspopup="dialog"><div class="r1"><span class="wxi" id="wxbi"></span><b id="wxbh">আবহাওয়া</b><em id="wxbl">আপনার এলাকা</em></div><div class="r2"><span class="wxi" id="wxbi2"></span><div><span class="tt" id="wxbt">--°C</span><span class="cc" id="wxbc">আবহাওয়া দেখুন</span><span class="ss" id="wxbs">সর্বশেষ তথ্য জানতে ট্যাপ করুন</span></div><span class="go" id="wxgo">বিস্তারিত →</span></div></button>
+<section class="card" id="xbc"><div class="mu" style="margin:0 0 8px">⛔ নিষিদ্ধ সময় (এ সময়ে নফল সালাত পড়া যাবে না)</div><div class="bcd" id="xbcd"></div><div id="xbn"></div><p class="mu" style="font-size:12px;margin-top:8px">সময়গুলো আনুমানিক (সূর্যোদয়ের পর ও মাগরিবের আগে প্রায় ১৫ মিনিট, যোহরের আগে প্রায় ১০ মিনিট)।</p></section>
 
   <section class="card" id="dc"><div class="mu" id="xdk" style="margin:0"><svg class="i2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7 4.6 3.5 5v13c3.5-.4 6.5 0 8.5 1.5 2-1.5 5-1.9 8.5-1.5V5c-3.5-.4-6.5 0-8.5 1.5zM12 6.5v13"/></svg> আজকের আয়াত</div><p class="ar" id="xda"></p><p class="bg" id="xdb"></p><p class="mu" id="xdr"></p></section>
 
@@ -1668,6 +1714,7 @@ ready(function(){
   <button type="button" data-pg="dua"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M3 4.500h6.500c1.400 0 2.500 1.100 2.500 2.500v13.500c0-1.100-.9-2-2-2H3zM21 4.500h-6.500C13.100 4.500 12 5.600 12 7v13.500c0-1.100.9-2 2-2h7z"/></svg><span>দুআ</span></button>
   <button type="button" data-pg="set"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6A3.6 3.6 0 1115.6 12 3.6 3.6 0 0112 15.6z"/></svg><span>সেটিংস</span></button>
 </nav>
+<div id="wxs" hidden role="dialog" aria-modal="true" aria-labelledby="wxst"><div class="wxp" id="wxp"></div></div>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -1874,7 +1921,7 @@ if(NATIVE&&NA){
   setInterval(syncPhoneAlarms,5*60*1000); // ওয়াক্ত পার হলে পরের দিনেরটা বসাতে
 }
 /* ===== নতুন ভার্সনের বার্তা (GitHub Release দেখে) ===== */
-const APP_BUILD='64';
+const APP_BUILD='65';
 const UPD_REPO='cubcuddle99-dotcom/noor-namaz-apk';
 let updLast=0;
 function showUpdate(url){
@@ -1978,12 +2025,14 @@ async function setLoc(l,save,resolve){
   loc=l; if(save) LS.s('loc',l);
   $('loc').textContent=' '+(l.name||'আপনার এলাকা');
   await loadAll();
+  try{window.wxHook&&window.wxHook()}catch{}
   if(resolve&&navigator.onLine){
     try{
       const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&accept-language=${window.__EN?'en':'bn'}&lat=${l.lat}&lon=${l.lng}`);
       const j=await r.json(),a=j.address||{};
       l.name=a.city||a.town||a.city_district||a.suburb||a.state_district||a.state||'আপনার এলাকা';
       LS.s('loc',l); $('loc').textContent=' '+l.name;
+      try{window.wxHook&&window.wxHook()}catch{}
     }catch{}
   }
 }
@@ -3012,6 +3061,97 @@ ${row('🕌','#22c1dc','#0b6a8a',t('শুক্রবারের স্মর�
     else if(e.target.id==='nlfa'||e.target.id==='nlia'){const a=parseFloat(document.getElementById('nlfa').value),b=parseFloat(document.getElementById('nlia').value);if(a>=10&&a<=22&&b>=0&&b<=22){METH.cus=[a,b];st('nl_cus',[a,b]);if(g('nl_m','umm')==='cus'){CFG={fa:a,ia:b};redo()}}}});
   setInterval(build,600);
   setTimeout(()=>{try{if(new Date().getDay()===5&&g('nl_fri',true)&&g('nl_frd2','')!==dk(new Date())){toast(t('আজ জুমা মুবারক! সূরা কাহফ পড়ুন, দরুদ বেশি পড়ুন, গোসল ও সুগন্ধি ভুলবেন না।','Jumu\'ah Mubarak! Read Surah Al-Kahf and send salawat.'));st('nl_frd2',dk(new Date()))}}catch(e){}},2500);
+})();
+</script>
+<script>
+/* ওয়েদার বার (হোম পেজ) — তথ্য: Open-Meteo.com; অ্যাপ খোলার পরে পেছনে লোড হয়, শেষ তথ্য ফোনে জমা থাকে */
+(function(){
+const EN=!!window.__EN,nm=v=>EN?String(v):bn(v),W=(b,e)=>EN?e:b;
+const pgH=$('pg-home'),bar=$('wxb'),sh=$('wxs'),pn=$('wxp'),root=document.documentElement;
+const TC=v=>nm(Math.round(v))+'°C';
+let D=null,busy=false,err=false,last=0;
+const esc=x=>String(x==null?'':x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P={
+sun:'<circle cx="12" cy="12" r="4.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/>',
+moon:'<path d="M20 14.2A8 8 0 019.8 4 8 8 0 1020 14.2z"/>',
+cloud:'<path d="M7 18.5h9.5a4 4 0 00.6-7.95A5.5 5.5 0 006.4 9.6 4.5 4.5 0 007 18.5z"/>',
+pcd:'<circle cx="8" cy="8" r="2.8"/><path d="M8 2.4v1.2M2.4 8h1.2M4 4l.9.9M12 4l-.9.9"/><path d="M9.5 19.5h8a3.4 3.4 0 00.4-6.8 4.6 4.6 0 00-8.7 1.3 3.1 3.1 0 00.3 5.5z"/>',
+pcn:'<path d="M10 3.6A4.2 4.2 0 105.6 10 3.6 3.6 0 0110 3.6z"/><path d="M9.5 19.5h8a3.4 3.4 0 00.4-6.8 4.6 4.6 0 00-8.7 1.3 3.1 3.1 0 00.3 5.5z"/>',
+rain:'<path d="M7 14h9.5a3.7 3.7 0 00.6-7.35A5.2 5.2 0 006.6 5.8 4.1 4.1 0 007 14z"/><path d="M8.5 17l-1 2.6M12.5 17l-1 2.6M16.5 17l-1 2.6"/>',
+storm:'<path d="M7 14h9.5a3.7 3.7 0 00.6-7.35A5.2 5.2 0 006.6 5.8 4.1 4.1 0 007 14z"/><path d="M12.8 14.5l-2.6 3.6h3l-1.4 3.5"/>',
+snow:'<path d="M7 14h9.5a3.7 3.7 0 00.6-7.35A5.2 5.2 0 006.6 5.8 4.1 4.1 0 007 14z"/><path d="M8 18v.01M12 20v.01M16 18v.01M10 21v.01M14 21v.01" stroke-width="2.4"/>',
+fog:'<path d="M4 8h16M6 12h14M4 16h12M8 20h10"/>'};
+/* WMO কোড -> [আইকন, রঙ-ক্লাস, বাংলা, English] */
+function info(c,day){
+ if(c===0)return day?[P.sun,0,'পরিষ্কার আকাশ','Clear sky']:[P.moon,1,'পরিষ্কার রাত','Clear night'];
+ if(c===1)return day?[P.sun,0,'প্রায় পরিষ্কার','Mostly clear']:[P.moon,1,'প্রায় পরিষ্কার','Mostly clear'];
+ if(c===2)return day?[P.pcd,0,'আংশিক মেঘলা','Partly cloudy']:[P.pcn,1,'আংশিক মেঘলা','Partly cloudy'];
+ if(c===3)return [P.cloud,2,'মেঘলা','Overcast'];
+ if(c===45||c===48)return [P.fog,6,'কুয়াশা','Fog'];
+ if(c>=51&&c<=57)return [P.rain,3,'গুঁড়ি গুঁড়ি বৃষ্টি','Drizzle'];
+ if(c===61||c===80)return [P.rain,3,'হালকা বৃষ্টি','Light rain'];
+ if(c===63||c===81||c===66)return [P.rain,3,'বৃষ্টি','Rain'];
+ if(c===65||c===82||c===67)return [P.rain,3,'ভারী বৃষ্টি','Heavy rain'];
+ if(c>=71&&c<=77||c===85||c===86)return [P.snow,5,'তুষারপাত','Snow'];
+ if(c>=95)return [P.storm,4,'বজ্রসহ বৃষ্টি','Thunderstorm'];
+ return [P.cloud,2,'মেঘলা','Cloudy'];}
+const ic=(c,day)=>{const i=info(c,day);return '<span class="wxi wx-s'+i[1]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+i[0]+'</svg></span>'};
+const tx=(c,day)=>{const i=info(c,day);return EN?i[3]:i[2]};
+const T=v=>nm(Math.round(v))+'°';
+const hm=(iso,min)=>{let h=+iso.slice(11,13),m=iso.slice(14,16),ap=h>=12?'PM':'AM';h=h%12||12;return nm(h)+(min?':'+nm(m):'')+' '+ap};
+const WD=EN?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র','শনি'];
+const key=l=>(+l.lat).toFixed(2)+','+(+l.lng).toFixed(2);
+const nameOf=()=>{const l=typeof loc!=='undefined'?loc:null;return (l&&l.name)||W('আপনার এলাকা','Your area')};
+function pack(j){
+ const c=j.current,h=j.hourly,d=j.daily;
+ let i0=h.time.findIndex(x=>x>=c.time.slice(0,13)+':00');if(i0<0)i0=0;
+ const hours=[];for(let i=i0;i<Math.min(h.time.length,i0+24);i++)hours.push({t:h.time[i],T:h.temperature_2m[i],c:h.weather_code[i],p:h.precipitation_probability[i],d:h.is_day[i]});
+ const days=d.time.map((x,i)=>({d:x,c:d.weather_code[i],hi:d.temperature_2m_max[i],lo:d.temperature_2m_min[i],p:d.precipitation_probability_max[i],sr:d.sunrise[i],ss:d.sunset[i]}));
+ return {now:{t:c.time,T:c.temperature_2m,f:c.apparent_temperature,h:c.relative_humidity_2m,w:c.wind_speed_10m,c:c.weather_code,d:c.is_day},hours,days};}
+function save(l,data){D={k:key(l),at:Date.now(),v:data};LS.s('wxc',D)}
+async function load(force){
+ const l=typeof loc!=='undefined'?loc:null;if(!l||busy)return;
+ const c=LS.g('wxc',null);
+ if(c&&c.k===key(l)){D=c;if(!force&&Date.now()-c.at<18e5){err=false;show();return}}
+ else if(D&&D.k!==key(l))D=null;
+ if(!navigator.onLine){err=!D;show();return}
+ busy=true;const ac=new AbortController(),to=setTimeout(()=>ac.abort(),12000);
+ try{
+  const u='https://api.open-meteo.com/v1/forecast?latitude='+(+l.lat).toFixed(2)+'&longitude='+(+l.lng).toFixed(2)+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,is_day&hourly=temperature_2m,precipitation_probability,weather_code,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&timezone=auto&forecast_days=7&wind_speed_unit=kmh';
+  const r=await fetch(u,{signal:ac.signal});if(!r.ok)throw 0;
+  const j=await r.json();save(l,pack(j));err=false;
+ }catch(e){err=!D}
+ clearTimeout(to);busy=false;show();if(!sh.hidden)sheet();}
+function active(){return !pgH.hidden}
+function fill(i,t,c,sub){$('wxbi').innerHTML=i[0];$('wxbi2').innerHTML=i[1];$('wxbt').textContent=t;$('wxbc').textContent=c;$('wxbs').textContent=sub}
+function show(){
+ $('wxbh').textContent=W('আবহাওয়া','Weather');$('wxgo').textContent=W('বিস্তারিত →','Details →');$('wxbl').textContent=nameOf();
+ if(!D){fill([ic(3,1),ic(3,1)],'--°C',W('আবহাওয়া দেখুন','See the weather'),err?W('ইন্টারনেট দেখে ট্যাপ করুন','Check connection and tap to retry'):W('সর্বশেষ তথ্য জানতে ট্যাপ করুন','Tap for the latest'));bar.setAttribute('aria-label',W('আবহাওয়া দেখুন','See the weather'));return}
+ const v=D.v,n=v.now,t0=v.days[0];
+ fill([ic(n.c,n.d),ic(n.c,n.d)],TC(n.T),tx(n.c,n.d),W('সর্বোচ্চ ','High ')+T(t0.hi)+' · '+W('সর্বনিম্ন ','Low ')+T(t0.lo));
+ bar.setAttribute('aria-label',W('আবহাওয়া: ','Weather: ')+TC(n.T)+' '+tx(n.c,n.d)+W('। বিস্তারিত দেখতে ট্যাপ করুন','. Tap for details'));}
+function sheet(){
+ if(!D){pn.innerHTML='';return}
+ const v=D.v,n=v.now,t0=v.days[0],stale=Date.now()-D.at>108e5||!navigator.onLine;
+ const up=new Date(D.at),uh=up.getHours(),ut=nm(uh%12||12)+':'+nm(p2(up.getMinutes()))+' '+(uh>=12?'PM':'AM');
+ let h='<div class="wxh"><div><h2 id="wxst">'+W('ওয়েদার','Weather')+' · '+esc(nameOf())+'</h2><p class="wxn'+(stale?' old':'')+'">'+W('সর্বশেষ আপডেট: ','Updated: ')+ut+(navigator.onLine?'':W(' (ইন্টারনেট নেই)',' (offline)'))+'</p></div><button class="wxx" id="wxcl" type="button" aria-label="'+W('বন্ধ করুন','Close')+'">×</button></div>';
+ h+='<div class="wxm">'+ic(n.c,n.d)+'<div><div class="big">'+T(n.T)+'</div></div><div><div class="cd">'+esc(tx(n.c,n.d))+'</div><div class="hl">'+W('সর্বোচ্চ ','High ')+T(t0.hi)+' · '+W('সর্বনিম্ন ','Low ')+T(t0.lo)+'</div></div></div>';
+ h+='<div class="wxg"><div><span>'+W('অনুভূত','Feels like')+'</span><b>'+T(n.f)+'</b></div><div><span>'+W('আর্দ্রতা','Humidity')+'</span><b>'+nm(Math.round(n.h))+'%</b></div><div><span>'+W('বাতাস','Wind')+'</span><b>'+nm(Math.round(n.w))+' '+W('কিমি/ঘ','km/h')+'</b></div><div><span>'+W('বৃষ্টির সম্ভাবনা','Chance of rain')+'</span><b>'+nm(t0.p==null?0:t0.p)+'%</b></div></div>';
+ h+='<div class="wxr"><div><span>'+W('সূর্যোদয়','Sunrise')+'</span><b>'+hm(t0.sr,1)+'</b></div><div><span>'+W('সূর্যাস্ত','Sunset')+'</span><b>'+hm(t0.ss,1)+'</b></div></div>';
+ h+='<p class="wxk">'+W('আগামী ২৪ ঘণ্টা','Next 24 hours')+'</p><div class="wxhr">'+v.hours.map(x=>'<div><small>'+hm(x.t)+'</small>'+ic(x.c,x.d)+'<b>'+T(x.T)+'</b><em>'+(x.p>=20?nm(x.p)+'%':'')+'</em></div>').join('')+'</div>';
+ h+='<p class="wxk">'+W('আগামী ৭ দিন','Next 7 days')+'</p><div class="wxdy">'+v.days.map((x,i)=>{const dt=new Date(+x.d.slice(0,4),+x.d.slice(5,7)-1,+x.d.slice(8,10));return '<div><span class="dn">'+(i===0?W('আজ','Today'):i===1?W('আগামীকাল','Tomorrow'):WD[dt.getDay()]+' '+nm(dt.getDate()))+'</span><span class="dp">'+(x.p>=20?nm(x.p)+'%':'')+'</span>'+ic(x.c,1)+'<span class="dt">'+T(x.hi)+' <i>'+T(x.lo)+'</i></span></div>'}).join('')+'</div>';
+ h+='<p class="wxf">'+W('ওয়েদার তথ্য: ','Weather data: ')+'Open-Meteo.com</p>';
+ pn.innerHTML=h;$('wxcl').onclick=close;}
+function open(){if(!D){err=false;show();load(true);return}sheet();sh.hidden=false;root.classList.add('wxo');$('wxcl').focus();if(Date.now()-D.at>18e5)load(true)}
+function close(){sh.hidden=true;root.classList.remove('wxo');bar.focus()}
+bar.onclick=open;
+sh.addEventListener('click',e=>{if(e.target===sh)close()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!sh.hidden)close()});
+addEventListener('online',()=>setTimeout(()=>load(),1500));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&D&&Date.now()-D.at>18e5)load()});
+setInterval(()=>{if(!document.hidden&&active())load()},18e5);
+let tm=0;window.wxHook=()=>{clearTimeout(tm);tm=setTimeout(()=>{show();load()},1200)};
+show();setTimeout(()=>{const c=LS.g('wxc',null);if(c&&!D){D=c;show()}load()},1500);
 })();
 </script>
 </body>
